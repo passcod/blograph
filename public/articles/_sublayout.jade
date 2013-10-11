@@ -1,0 +1,22 @@
+- var its = this
+article
+  header
+    if its.date
+      time(datetime=date.full)= date.nice
+    else
+      no date
+    
+    if its.author
+      p(rel='author')= its.author
+    else if the.author
+      p(rel='author')= the.author
+  
+  +yieldp
+  
+  footer
+    unless the.comments === false
+      Praise? Thoughts? Disparing comments?
+      
+      if the.twitter
+        Discuss it on Twitter:
+        a(href='https://twitter.com/'+the.twitter) @#{the.twitter}

@@ -1,0 +1,9 @@
+{
+  "globals": {
+    "the": {
+      "title": "Blograph",
+      "tagline": "Non-linear blogging",
+      "footer": "Content dedicated to the Public Domain (CC0)."
+    }
+  }
+}
