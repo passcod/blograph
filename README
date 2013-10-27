@@ -1,0 +1,32 @@
+Preliminary notes
+
+- Blograph does NOT handle minification. That task should be done
+  either by a Rack Middleware, by a service higher on the HTTP reverse
+  proxy chain on your server, or by an external service like Cloudflare.
+
+- Blograph was created for the singular purpose of running my blog.
+
+- Blograph does NOT read from tumblr.
+
+- Blograph is the source of truth for the information it displays.
+
+- Blograph handles more markup languages than I currently use.
+
+- Blograph is not designed for static website generation, and thus
+  cannot and should not be used to publish to Github Pages, Dropbox,
+  or S3. Get a server or put it on Heroku or something.
+
+- Blograph will read from a Git(Hub) repository.
+
+- Blograph can and will show older versions of articles if that is so
+  requested. If you do not want your typos or factual innacuracies to
+  show up, use --amend and rebase.
+
+- Blograph does not use SASS, LESS, Stylus, or other CSS preprocessors.
+  If you think you can convince me otherwise, shoot me an email at
+  blograph@passcod.name. If you do convince me, I will reply.
+
+- Blograph uses YAML Front Matter.
+
+- Blograph is dedicated to the Public Domain, see Creative Commons 0:
+  https://creativecommons.org/publicdomain/zero/1.0/ or the LICENSE file.
