@@ -1,0 +1,86 @@
+html {
+  font-family: monospace;
+  font-size: 14px;
+  color: #494949;
+}
+
+body {
+  width: 41rem;
+  width: 72ch;
+}
+
+h1, h2, h3, h4, h5, h6, th, thead, tfoot {
+  font-size: 1rem;
+  color: black;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  border: 0px;
+  background: none;
+  font-family: inherit;
+  outline: 0 none transparent;
+  cursor: pointer;
+}
+
+a, a:active, a:visited, button {
+  color: black;
+  text-decoration: none;
+  border-bottom: 1px dashed black;
+}
+
+a:focus, a:hover, button:focus, button:hover {
+  border-bottom-style: solid;
+}
+
+p {
+  text-align: justify;
+}
+
+body > header {
+  border-bottom: 1px solid #494949;
+  padding-bottom: 1em;
+  margin: 1em 0;
+}
+
+body > header a {
+  border-bottom: 0;
+}
+
+header p, footer p {
+  margin: 0;
+}
+
+body > footer {
+  border-top: 1px solid #494949;
+  padding-top: 1em;
+  margin: 1em 0;
+}
+
+article > header p, article > footer p {
+  text-align: right;
+}
+
+.flipped {
+  color: #AAA;
+  background: black;
+}
+
+.flipped h1, .flipped h2, .flipped h3, .flipped h4, .flipped h5, .flipped h6, .flipped th, .flipped thead, .flipped tfoot {
+  color: white;
+}
+
+.flipped a, .flipped a:active, .flipped a:visited, .flipped button {
+  color: white;
+  border-bottom-color: white;
+}
+
+.flipped body > header, .flipped body > footer {
+  border-color: #AAA;
+}
+
+button.flip {
+  float: right;
+}
