@@ -1,15 +1,20 @@
 source 'https://rubygems.org'
 
-" creole
-  foreman
-  github
-  github_api
-  github-markup
+"
+  asciidoctor
+  creole
   haml
+  liquid
+  markaby
+  numbers_and_words
   org-ruby
   redcarpet
   RedCloth
+  rugged
   sinatra
+  slim
   tumblr_client
+  typhoeus
   wikicloth
 ".split.each { |g| gem g }
+gem 'activesupport', require: false

@@ -1,0 +1,7 @@
+---
+repos:
+  posts: 'passcod/blograph-posts'
+  theme: 'passcod/blograph-theme'
+meta:
+  title: 'Blograph'
+  author: 'passcod' # Default author
