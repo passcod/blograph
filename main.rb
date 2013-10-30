@@ -10,17 +10,8 @@ require './post'
 configure do
   set :views, Blograph.cache + 'theme'
   set :public_folder, Blograph.cache + 'theme/static'
-
-  FileUtils.remove_dir Blograph.cache if Blograph.cache.exist?
-  Blograph.config['repos'].each do |key, repo|
-    repo = "git://github.com/#{repo}.git" if repo =~ %r{^.+/.+$}
-    print "Cloning #{repo} "
-    cdir = Blograph.cache + key
-    FileUtils.mkdir_p cdir
-    repo = Rugged::Repository.clone_at repo, cdir.to_s
-    puts '✓'
-    Blograph.config['repos'][key] = repo
-  end
+  
+  Blograph.config['repos'].keys.each { |r| Blograph.fetch_repo(r) }
 end
 
 helpers do
@@ -63,4 +54,11 @@ end
 
 get '/:year/:month/:day/:slug' do
   yield_post %w[year month day slug].map { |k| params[k.to_sym] }.join('/')
+end
+
+post '/github-hook/:repo' do
+  Blograph.fetch_repo params[:repo]
+  if params[:repo] == 'posts'
+    Blograph.reset_memoiz
+  end
 end

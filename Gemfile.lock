@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/libgit2/rugged.git
+  revision: d0ade827cf5c02b30f8681d4988c26ee39247746
+  branch: development
+  submodules: true
+  specs:
+    rugged (0.19.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -43,7 +51,6 @@ GEM
       rack
     redcarpet (3.0.0)
     rubypants (0.2.0)
-    rugged (0.19.0)
     sanitize (2.0.6)
       nokogiri (>= 1.4.4)
     simple_oauth (0.2.0)
@@ -87,7 +94,7 @@ DEPENDENCIES
   numbers_and_words
   org-ruby
   redcarpet
-  rugged
+  rugged!
   sanitize
   sinatra
   slim

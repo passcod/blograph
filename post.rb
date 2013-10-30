@@ -5,6 +5,29 @@ module Blograph
     def cache; Pathname.new('./cache') end
     def config; YAML.load_file('config.yml') end
     def meta; YAML.load_file(cache + 'posts' + 'metadata.yml') end
+
+    def reset_memoiz
+      puts "Resetting memoization"
+      Blograph::Post.flush_cache
+    end
+
+    def fetch_repo repo
+      return unless Blograph.config['repos'].keys.include? repo
+      target = Blograph.cache + repo 
+
+      remote = Blograph.config['repos'][repo]
+      remote = remote.remotes.first.url if remote.is_a? Rugged::Repository
+      remote = "git://github.com/#{remote}.git" if remote =~ %r{^[-_\.a-zA-Z0-9]+/[-_\.a-zA-Z0-9]+$}
+
+      FileUtils.remove_dir target if target.exist?
+      FileUtils.mkdir_p target
+
+      print "Cloning #{remote} into #{target} "
+      local = Rugged::Repository.clone_at remote, target.to_s
+      puts '✓'
+
+      Blograph.config['repos'][repo] = local
+    end
     
     memoize :cache, :config, :meta
   end
