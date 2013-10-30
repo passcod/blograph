@@ -11,7 +11,6 @@ source 'https://rubygems.org'
   org-ruby
   redcarpet
   RedCloth
-  rugged
   sanitize
   sinatra
   slim
@@ -20,3 +19,5 @@ source 'https://rubygems.org'
   wikicloth
 ".split.each { |g| gem g }
 gem 'activesupport', require: false
+gem 'rugged', git: 'git://github.com/libgit2/rugged.git', branch: 'development', submodules: true
+
