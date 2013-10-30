@@ -6,11 +6,13 @@ source 'https://rubygems.org'
   haml
   liquid
   markaby
+  memoist
   numbers_and_words
   org-ruby
   redcarpet
   RedCloth
   rugged
+  sanitize
   sinatra
   slim
   tumblr_client
