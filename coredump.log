@@ -1,0 +1,1263 @@
+WARN: Unresolved specs during Gem::Specification.reset:
+      multi_json (~> 1.3)
+      minitest (~> 4.2)
+WARN: Clearing out unresolved specs.
+Please report a bug if this causes problems.
+[2013-10-30 23:11:44] INFO  WEBrick 1.3.1
+[2013-10-30 23:11:44] INFO  ruby 2.0.0 (2013-06-27) [x86_64-linux]
+== Sinatra/1.4.4 has taken the stage on 4567 for development with backup from WEBrick
+[2013-10-30 23:11:44] INFO  WEBrick::HTTPServer#start: pid=3284 port=4567
+::1 - - [30/Oct/2013 23:12:00] "GET /2013/oct/27/curious-demigod HTTP/1.1" 200 3589 0.0111
+localhost.localdomain - - [30/Oct/2013:23:12:00 NZDT] "GET /2013/oct/27/curious-demigod HTTP/1.1" 200 3589
+- -> /2013/oct/27/curious-demigod
+::1 - - [30/Oct/2013 23:12:00] "GET /style.css HTTP/1.1" 200 1330 0.0004
+localhost.localdomain - - [30/Oct/2013:23:12:00 NZDT] "GET /style.css HTTP/1.1" 200 1330
+http://localhost:4567/2013/oct/27/curious-demigod -> /style.css
+/home/passcod/blograph/post.rb:25: [BUG] Segmentation fault
+ruby 2.0.0p247 (2013-06-27 revision 41674) [x86_64-linux]
+
+-- Control frame information -----------------------------------------------
+c:0049 p:---- s:0243 e:000242 CFUNC  :clone_at
+c:0048 p:0189 s:0238 e:000237 METHOD /home/passcod/blograph/post.rb:25
+c:0047 p:0020 s:0231 e:000230 LAMBDA main.rb:60 [FINISH]
+c:0046 p:---- s:0229 e:000228 CFUNC  :call
+c:0045 p:0012 s:0226 e:000225 BLOCK  /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1593 [FINISH]
+c:0044 p:---- s:0222 e:000221 CFUNC  :[]
+c:0043 p:0011 s:0217 e:000216 BLOCK  /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:957
+c:0042 p:0009 s:0215 e:000212 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:976
+c:0041 p:0023 s:0210 e:000209 BLOCK  /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:957
+c:0040 p:0029 s:0207 e:000206 BLOCK  /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:997 [FINISH]
+c:0039 p:---- s:0205 e:000204 CFUNC  :catch
+c:0038 p:0132 s:0201 e:000200 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:995
+c:0037 p:0013 s:0190 e:000189 BLOCK  /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:955 [FINISH]
+c:0036 p:---- s:0183 e:000182 CFUNC  :each
+c:0035 p:0034 s:0180 e:000179 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:954
+c:0034 p:0042 s:0174 e:000173 BLOCK  /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1067
+c:0033 p:0006 s:0172 e:000171 BLOCK  /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1049 [FINISH]
+c:0032 p:---- s:0170 e:000169 CFUNC  :catch
+c:0031 p:0009 s:0166 e:000165 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1049
+c:0030 p:0007 s:0162 e:000161 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1064
+c:0029 p:0007 s:0158 e:000157 BLOCK  /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:889
+c:0028 p:0006 s:0156 e:000155 BLOCK  /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1049 [FINISH]
+c:0027 p:---- s:0154 e:000153 CFUNC  :catch
+c:0026 p:0009 s:0150 e:000149 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1049
+c:0025 p:0092 s:0146 e:000145 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:889
+c:0024 p:0011 s:0142 e:000141 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:877
+c:0023 p:0011 s:0138 e:000137 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/xss_header.rb:18
+c:0022 p:0047 s:0131 e:000130 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/path_traversal.rb:1
+c:0021 p:0026 s:0126 e:000125 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/json_csrf.rb:18
+c:0020 p:0059 s:0118 e:000117 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/base.rb:50
+c:0019 p:0059 s:0113 e:000112 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/base.rb:50
+c:0018 p:0011 s:0108 e:000107 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/frame_options.rb:31
+c:0017 p:0054 s:0101 e:000100 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/logger.rb:15
+c:0016 p:0024 s:0096 e:000095 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/commonlogger.rb:33
+c:0015 p:0020 s:0088 e:000087 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:217
+c:0014 p:0029 s:0084 e:000083 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:210
+c:0013 p:0011 s:0080 e:000079 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/head.rb:11
+c:0012 p:0075 s:0073 e:000072 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/methodoverride.rb:21
+c:0011 p:0011 s:0068 e:000067 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/show_exceptions.rb:21
+c:0010 p:0011 s:0060 e:000059 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:180
+c:0009 p:0011 s:0054 e:000053 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:2004
+c:0008 p:0011 s:0050 e:000049 BLOCK  /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1469
+c:0007 p:0023 s:0048 e:000047 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1778
+c:0006 p:0007 s:0044 E:001310 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1469
+c:0005 p:0284 s:0040 e:000039 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/handler/webrick.rb:60
+c:0004 p:0185 s:0028 e:000027 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:138
+c:0003 p:0310 s:0018 e:000017 METHOD /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94
+c:0002 p:0089 s:0007 e:000006 BLOCK  /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295 [FINISH]
+c:0001 p:---- s:0002 e:000001 TOP    [FINISH]
+
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/handler/webrick.rb:60:in `service'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1469:in `call'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1778:in `synchronize'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1469:in `block in call'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:2004:in `call'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:180:in `call'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/show_exceptions.rb:21:in `call'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/methodoverride.rb:21:in `call'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/head.rb:11:in `call'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:210:in `call'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:217:in `call'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/commonlogger.rb:33:in `call'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/logger.rb:15:in `call'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/frame_options.rb:31:in `call'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/base.rb:50:in `call'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/base.rb:50:in `call'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/json_csrf.rb:18:in `call'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/path_traversal.rb:16:in `call'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/xss_header.rb:18:in `call'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:877:in `call'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:889:in `call!'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1049:in `invoke'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1049:in `catch'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1049:in `block in invoke'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:889:in `block in call!'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1064:in `dispatch!'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1049:in `invoke'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1049:in `catch'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1049:in `block in invoke'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1067:in `block in dispatch!'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:954:in `route!'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:954:in `each'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:955:in `block in route!'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:995:in `process_route'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:995:in `catch'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:997:in `block in process_route'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:957:in `block (2 levels) in route!'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:976:in `route_eval'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:957:in `block (3 levels) in route!'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:957:in `[]'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1593:in `block in compile!'
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb:1593:in `call'
+main.rb:60:in `block in <main>'
+/home/passcod/blograph/post.rb:25:in `fetch_repo'
+/home/passcod/blograph/post.rb:25:in `clone_at'
+
+-- C level backtrace information -------------------------------------------
+ruby(+0x178e18) [0x7f26eb122e18]
+ruby(+0x1e603a) [0x7f26eb19003a]
+ruby(rb_bug+0xb3) [0x7f26eb1912b3]
+ruby(+0xf29d6) [0x7f26eb09c9d6]
+/usr/lib/libpthread.so.0(+0xf870) [0x7f26eab79870]
+/usr/lib/libc.so.6(+0x8ebee) [0x7f26e9f07bee] src/pack.h:66
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/rugged.so(gitno_extract_url_parts+0x287) [0x7f26e60eb457] src/util.h:70
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/rugged.so(+0x6a8f4) [0x7f26e60be8f4] src/transports/git.c:251
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/rugged.so(+0x6b087) [0x7f26e60bf087] src/transports/smart.c:96
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/rugged.so(git_remote_connect+0x8d) [0x7f26e60b8f9d] src/remote.c:549
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/rugged.so(git_clone+0x28f) [0x7f26e609fb3f] src/clone.c:380
+/home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/rugged.so(+0x2a4de) [0x7f26e607e4de] rugged_repo.c:380
+ruby(+0x162a24) [0x7f26eb10ca24]
+ruby(+0x1700e6) [0x7f26eb11a0e6]
+ruby(+0x1672c4) [0x7f26eb1112c4]
+ruby(+0x16abaa) [0x7f26eb114baa]
+ruby(+0x16fbf6) [0x7f26eb119bf6]
+ruby(+0x16bb18) [0x7f26eb115b18]
+ruby(+0x174707) [0x7f26eb11e707]
+ruby(rb_method_call_with_block+0x155) [0x7f26eafd52c5]
+ruby(+0x162a24) [0x7f26eb10ca24]
+ruby(+0x1700e6) [0x7f26eb11a0e6]
+ruby(+0x1672c4) [0x7f26eb1112c4]
+ruby(+0x16abaa) [0x7f26eb114baa]
+ruby(+0x16fbf6) [0x7f26eb119bf6]
+ruby(+0x16fc3a) [0x7f26eb119c3a]
+ruby(+0x29210) [0x7f26eafd3210]
+ruby(+0x162a24) [0x7f26eb10ca24]
+ruby(+0x1700e6) [0x7f26eb11a0e6]
+ruby(+0x16724d) [0x7f26eb11124d]
+ruby(+0x16abaa) [0x7f26eb114baa]
+ruby(+0x175ff4) [0x7f26eb11fff4]
+ruby(+0x1761b5) [0x7f26eb1201b5]
+ruby(+0x162a24) [0x7f26eb10ca24]
+ruby(+0x1700e6) [0x7f26eb11a0e6]
+ruby(+0x16724d) [0x7f26eb11124d]
+ruby(+0x16abaa) [0x7f26eb114baa]
+ruby(rb_yield+0x27b) [0x7f26eb11fabb]
+ruby(rb_ary_each+0x52) [0x7f26eb146352]
+ruby(+0x162a24) [0x7f26eb10ca24]
+ruby(+0x1700e6) [0x7f26eb11a0e6]
+ruby(+0x16724d) [0x7f26eb11124d]
+ruby(+0x16abaa) [0x7f26eb114baa]
+ruby(+0x175ff4) [0x7f26eb11fff4]
+ruby(+0x1761b5) [0x7f26eb1201b5]
+ruby(+0x162a24) [0x7f26eb10ca24]
+ruby(+0x16724d) [0x7f26eb11124d]
+ruby(+0x16abaa) [0x7f26eb114baa]
+ruby(+0x175ff4) [0x7f26eb11fff4]
+ruby(+0x1761b5) [0x7f26eb1201b5]
+ruby(+0x162a24) [0x7f26eb10ca24]
+ruby(+0x1700e6) [0x7f26eb11a0e6]
+ruby(+0x16724d) [0x7f26eb11124d]
+ruby(+0x16abaa) [0x7f26eb114baa]
+ruby(+0x16fbf6) [0x7f26eb119bf6]
+ruby(+0x16fc3a) [0x7f26eb119c3a]
+ruby(+0x186d99) [0x7f26eb130d99]
+ruby(+0x187080) [0x7f26eb131080]
+/usr/lib/libpthread.so.0(+0x80a2) [0x7f26eab720a2]
+/usr/lib/libc.so.6(clone+0x6d) [0x7f26e9f5e43d]
+
+-- Other runtime information -----------------------------------------------
+
+* Loaded script: main.rb
+
+* Loaded features:
+
+    0 enumerator.so
+    1 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/encdb.so
+    2 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/trans/transdb.so
+    3 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/rbconfig.rb
+    4 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/compatibility.rb
+    5 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/defaults.rb
+    6 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/deprecate.rb
+    7 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/errors.rb
+    8 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/version.rb
+    9 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/requirement.rb
+   10 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/platform.rb
+   11 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/specification.rb
+   12 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/exceptions.rb
+   13 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/core_ext/kernel_gem.rb
+   14 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb
+   15 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems.rb
+   16 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/path_support.rb
+   17 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/dependency.rb
+   18 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/array/wrap.rb
+   19 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/array/access.rb
+   20 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/array/uniq_by.rb
+   21 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/date_core.so
+   22 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/date/format.rb
+   23 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/date.rb
+   24 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/time.rb
+   25 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/base64.rb
+   26 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/module/delegation.rb
+   27 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/thread_safe-0.1.3/lib/thread_safe/version.rb
+   28 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/delegate.rb
+   29 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/thread_safe-0.1.3/lib/thread_safe/synchronized_delegator.rb
+   30 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/thread_safe-0.1.3/lib/thread_safe.rb
+   31 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/array/prepend_and_append.rb
+   32 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/hash/deep_merge.rb
+   33 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/hash/except.rb
+   34 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/hash/slice.rb
+   35 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/i18n-0.6.5/lib/i18n/version.rb
+   36 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/i18n-0.6.5/lib/i18n/exceptions.rb
+   37 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/i18n-0.6.5/lib/i18n/interpolate/ruby.rb
+   38 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/i18n-0.6.5/lib/i18n.rb
+   39 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/lazy_load_hooks.rb
+   40 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/i18n-0.6.5/lib/i18n/config.rb
+   41 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/i18n.rb
+   42 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/thread.rb
+   43 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/thread_safe-0.1.3/lib/thread_safe/non_concurrent_cache_backend.rb
+   44 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/thread_safe-0.1.3/lib/thread_safe/mri_cache_backend.rb
+   45 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/thread_safe-0.1.3/lib/thread_safe/cache.rb
+   46 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/inflector/inflections.rb
+   47 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/inflections.rb
+   48 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/inflector/methods.rb
+   49 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/multibyte.rb
+   50 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/string/multibyte.rb
+   51 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/inflector/transliterate.rb
+   52 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/string/inflections.rb
+   53 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/etc.so
+   54 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/fileutils.rb
+   55 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/tmpdir.rb
+   56 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/tempfile.rb
+   57 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/kernel/reporting.rb
+   58 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/object/blank.rb
+   59 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/stringio.so
+   60 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/xml_mini/rexml.rb
+   61 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/xml_mini.rb
+   62 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/hash/keys.rb
+   63 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/object/to_param.rb
+   64 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/object/to_query.rb
+   65 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/array/conversions.rb
+   66 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/array/extract_options.rb
+   67 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/array/grouping.rb
+   68 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/array.rb
+   69 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/benchmark.rb
+   70 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/benchmark.rb
+   71 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/bigdecimal.so
+   72 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/bigdecimal/util.rb
+   73 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/syntax_error.rb
+   74 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/psych.so
+   75 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/nodes/node.rb
+   76 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/nodes/stream.rb
+   77 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/nodes/document.rb
+   78 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/nodes/sequence.rb
+   79 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/nodes/scalar.rb
+   80 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/nodes/mapping.rb
+   81 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/nodes/alias.rb
+   82 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/nodes.rb
+   83 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/streaming.rb
+   84 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/visitors/visitor.rb
+   85 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/strscan.so
+   86 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/scalar_scanner.rb
+   87 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/visitors/to_ruby.rb
+   88 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/visitors/emitter.rb
+   89 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/visitors/yaml_tree.rb
+   90 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/json/ruby_events.rb
+   91 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/visitors/json_tree.rb
+   92 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/visitors/depth_first.rb
+   93 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/visitors.rb
+   94 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/handler.rb
+   95 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/tree_builder.rb
+   96 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/parser.rb
+   97 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/omap.rb
+   98 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/set.rb
+   99 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/coder.rb
+  100 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/core_ext.rb
+  101 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/deprecated.rb
+  102 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/stream.rb
+  103 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/json/yaml_events.rb
+  104 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/json/tree_builder.rb
+  105 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/json/stream.rb
+  106 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych/handlers/document_stream.rb
+  107 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/psych.rb
+  108 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/yaml.rb
+  109 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/big_decimal/conversions.rb
+  110 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/big_decimal.rb
+  111 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/kernel/singleton_class.rb
+  112 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/module/remove_method.rb
+  113 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/class/attribute.rb
+  114 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/class/attribute_accessors.rb
+  115 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/class/delegating_attributes.rb
+  116 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/module/anonymous.rb
+  117 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/module/reachable.rb
+  118 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/class/subclasses.rb
+  119 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/class.rb
+  120 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/object/acts_like.rb
+  121 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/date/acts_like.rb
+  122 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/proxy_object.rb
+  123 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/duration.rb
+  124 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/object/try.rb
+  125 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/values/time_zone.rb
+  126 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/time_with_zone.rb
+  127 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/time/zones.rb
+  128 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/date/zones.rb
+  129 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/date_and_time/calculations.rb
+  130 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/date/calculations.rb
+  131 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/date/conversions.rb
+  132 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/date.rb
+  133 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/date_time/acts_like.rb
+  134 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/singleton.rb
+  135 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/deprecation/instance_delegator.rb
+  136 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/digest.so
+  137 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/digest.rb
+  138 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/openssl.so
+  139 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/openssl/bn.rb
+  140 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/openssl/cipher.rb
+  141 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/openssl/config.rb
+  142 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/openssl/digest.rb
+  143 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/openssl/x509.rb
+  144 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/openssl/buffering.rb
+  145 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/fcntl.so
+  146 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/openssl/ssl.rb
+  147 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/openssl.rb
+  148 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/securerandom.rb
+  149 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/notifications/instrumenter.rb
+  150 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/mutex_m.rb
+  151 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/notifications/fanout.rb
+  152 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/per_thread_registry.rb
+  153 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/notifications.rb
+  154 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/deprecation/behaviors.rb
+  155 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/deprecation/reporting.rb
+  156 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/module/aliasing.rb
+  157 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/deprecation/method_wrappers.rb
+  158 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/deprecation/proxy_wrappers.rb
+  159 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/module/deprecation.rb
+  160 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/deprecation.rb
+  161 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/date_time/calculations.rb
+  162 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/time/conversions.rb
+  163 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/date_time/conversions.rb
+  164 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/date_time/zones.rb
+  165 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/date_time.rb
+  166 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/enumerable.rb
+  167 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/file/atomic.rb
+  168 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/file.rb
+  169 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/dependencies/autoload.rb
+  170 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/version.rb
+  171 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/concern.rb
+  172 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/logger_silence.rb
+  173 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/monitor.rb
+  174 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/logger.rb
+  175 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/logger.rb
+  176 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support.rb
+  177 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/time/acts_like.rb
+  178 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/time/calculations.rb
+  179 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/time/marshal.rb
+  180 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/time.rb
+  181 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/numeric/time.rb
+  182 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/integer/time.rb
+  183 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/string/conversions.rb
+  184 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/string/zones.rb
+  185 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/time.rb
+  186 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/hash/reverse_merge.rb
+  187 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/hash/conversions.rb
+  188 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/hash/diff.rb
+  189 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/hash_with_indifferent_access.rb
+  190 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/hash/indifferent_access.rb
+  191 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/hash.rb
+  192 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/integer/multiple.rb
+  193 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/inflector.rb
+  194 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/integer/inflections.rb
+  195 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/integer.rb
+  196 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/kernel/agnostics.rb
+  197 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/kernel/debugger.rb
+  198 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/kernel.rb
+  199 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/load_error.rb
+  200 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/marshal.rb
+  201 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/module/introspection.rb
+  202 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/module/attribute_accessors.rb
+  203 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/module/attr_internal.rb
+  204 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/module/qualified_const.rb
+  205 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/module.rb
+  206 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/name_error.rb
+  207 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/numeric/bytes.rb
+  208 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/number_helper.rb
+  209 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/numeric/conversions.rb
+  210 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/numeric.rb
+  211 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/object/duplicable.rb
+  212 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/object/deep_dup.rb
+  213 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/object/inclusion.rb
+  214 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/object/conversions.rb
+  215 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/object/instance_variables.rb
+  216 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/json-1.8.1/lib/json/version.rb
+  217 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/ostruct.rb
+  218 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/json-1.8.1/lib/json/generic_object.rb
+  219 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/json-1.8.1/lib/json/common.rb
+  220 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/utf_16be.so
+  221 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/utf_16le.so
+  222 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/utf_32be.so
+  223 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/utf_32le.so
+  224 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/json-1.8.1/lib/json/ext/parser.so
+  225 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/json-1.8.1/lib/json/ext/generator.so
+  226 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/json-1.8.1/lib/json/ext.rb
+  227 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/json-1.8.1/lib/json.rb
+  228 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/object/to_json.rb
+  229 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/option_merger.rb
+  230 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/object/with_options.rb
+  231 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/object.rb
+  232 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/proc.rb
+  233 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/range/conversions.rb
+  234 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/range/include_range.rb
+  235 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/range/overlaps.rb
+  236 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/range.rb
+  237 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/regexp.rb
+  238 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/string/filters.rb
+  239 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/string/starts_ends_with.rb
+  240 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/string/access.rb
+  241 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/string/behavior.rb
+  242 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/cgi/util.rb
+  243 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/erb.rb
+  244 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/string/output_safety.rb
+  245 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/string/exclude.rb
+  246 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/string/strip.rb
+  247 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/string_inquirer.rb
+  248 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/string/inquiry.rb
+  249 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/string/indent.rb
+  250 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/string.rb
+  251 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/struct.rb
+  252 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/thread.rb
+  253 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/uri/common.rb
+  254 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/uri/generic.rb
+  255 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/uri/ftp.rb
+  256 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/uri/http.rb
+  257 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/uri/https.rb
+  258 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/uri/ldap.rb
+  259 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/uri/ldaps.rb
+  260 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/uri/mailto.rb
+  261 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/uri.rb
+  262 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/uri.rb
+  263 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext.rb
+  264 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/pathname.so
+  265 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/pathname.rb
+  266 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/gem_path_manipulation.rb
+  267 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/gem_helpers.rb
+  268 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/match_platform.rb
+  269 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/rubygems_ext.rb
+  270 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/user_interaction.rb
+  271 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/config_file.rb
+  272 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/rubygems_integration.rb
+  273 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/version.rb
+  274 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler.rb
+  275 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/settings.rb
+  276 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/shared_helpers.rb
+  277 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/digest/sha1.so
+  278 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/set.rb
+  279 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/definition.rb
+  280 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/dependency.rb
+  281 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/ruby_dsl.rb
+  282 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/dsl.rb
+  283 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/source.rb
+  284 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/socket.so
+  285 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/socket.rb
+  286 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/timeout.rb
+  287 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/resolv.rb
+  288 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/remote_fetcher.rb
+  289 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/text.rb
+  290 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/name_tuple.rb
+  291 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/spec_fetcher.rb
+  292 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/source/rubygems.rb
+  293 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/source/path.rb
+  294 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/source/git.rb
+  295 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/lockfile_parser.rb
+  296 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/lazy_specification.rb
+  297 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/tsort.rb
+  298 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/forwardable.rb
+  299 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/spec_set.rb
+  300 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/environment.rb
+  301 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/runtime.rb
+  302 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/index.rb
+  303 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/remote_specification.rb
+  304 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/endpoint_specification.rb
+  305 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/bundler-1.3.5/lib/bundler/dep_proxy.rb
+  306 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/debug.rb
+  307 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/substituters.rb
+  308 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/helpers.rb
+  309 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/abstract_node.rb
+  310 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/abstract_block.rb
+  311 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/attribute_list.rb
+  312 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/backends/base_template.rb
+  313 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/block.rb
+  314 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/callouts.rb
+  315 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/document.rb
+  316 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/inline.rb
+  317 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/lexer.rb
+  318 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/list.rb
+  319 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/path_resolver.rb
+  320 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/reader.rb
+  321 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/renderer.rb
+  322 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/section.rb
+  323 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/table.rb
+  324 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor/version.rb
+  325 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/asciidoctor-0.1.4/lib/asciidoctor.rb
+  326 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/cgi/core.rb
+  327 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/cgi/cookie.rb
+  328 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/cgi.rb
+  329 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/creole-0.5.0/lib/creole/parser.rb
+  330 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/creole-0.5.0/lib/creole/version.rb
+  331 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/creole-0.5.0/lib/creole.rb
+  332 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/haml-4.0.3/lib/haml/version.rb
+  333 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/haml-4.0.3/lib/haml/util.rb
+  334 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/haml-4.0.3/lib/haml/parser.rb
+  335 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/haml-4.0.3/lib/haml/compiler.rb
+  336 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/haml-4.0.3/lib/haml/options.rb
+  337 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/haml-4.0.3/lib/haml/helpers.rb
+  338 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/haml-4.0.3/lib/haml/buffer.rb
+  339 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/template.rb
+  340 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/string.rb
+  341 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/erb.rb
+  342 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/etanni.rb
+  343 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/haml.rb
+  344 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/css.rb
+  345 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/csv.rb
+  346 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/coffee.rb
+  347 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/nokogiri.rb
+  348 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/builder.rb
+  349 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/markaby.rb
+  350 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/liquid.rb
+  351 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/radius.rb
+  352 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/markdown.rb
+  353 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/textile.rb
+  354 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/rdoc.rb
+  355 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/wiki.rb
+  356 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/yajl.rb
+  357 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/asciidoc.rb
+  358 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt/plain.rb
+  359 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tilt-1.4.1/lib/tilt.rb
+  360 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/haml-4.0.3/lib/haml/filters.rb
+  361 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/haml-4.0.3/lib/haml/error.rb
+  362 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/haml-4.0.3/lib/haml/engine.rb
+  363 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/haml-4.0.3/lib/haml.rb
+  364 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/drop.rb
+  365 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/extensions.rb
+  366 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/errors.rb
+  367 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/interrupts.rb
+  368 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/strainer.rb
+  369 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/context.rb
+  370 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/tag.rb
+  371 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/block.rb
+  372 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/document.rb
+  373 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/variable.rb
+  374 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/file_system.rb
+  375 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/template.rb
+  376 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/htmltags.rb
+  377 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/standardfilters.rb
+  378 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/condition.rb
+  379 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/module_ex.rb
+  380 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/utils.rb
+  381 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/tags/assign.rb
+  382 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/tags/break.rb
+  383 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/tags/capture.rb
+  384 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/tags/case.rb
+  385 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/tags/comment.rb
+  386 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/tags/continue.rb
+  387 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/tags/cycle.rb
+  388 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/tags/decrement.rb
+  389 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/tags/for.rb
+  390 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/tags/if.rb
+  391 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/tags/ifchanged.rb
+  392 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/tags/include.rb
+  393 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/tags/increment.rb
+  394 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/tags/raw.rb
+  395 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid/tags/unless.rb
+  396 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/liquid-2.5.3/lib/liquid.rb
+  397 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/builder-3.2.2/lib/builder/blankslate.rb
+  398 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/iso_8859_1.so
+  399 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/builder-3.2.2/lib/builder/xchar.rb
+  400 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/builder-3.2.2/lib/builder/xmlbase.rb
+  401 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/builder-3.2.2/lib/builder/xmlmarkup.rb
+  402 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/builder-3.2.2/lib/builder/xmlevents.rb
+  403 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/builder-3.2.2/lib/builder.rb
+  404 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/markaby-0.7.2/lib/markaby/tags.rb
+  405 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/markaby-0.7.2/lib/markaby/builder_tags.rb
+  406 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/markaby-0.7.2/lib/markaby/builder.rb
+  407 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/markaby-0.7.2/lib/markaby/cssproxy.rb
+  408 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/markaby-0.7.2/lib/markaby.rb
+  409 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/memoist-0.9.1/lib/memoist/core_ext/singleton_class.rb
+  410 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/memoist-0.9.1/lib/memoist.rb
+  411 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/i18n-0.6.5/lib/i18n/backend.rb
+  412 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/i18n-0.6.5/lib/i18n/backend/pluralization.rb
+  413 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/base.rb
+  414 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/families/base.rb
+  415 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/families/cyrillic.rb
+  416 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/families/latin.rb
+  417 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/extensions/fraction_significance.rb
+  418 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/ru.rb
+  419 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/en.rb
+  420 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/en_gb.rb
+  421 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/ua.rb
+  422 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/tr.rb
+  423 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/fr.rb
+  424 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/nl.rb
+  425 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/it.rb
+  426 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/hu.rb
+  427 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/et.rb
+  428 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/se.rb
+  429 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/es.rb
+  430 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/lv.rb
+  431 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/lt.rb
+  432 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations/de.rb
+  433 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/translations.rb
+  434 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/families/helpers.rb
+  435 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/families/base.rb
+  436 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/base.rb
+  437 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/families/latin.rb
+  438 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/en.rb
+  439 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/en_gb.rb
+  440 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/fr.rb
+  441 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/hu.rb
+  442 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/et.rb
+  443 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/se.rb
+  444 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/it.rb
+  445 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/nl.rb
+  446 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/tr.rb
+  447 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/es.rb
+  448 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/lv.rb
+  449 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/lt.rb
+  450 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/de.rb
+  451 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/families/cyrillic.rb
+  452 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/ru.rb
+  453 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages/ua.rb
+  454 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/languages.rb
+  455 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/options/en/hundreds_with_union.rb
+  456 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/options/en/remove_hyphen.rb
+  457 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/options/en/ordinal.rb
+  458 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/options/en/remove_zero.rb
+  459 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/options/en.rb
+  460 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/options/en_gb/hundreds_with_union.rb
+  461 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/options/en_gb/remove_hyphen.rb
+  462 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/options/en_gb/ordinal.rb
+  463 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/options/en_gb/remove_zero.rb
+  464 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/options/en_gb.rb
+  465 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/options/ru/gender.rb
+  466 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/options/ru.rb
+  467 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/options/ua/gender.rb
+  468 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/options/ua.rb
+  469 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/options/hu/ordinal.rb
+  470 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/options/hu.rb
+  471 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/options.rb
+  472 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/base.rb
+  473 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/en/base.rb
+  474 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/en/fractional.rb
+  475 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/en/integral.rb
+  476 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/en.rb
+  477 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/en_gb/base.rb
+  478 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/en_gb/fractional.rb
+  479 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/en_gb/integral.rb
+  480 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/en_gb.rb
+  481 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/ru/base.rb
+  482 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/ru/fractional.rb
+  483 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/ru/integral.rb
+  484 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/ru.rb
+  485 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/hu/base.rb
+  486 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/hu/fractional.rb
+  487 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/hu/integral.rb
+  488 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/hu.rb
+  489 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/ua/base.rb
+  490 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/ua/fractional.rb
+  491 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/ua/integral.rb
+  492 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators/ua.rb
+  493 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter/decorators.rb
+  494 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/figures_converter.rb
+  495 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/array_joiner/languages/families/base.rb
+  496 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/array_joiner/languages/base.rb
+  497 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/array_joiner/languages/en.rb
+  498 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/array_joiner/languages/en_gb.rb
+  499 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/array_joiner/languages/hu.rb
+  500 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/array_joiner/languages/ru.rb
+  501 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/array_joiner/languages/ua.rb
+  502 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/array_joiner/languages.rb
+  503 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies/array_joiner.rb
+  504 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/strategies.rb
+  505 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/helper_classes/array_extensions/helpers.rb
+  506 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/helper_classes/array_extensions/validations.rb
+  507 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/helper_classes/figures_array.rb
+  508 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/helper_classes/words_array.rb
+  509 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/helper_classes.rb
+  510 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/core_ext/integer.rb
+  511 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/core_ext/float.rb
+  512 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/core_ext/array.rb
+  513 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/core_ext.rb
+  514 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/wrappers/integer.rb
+  515 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/wrappers/float.rb
+  516 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/wrappers.rb
+  517 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/i18n/plurals/ru.rb
+  518 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/i18n/plurals/ua.rb
+  519 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/i18n/plurals/fr.rb
+  520 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/i18n/plurals/es.rb
+  521 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/i18n/plurals/lv.rb
+  522 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/i18n/plurals/lt.rb
+  523 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/i18n/pluralization.rb
+  524 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/i18n/initialization.rb
+  525 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/i18n.rb
+  526 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words/version.rb
+  527 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/i18n-0.6.5/lib/i18n/core_ext/hash.rb
+  528 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/i18n-0.6.5/lib/i18n/core_ext/kernel/surpress_warnings.rb
+  529 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/i18n-0.6.5/lib/i18n/backend/transliterator.rb
+  530 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/i18n-0.6.5/lib/i18n/backend/base.rb
+  531 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/i18n-0.6.5/lib/i18n/backend/simple.rb
+  532 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/numbers_and_words-0.10.0/lib/numbers_and_words.rb
+  533 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rubypants-0.2.0/rubypants.rb
+  534 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/org-ruby-0.8.1/lib/org-ruby/parser.rb
+  535 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/org-ruby-0.8.1/lib/org-ruby/regexp_helper.rb
+  536 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/org-ruby-0.8.1/lib/org-ruby/line.rb
+  537 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/org-ruby-0.8.1/lib/org-ruby/headline.rb
+  538 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/org-ruby-0.8.1/lib/org-ruby/output_buffer.rb
+  539 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/org-ruby-0.8.1/lib/org-ruby/html_output_buffer.rb
+  540 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/org-ruby-0.8.1/lib/org-ruby/html_symbol_replace.rb
+  541 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/org-ruby-0.8.1/lib/org-ruby/textile_output_buffer.rb
+  542 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/org-ruby-0.8.1/lib/org-ruby/textile_symbol_replace.rb
+  543 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/org-ruby-0.8.1/lib/org-ruby/tilt.rb
+  544 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/org-ruby-0.8.1/lib/org-ruby.rb
+  545 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/redcarpet-3.0.0/lib/redcarpet.so
+  546 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/redcarpet-3.0.0/lib/redcarpet.rb
+  547 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/RedCloth-4.2.9/lib/redcloth_scan.so
+  548 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/RedCloth-4.2.9/lib/redcloth/version.rb
+  549 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/RedCloth-4.2.9/lib/redcloth/textile_doc.rb
+  550 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/RedCloth-4.2.9/lib/redcloth/formatters/base.rb
+  551 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/RedCloth-4.2.9/lib/redcloth/formatters/html.rb
+  552 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/RedCloth-4.2.9/lib/redcloth/formatters/latex.rb
+  553 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/RedCloth-4.2.9/lib/redcloth/erb_extension.rb
+  554 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/RedCloth-4.2.9/lib/redcloth.rb
+  555 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/RedCloth-4.2.9/lib/case_sensitive_require/RedCloth.rb
+  556 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/rugged.so
+  557 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/index.rb
+  558 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/object.rb
+  559 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/commit.rb
+  560 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/version.rb
+  561 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/repository.rb
+  562 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/reference.rb
+  563 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/walker.rb
+  564 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/tree.rb
+  565 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/tag.rb
+  566 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/branch.rb
+  567 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/diff/patch.rb
+  568 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/diff/hunk.rb
+  569 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/diff/line.rb
+  570 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/diff/delta.rb
+  571 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/diff.rb
+  572 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/remote.rb
+  573 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged.rb
+  574 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/nokogiri.so
+  575 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/version.rb
+  576 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/syntax_error.rb
+  577 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/pp/node.rb
+  578 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/pp/character_data.rb
+  579 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/pp.rb
+  580 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/parse_options.rb
+  581 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/sax/document.rb
+  582 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/sax/parser_context.rb
+  583 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/sax/parser.rb
+  584 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/sax/push_parser.rb
+  585 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/sax.rb
+  586 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/node/save_options.rb
+  587 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/node.rb
+  588 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/attribute_decl.rb
+  589 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/element_decl.rb
+  590 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/element_content.rb
+  591 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/character_data.rb
+  592 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/namespace.rb
+  593 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/attr.rb
+  594 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/dtd.rb
+  595 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/cdata.rb
+  596 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/text.rb
+  597 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/document.rb
+  598 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/document_fragment.rb
+  599 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/processing_instruction.rb
+  600 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/node_set.rb
+  601 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/syntax_error.rb
+  602 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/xpath/syntax_error.rb
+  603 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/xpath.rb
+  604 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/xpath_context.rb
+  605 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/builder.rb
+  606 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/reader.rb
+  607 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/notation.rb
+  608 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/entity_decl.rb
+  609 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/schema.rb
+  610 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml/relax_ng.rb
+  611 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xml.rb
+  612 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xslt/stylesheet.rb
+  613 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/xslt.rb
+  614 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/html/entity_lookup.rb
+  615 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/html/document.rb
+  616 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/html/document_fragment.rb
+  617 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/html/sax/parser_context.rb
+  618 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/html/sax/parser.rb
+  619 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/html/sax/push_parser.rb
+  620 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/html/element_description.rb
+  621 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/html/element_description_defaults.rb
+  622 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/html.rb
+  623 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/decorators/slop.rb
+  624 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/css/node.rb
+  625 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/css/xpath_visitor.rb
+  626 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/racc/cparse.so
+  627 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/racc/parser.rb
+  628 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/css/parser_extras.rb
+  629 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/css/parser.rb
+  630 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/css/tokenizer.rb
+  631 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/css/syntax_error.rb
+  632 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/css.rb
+  633 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/html/builder.rb
+  634 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri.rb
+  635 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sanitize-2.0.6/lib/sanitize/version.rb
+  636 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sanitize-2.0.6/lib/sanitize/config.rb
+  637 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sanitize-2.0.6/lib/sanitize/config/restricted.rb
+  638 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sanitize-2.0.6/lib/sanitize/config/basic.rb
+  639 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sanitize-2.0.6/lib/sanitize/config/relaxed.rb
+  640 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sanitize-2.0.6/lib/sanitize/transformers/clean_cdata.rb
+  641 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sanitize-2.0.6/lib/sanitize/transformers/clean_comment.rb
+  642 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sanitize-2.0.6/lib/sanitize/transformers/clean_element.rb
+  643 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sanitize-2.0.6/lib/sanitize.rb
+  644 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/multipart.rb
+  645 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/utils.rb
+  646 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack.rb
+  647 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/version.rb
+  648 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection.rb
+  649 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/request.rb
+  650 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/showexceptions.rb
+  651 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/show_exceptions.rb
+  652 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/version.rb
+  653 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/response.rb
+  654 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/body_proxy.rb
+  655 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/commonlogger.rb
+  656 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/base.rb
+  657 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/builder.rb
+  658 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra/main.rb
+  659 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/sinatra-1.4.4/lib/sinatra.rb
+  660 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/version.rb
+  661 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple.rb
+  662 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/utils.rb
+  663 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/mixins/options.rb
+  664 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/parser.rb
+  665 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/hash.rb
+  666 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/slim-2.0.2/lib/slim/parser.rb
+  667 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/mixins/dispatcher.rb
+  668 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/filter.rb
+  669 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/html/dispatcher.rb
+  670 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/html/filter.rb
+  671 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/slim-2.0.2/lib/slim/filter.rb
+  672 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/slim-2.0.2/lib/slim/do_inserter.rb
+  673 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/slim-2.0.2/lib/slim/end_inserter.rb
+  674 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/slim-2.0.2/lib/slim/embedded.rb
+  675 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/slim-2.0.2/lib/slim/interpolation.rb
+  676 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/slim-2.0.2/lib/slim/controls.rb
+  677 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/slim-2.0.2/lib/slim/splat/filter.rb
+  678 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/slim-2.0.2/lib/slim/splat/builder.rb
+  679 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/slim-2.0.2/lib/slim/code_attributes.rb
+  680 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/mixins/engine_dsl.rb
+  681 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/engine.rb
+  682 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/generator.rb
+  683 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/generators/array.rb
+  684 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/generators/array_buffer.rb
+  685 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/filters/encoding.rb
+  686 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/filters/remove_bom.rb
+  687 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/html/attribute_sorter.rb
+  688 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/html/attribute_merger.rb
+  689 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/html/fast.rb
+  690 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/html/pretty.rb
+  691 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/filters/escapable.rb
+  692 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/filters/control_flow.rb
+  693 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/filters/multi_flattener.rb
+  694 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/slim-2.0.2/lib/slim/engine.rb
+  695 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/templates.rb
+  696 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/mixins/template.rb
+  697 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/temple-0.6.7/lib/temple/templates/tilt.rb
+  698 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/slim-2.0.2/lib/slim/template.rb
+  699 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/slim-2.0.2/lib/slim/version.rb
+  700 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/slim-2.0.2/lib/slim.rb
+  701 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tumblr_client-0.8.2/lib/tumblr/blog.rb
+  702 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tumblr_client-0.8.2/lib/tumblr/user.rb
+  703 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tumblr_client-0.8.2/lib/tumblr/request.rb
+  704 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/faraday-0.8.8/lib/faraday/utils.rb
+  705 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/faraday-0.8.8/lib/faraday/builder.rb
+  706 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/faraday-0.8.8/lib/faraday/request.rb
+  707 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/faraday-0.8.8/lib/faraday/middleware.rb
+  708 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/faraday-0.8.8/lib/faraday/response.rb
+  709 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/faraday-0.8.8/lib/faraday/connection.rb
+  710 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/faraday-0.8.8/lib/faraday/adapter.rb
+  711 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/faraday-0.8.8/lib/faraday/error.rb
+  712 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/faraday-0.8.8/lib/faraday.rb
+  713 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/faraday_middleware-0.9.0/lib/faraday_middleware/backwards_compatibility.rb
+  714 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/faraday_middleware-0.9.0/lib/faraday_middleware.rb
+  715 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tumblr_client-0.8.2/lib/tumblr/connection.rb
+  716 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/mime-types-2.0/lib/mime.rb
+  717 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/mime-types-2.0/lib/mime/type.rb
+  718 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/mime-types-2.0/lib/mime/types/cache.rb
+  719 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/mime-types-2.0/lib/mime/types/loader_path.rb
+  720 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/mime-types-2.0/lib/mime/types/loader.rb
+  721 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/mime-types-2.0/lib/mime/types.rb
+  722 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tumblr_client-0.8.2/lib/tumblr/post.rb
+  723 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tumblr_client-0.8.2/lib/tumblr/tagged.rb
+  724 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tumblr_client-0.8.2/lib/tumblr/helpers.rb
+  725 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tumblr_client-0.8.2/lib/tumblr/client.rb
+  726 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tumblr_client-0.8.2/lib/tumblr/config.rb
+  727 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/tumblr_client-0.8.2/lib/tumblr_client.rb
+  728 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/digest/sha2.so
+  729 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/digest/sha2.rb
+  730 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/lib/typhoeus/utils.rb
+  731 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/lib/typhoeus/normalized_header_hash.rb
+  732 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/lib/typhoeus/easy.rb
+  733 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/lib/typhoeus/form.rb
+  734 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/lib/typhoeus/multi.rb
+  735 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/ext/typhoeus/native.so
+  736 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/lib/typhoeus/filter.rb
+  737 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/lib/typhoeus/remote_method.rb
+  738 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/lib/typhoeus/remote.rb
+  739 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/lib/typhoeus/remote_proxy_object.rb
+  740 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/lib/typhoeus/response.rb
+  741 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/lib/typhoeus/request.rb
+  742 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/lib/typhoeus/hydra/callbacks.rb
+  743 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/lib/typhoeus/hydra/connect_options.rb
+  744 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/lib/typhoeus/hydra/stubbing.rb
+  745 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/lib/typhoeus/hydra.rb
+  746 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/lib/typhoeus/hydra_mock.rb
+  747 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/lib/typhoeus/version.rb
+  748 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/lib/typhoeus.rb
+  749 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/i18n-0.6.5/lib/i18n/backend/fallbacks.rb
+  750 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/wikicloth-0.8.0/lib/wikicloth/version.rb
+  751 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/wikicloth-0.8.0/lib/wikicloth/core_ext.rb
+  752 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/wikicloth-0.8.0/lib/wikicloth/namespaces.rb
+  753 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/wikicloth-0.8.0/lib/wikicloth/extension.rb
+  754 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/wikicloth-0.8.0/lib/wikicloth/section.rb
+  755 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/parseexception.rb
+  756 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/formatters/default.rb
+  757 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/formatters/pretty.rb
+  758 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/node.rb
+  759 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/child.rb
+  760 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/parent.rb
+  761 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/xmltokens.rb
+  762 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/namespace.rb
+  763 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/rexml.rb
+  764 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/encoding.rb
+  765 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/source.rb
+  766 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/entity.rb
+  767 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/attlistdecl.rb
+  768 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/doctype.rb
+  769 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/text.rb
+  770 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/attribute.rb
+  771 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/cdata.rb
+  772 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/functions.rb
+  773 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/syncenumerator.rb
+  774 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/parsers/xpathparser.rb
+  775 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/xpath_parser.rb
+  776 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/xpath.rb
+  777 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/element.rb
+  778 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/xmldecl.rb
+  779 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/comment.rb
+  780 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/instruction.rb
+  781 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/output.rb
+  782 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/undefinednamespaceexception.rb
+  783 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/parsers/baseparser.rb
+  784 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/parsers/streamparser.rb
+  785 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/validation/validationexception.rb
+  786 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/parsers/treeparser.rb
+  787 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rexml/document.rb
+  788 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/wikicloth-0.8.0/lib/wikicloth/wiki_buffer/html_element.rb
+  789 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/wikicloth-0.8.0/lib/wikicloth/wiki_buffer/table.rb
+  790 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/expression_parser-0.9.0/lib/expression_parser/token.rb
+  791 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/expression_parser-0.9.0/lib/expression_parser/lexer.rb
+  792 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/expression_parser-0.9.0/lib/expression_parser/parser.rb
+  793 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/expression_parser-0.9.0/lib/expression_parser.rb
+  794 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/digest/md5.so
+  795 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/wikicloth-0.8.0/lib/wikicloth/wiki_buffer/var.rb
+  796 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/wikicloth-0.8.0/lib/wikicloth/wiki_buffer/link.rb
+  797 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/wikicloth-0.8.0/lib/wikicloth/extensions/lua.rb
+  798 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/wikicloth-0.8.0/lib/wikicloth/extensions/math.rb
+  799 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/wikicloth-0.8.0/lib/wikicloth/extensions/poem.rb
+  800 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/wikicloth-0.8.0/lib/wikicloth/extensions/references.rb
+  801 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/wikicloth-0.8.0/lib/wikicloth/extensions/source.rb
+  802 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/wikicloth-0.8.0/lib/wikicloth/wiki_buffer.rb
+  803 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/i18n-0.6.5/lib/i18n/locale.rb
+  804 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/i18n-0.6.5/lib/i18n/locale/fallbacks.rb
+  805 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/i18n-0.6.5/lib/i18n/locale/tag.rb
+  806 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/i18n-0.6.5/lib/i18n/locale/tag/parents.rb
+  807 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/i18n-0.6.5/lib/i18n/locale/tag/simple.rb
+  808 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/wikicloth-0.8.0/lib/wikicloth/wiki_link_handler.rb
+  809 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/wikicloth-0.8.0/lib/wikicloth/parser.rb
+  810 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/wikicloth-0.8.0/lib/wikicloth.rb
+  811 /home/passcod/blograph/post.rb
+  812 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/handler.rb
+  813 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/compat.rb
+  814 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/version.rb
+  815 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpversion.rb
+  816 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httputils.rb
+  817 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/utils.rb
+  818 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/log.rb
+  819 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/config.rb
+  820 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb
+  821 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/accesslog.rb
+  822 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/htmlutils.rb
+  823 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/cookie.rb
+  824 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpstatus.rb
+  825 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httprequest.rb
+  826 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpresponse.rb
+  827 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpservlet/abstract.rb
+  828 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpservlet/filehandler.rb
+  829 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpservlet/cgihandler.rb
+  830 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpservlet/erbhandler.rb
+  831 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpservlet/prochandler.rb
+  832 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpservlet.rb
+  833 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb
+  834 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpauth/authenticator.rb
+  835 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpauth/basicauth.rb
+  836 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpauth/digestauth.rb
+  837 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpauth/userdb.rb
+  838 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpauth/htpasswd.rb
+  839 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpauth/htdigest.rb
+  840 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpauth/htgroup.rb
+  841 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick/httpauth.rb
+  842 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/webrick.rb
+  843 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/content_length.rb
+  844 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/handler/webrick.rb
+  845 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/methodoverride.rb
+  846 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/head.rb
+  847 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/logger.rb
+  848 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/base.rb
+  849 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/frame_options.rb
+  850 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/http_origin.rb
+  851 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/ip_spoofing.rb
+  852 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/json_csrf.rb
+  853 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/path_traversal.rb
+  854 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-protection-1.5.1/lib/rack/protection/xss_header.rb
+  855 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/trans/single_byte.so
+  856 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/mime.rb
+  857 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/file.rb
+  858 /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rack-1.5.2/lib/rack/multipart/parser.rb
+
+* Process memory map:
+
+7f26d4000000-7f26d4021000 rw-p 00000000 00:00 0 
+7f26d4021000-7f26d8000000 ---p 00000000 00:00 0 
+7f26d8000000-7f26d8067000 rw-p 00000000 00:00 0 
+7f26d8067000-7f26dc000000 ---p 00000000 00:00 0 
+7f26dc000000-7f26dc1b1000 rw-p 00000000 00:00 0 
+7f26dc1b1000-7f26e0000000 ---p 00000000 00:00 0 
+7f26e3738000-7f26e374d000 r-xp 00000000 00:0f 263404                     /usr/lib/libgcc_s.so.1
+7f26e374d000-7f26e394d000 ---p 00015000 00:0f 263404                     /usr/lib/libgcc_s.so.1
+7f26e394d000-7f26e394e000 rw-p 00015000 00:0f 263404                     /usr/lib/libgcc_s.so.1
+7f26e394e000-7f26e394f000 ---p 00000000 00:00 0 
+7f26e394f000-7f26e3b50000 rw-p 00000000 00:00 0 
+7f26e3b50000-7f26e3b67000 r-xp 00000000 00:0f 112769                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/trans/single_byte.so
+7f26e3b67000-7f26e3d66000 ---p 00017000 00:0f 112769                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/trans/single_byte.so
+7f26e3d66000-7f26e3d6b000 rw-p 00016000 00:0f 112769                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/trans/single_byte.so
+7f26e3d6b000-7f26e3d6c000 ---p 00000000 00:00 0 
+7f26e3d6c000-7f26e3f6d000 rw-p 00000000 00:00 0                          [stack:4235]
+7f26e3f6d000-7f26e3f6e000 ---p 00000000 00:00 0 
+7f26e3f6e000-7f26e416f000 rw-p 00000000 00:00 0                          [stack:4234]
+7f26e416f000-7f26e4183000 r-xp 00000000 00:0f 264066                     /usr/lib/libresolv-2.18.so
+7f26e4183000-7f26e4382000 ---p 00014000 00:0f 264066                     /usr/lib/libresolv-2.18.so
+7f26e4382000-7f26e4383000 r--p 00013000 00:0f 264066                     /usr/lib/libresolv-2.18.so
+7f26e4383000-7f26e4384000 rw-p 00014000 00:0f 264066                     /usr/lib/libresolv-2.18.so
+7f26e4384000-7f26e4386000 rw-p 00000000 00:00 0 
+7f26e4386000-7f26e438b000 r-xp 00000000 00:0f 263910                     /usr/lib/libnss_dns-2.18.so
+7f26e438b000-7f26e458a000 ---p 00005000 00:0f 263910                     /usr/lib/libnss_dns-2.18.so
+7f26e458a000-7f26e458b000 r--p 00004000 00:0f 263910                     /usr/lib/libnss_dns-2.18.so
+7f26e458b000-7f26e458c000 rw-p 00005000 00:0f 263910                     /usr/lib/libnss_dns-2.18.so
+7f26e458c000-7f26e4597000 r-xp 00000000 00:0f 263911                     /usr/lib/libnss_files-2.18.so
+7f26e4597000-7f26e4797000 ---p 0000b000 00:0f 263911                     /usr/lib/libnss_files-2.18.so
+7f26e4797000-7f26e4798000 r--p 0000b000 00:0f 263911                     /usr/lib/libnss_files-2.18.so
+7f26e4798000-7f26e4799000 rw-p 0000c000 00:0f 263911                     /usr/lib/libnss_files-2.18.so
+7f26e4799000-7f26e479a000 r-xp 00000000 00:0f 112711                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/digest/md5.so
+7f26e479a000-7f26e4999000 ---p 00001000 00:0f 112711                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/digest/md5.so
+7f26e4999000-7f26e499a000 rw-p 00000000 00:0f 112711                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/digest/md5.so
+7f26e499a000-7f26e49c1000 r-xp 00000000 00:0f 264153                     /usr/lib/libssh2.so.1.0.1
+7f26e49c1000-7f26e4bc1000 ---p 00027000 00:0f 264153                     /usr/lib/libssh2.so.1.0.1
+7f26e4bc1000-7f26e4bc2000 r--p 00027000 00:0f 264153                     /usr/lib/libssh2.so.1.0.1
+7f26e4bc2000-7f26e4bc3000 rw-p 00028000 00:0f 264153                     /usr/lib/libssh2.so.1.0.1
+7f26e4bc3000-7f26e4c24000 r-xp 00000000 00:0f 263235                     /usr/lib/libcurl.so.4.3.0
+7f26e4c24000-7f26e4e24000 ---p 00061000 00:0f 263235                     /usr/lib/libcurl.so.4.3.0
+7f26e4e24000-7f26e4e26000 r--p 00061000 00:0f 263235                     /usr/lib/libcurl.so.4.3.0
+7f26e4e26000-7f26e4e27000 rw-p 00063000 00:0f 263235                     /usr/lib/libcurl.so.4.3.0
+7f26e4e27000-7f26e4e2b000 r-xp 00000000 00:0f 656298                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/ext/typhoeus/native.so
+7f26e4e2b000-7f26e502b000 ---p 00004000 00:0f 656298                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/ext/typhoeus/native.so
+7f26e502b000-7f26e502c000 rw-p 00004000 00:0f 656298                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/typhoeus-0.3.3/ext/typhoeus/native.so
+7f26e502c000-7f26e502d000 r-xp 00000000 00:0f 112714                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/digest/sha2.so
+7f26e502d000-7f26e522d000 ---p 00001000 00:0f 112714                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/digest/sha2.so
+7f26e522d000-7f26e522e000 rw-p 00001000 00:0f 112714                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/digest/sha2.so
+7f26e5264000-7f26e5268000 r-xp 00000000 00:0f 112780                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/racc/cparse.so
+7f26e5268000-7f26e5468000 ---p 00004000 00:0f 112780                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/racc/cparse.so
+7f26e5468000-7f26e5469000 rw-p 00004000 00:0f 112780                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/racc/cparse.so
+7f26e5469000-7f26e548a000 r-xp 00000000 00:0f 263775                     /usr/lib/liblzma.so.5.0.5
+7f26e548a000-7f26e568a000 ---p 00021000 00:0f 263775                     /usr/lib/liblzma.so.5.0.5
+7f26e568a000-7f26e568b000 r--p 00021000 00:0f 263775                     /usr/lib/liblzma.so.5.0.5
+7f26e568b000-7f26e568c000 rw-p 00022000 00:0f 263775                     /usr/lib/liblzma.so.5.0.5
+7f26e568c000-7f26e56c7000 r-xp 00000000 00:0f 614788                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/ports/x86_64-unknown-linux-gnu/libxslt/1.1.26/lib/libxslt.so.1.1.26
+7f26e56c7000-7f26e58c6000 ---p 0003b000 00:0f 614788                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/ports/x86_64-unknown-linux-gnu/libxslt/1.1.26/lib/libxslt.so.1.1.26
+7f26e58c6000-7f26e58c8000 rw-p 0003a000 00:0f 614788                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/ports/x86_64-unknown-linux-gnu/libxslt/1.1.26/lib/libxslt.so.1.1.26
+7f26e58c8000-7f26e58da000 r-xp 00000000 00:0f 614821                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/ports/x86_64-unknown-linux-gnu/libxslt/1.1.26/lib/libexslt.so.0.8.15
+7f26e58da000-7f26e5ada000 ---p 00012000 00:0f 614821                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/ports/x86_64-unknown-linux-gnu/libxslt/1.1.26/lib/libexslt.so.0.8.15
+7f26e5ada000-7f26e5adb000 rw-p 00012000 00:0f 614821                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/ports/x86_64-unknown-linux-gnu/libxslt/1.1.26/lib/libexslt.so.0.8.15
+7f26e5adb000-7f26e5c2f000 r-xp 00000000 00:0f 611794                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/ports/x86_64-unknown-linux-gnu/libxml2/2.8.0/lib/libxml2.so.2.8.0
+7f26e5c2f000-7f26e5e2e000 ---p 00154000 00:0f 611794                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/ports/x86_64-unknown-linux-gnu/libxml2/2.8.0/lib/libxml2.so.2.8.0
+7f26e5e2e000-7f26e5e38000 rw-p 00153000 00:0f 611794                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/ports/x86_64-unknown-linux-gnu/libxml2/2.8.0/lib/libxml2.so.2.8.0
+7f26e5e38000-7f26e5e39000 rw-p 00000000 00:00 0 
+7f26e5e39000-7f26e5e53000 r-xp 00000000 00:0f 615036                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/nokogiri.so
+7f26e5e53000-7f26e6052000 ---p 0001a000 00:0f 615036                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/nokogiri.so
+7f26e6052000-7f26e6054000 rw-p 00019000 00:0f 615036                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/nokogiri-1.6.0/lib/nokogiri/nokogiri.so
+7f26e6054000-7f26e611e000 r-xp 00000000 00:0f 622420                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/rugged.so
+7f26e611e000-7f26e631e000 ---p 000ca000 00:0f 622420                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/rugged.so
+7f26e631e000-7f26e6322000 rw-p 000ca000 00:0f 622420                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rugged-0.19.0/lib/rugged/rugged.so
+7f26e6322000-7f26e6323000 rw-p 00000000 00:00 0 
+7f26e6323000-7f26e63ae000 r-xp 00000000 00:0f 605445                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/RedCloth-4.2.9/lib/redcloth_scan.so
+7f26e63ae000-7f26e65ad000 ---p 0008b000 00:0f 605445                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/RedCloth-4.2.9/lib/redcloth_scan.so
+7f26e65ad000-7f26e65ae000 rw-p 0008a000 00:0f 605445                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/RedCloth-4.2.9/lib/redcloth_scan.so
+7f26e65ae000-7f26e65af000 rw-p 00000000 00:00 0 
+7f26e65af000-7f26e65c1000 r-xp 00000000 00:0f 616411                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/redcarpet-3.0.0/lib/redcarpet.so
+7f26e65c1000-7f26e67c1000 ---p 00012000 00:0f 616411                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/redcarpet-3.0.0/lib/redcarpet.so
+7f26e67c1000-7f26e67c2000 rw-p 00012000 00:0f 616411                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/redcarpet-3.0.0/lib/redcarpet.so
+7f26e67c2000-7f26e67c4000 r-xp 00000000 00:0f 112726                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/iso_8859_1.so
+7f26e67c4000-7f26e69c3000 ---p 00002000 00:0f 112726                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/iso_8859_1.so
+7f26e69c3000-7f26e69c4000 rw-p 00001000 00:0f 112726                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/iso_8859_1.so
+7f26e69c4000-7f26e69e8000 r-xp 00000000 00:0f 112703                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/socket.so
+7f26e69e8000-7f26e6be8000 ---p 00024000 00:0f 112703                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/socket.so
+7f26e6be8000-7f26e6be9000 rw-p 00024000 00:0f 112703                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/socket.so
+7f26e6be9000-7f26e6bea000 r-xp 00000000 00:0f 112713                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/digest/sha1.so
+7f26e6bea000-7f26e6de9000 ---p 00001000 00:0f 112713                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/digest/sha1.so
+7f26e6de9000-7f26e6dea000 rw-p 00000000 00:0f 112713                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/digest/sha1.so
+7f26e6dea000-7f26e6df0000 r-xp 00000000 00:0f 112696                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/pathname.so
+7f26e6df0000-7f26e6ff0000 ---p 00006000 00:0f 112696                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/pathname.so
+7f26e6ff0000-7f26e6ff1000 rw-p 00006000 00:0f 112696                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/pathname.so
+7f26e6ff1000-7f26e6ff9000 r-xp 00000000 00:0f 616263                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/json-1.8.1/lib/json/ext/generator.so
+7f26e6ff9000-7f26e71f9000 ---p 00008000 00:0f 616263                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/json-1.8.1/lib/json/ext/generator.so
+7f26e71f9000-7f26e71fa000 rw-p 00008000 00:0f 616263                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/json-1.8.1/lib/json/ext/generator.so
+7f26e71fa000-7f26e71fb000 r-xp 00000000 00:0f 112747                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/utf_32le.so
+7f26e71fb000-7f26e73fb000 ---p 00001000 00:0f 112747                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/utf_32le.so
+7f26e73fb000-7f26e73fc000 rw-p 00001000 00:0f 112747                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/utf_32le.so
+7f26e73fc000-7f26e73fd000 r-xp 00000000 00:0f 112746                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/utf_32be.so
+7f26e73fd000-7f26e75fd000 ---p 00001000 00:0f 112746                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/utf_32be.so
+7f26e75fd000-7f26e75fe000 rw-p 00001000 00:0f 112746                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/utf_32be.so
+7f26e75fe000-7f26e75ff000 r-xp 00000000 00:0f 112745                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/utf_16le.so
+7f26e75ff000-7f26e77ff000 ---p 00001000 00:0f 112745                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/utf_16le.so
+7f26e77ff000-7f26e7800000 rw-p 00001000 00:0f 112745                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/utf_16le.so
+7f26e7800000-7f26e7801000 r-xp 00000000 00:0f 112744                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/utf_16be.so
+7f26e7801000-7f26e7a01000 ---p 00001000 00:0f 112744                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/utf_16be.so
+7f26e7a01000-7f26e7a02000 rw-p 00001000 00:0f 112744                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/utf_16be.so
+7f26e7a02000-7f26e7a08000 r-xp 00000000 00:0f 616272                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/json-1.8.1/lib/json/ext/parser.so
+7f26e7a08000-7f26e7c07000 ---p 00006000 00:0f 616272                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/json-1.8.1/lib/json/ext/parser.so
+7f26e7c07000-7f26e7c08000 rw-p 00005000 00:0f 616272                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/json-1.8.1/lib/json/ext/parser.so
+7f26e7c08000-7f26e7c09000 r-xp 00000000 00:0f 112689                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/fcntl.so
+7f26e7c09000-7f26e7e08000 ---p 00001000 00:0f 112689                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/fcntl.so
+7f26e7e08000-7f26e7e09000 rw-p 00000000 00:0f 112689                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/fcntl.so
+7f26e7e09000-7f26e7e0c000 r-xp 00000000 00:0f 112686                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/digest.so
+7f26e7e0c000-7f26e800c000 ---p 00003000 00:0f 112686                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/digest.so
+7f26e800c000-7f26e800d000 rw-p 00003000 00:0f 112686                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/digest.so
+7f26e800d000-7f26e8022000 r-xp 00000000 00:0f 264444                     /usr/lib/libz.so.1.2.8
+7f26e8022000-7f26e8221000 ---p 00015000 00:0f 264444                     /usr/lib/libz.so.1.2.8
+7f26e8221000-7f26e8222000 r--p 00014000 00:0f 264444                     /usr/lib/libz.so.1.2.8
+7f26e8222000-7f26e8223000 rw-p 00015000 00:0f 264444                     /usr/lib/libz.so.1.2.8
+7f26e8223000-7f26e8403000 r-xp 00000000 00:0f 263226                     /usr/lib/libcrypto.so.1.0.0
+7f26e8403000-7f26e8603000 ---p 001e0000 00:0f 263226                     /usr/lib/libcrypto.so.1.0.0
+7f26e8603000-7f26e861e000 r--p 001e0000 00:0f 263226                     /usr/lib/libcrypto.so.1.0.0
+7f26e861e000-7f26e8629000 rw-p 001fb000 00:0f 263226                     /usr/lib/libcrypto.so.1.0.0
+7f26e8629000-7f26e862d000 rw-p 00000000 00:00 0 
+7f26e862d000-7f26e868f000 r-xp 00000000 00:0f 264155                     /usr/lib/libssl.so.1.0.0
+7f26e868f000-7f26e888e000 ---p 00062000 00:0f 264155                     /usr/lib/libssl.so.1.0.0
+7f26e888e000-7f26e8892000 r--p 00061000 00:0f 264155                     /usr/lib/libssl.so.1.0.0
+7f26e8892000-7f26e8899000 rw-p 00065000 00:0f 264155                     /usr/lib/libssl.so.1.0.0
+7f26e8899000-7f26e88e9000 r-xp 00000000 00:0f 112695                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/openssl.so
+7f26e88e9000-7f26e8ae8000 ---p 00050000 00:0f 112695                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/openssl.so
+7f26e8ae8000-7f26e8aec000 rw-p 0004f000 00:0f 112695                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/openssl.so
+7f26e8aec000-7f26e8af2000 r-xp 00000000 00:0f 112705                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/strscan.so
+7f26e8af2000-7f26e8cf2000 ---p 00006000 00:0f 112705                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/strscan.so
+7f26e8cf2000-7f26e8cf3000 rw-p 00006000 00:0f 112705                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/strscan.so
+7f26e8cf3000-7f26e8d13000 r-xp 00000000 00:0f 264438                     /usr/lib/libyaml-0.so.2.0.2
+7f26e8d13000-7f26e8f12000 ---p 00020000 00:0f 264438                     /usr/lib/libyaml-0.so.2.0.2
+7f26e8f12000-7f26e8f13000 r--p 0001f000 00:0f 264438                     /usr/lib/libyaml-0.so.2.0.2
+7f26e8f13000-7f26e8f14000 rw-p 00020000 00:0f 264438                     /usr/lib/libyaml-0.so.2.0.2
+7f26e8f14000-7f26e8f1a000 r-xp 00000000 00:0f 112697                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/psych.so
+7f26e8f1a000-7f26e9119000 ---p 00006000 00:0f 112697                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/psych.so
+7f26e9119000-7f26e911a000 rw-p 00005000 00:0f 112697                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/psych.so
+7f26e911a000-7f26e912e000 r-xp 00000000 00:0f 112679                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/bigdecimal.so
+7f26e912e000-7f26e932e000 ---p 00014000 00:0f 112679                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/bigdecimal.so
+7f26e932e000-7f26e932f000 rw-p 00014000 00:0f 112679                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/bigdecimal.so
+7f26e932f000-7f26e9336000 r-xp 00000000 00:0f 112704                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/stringio.so
+7f26e9336000-7f26e9536000 ---p 00007000 00:0f 112704                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/stringio.so
+7f26e9536000-7f26e9537000 rw-p 00007000 00:0f 112704                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/stringio.so
+7f26e9537000-7f26e953a000 r-xp 00000000 00:0f 112688                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/etc.so
+7f26e953a000-7f26e9739000 ---p 00003000 00:0f 112688                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/etc.so
+7f26e9739000-7f26e973a000 rw-p 00002000 00:0f 112688                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/etc.so
+7f26e973a000-7f26e9770000 r-xp 00000000 00:0f 112684                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/date_core.so
+7f26e9770000-7f26e996f000 ---p 00036000 00:0f 112684                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/date_core.so
+7f26e996f000-7f26e9971000 rw-p 00035000 00:0f 112684                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/date_core.so
+7f26e9971000-7f26e9973000 rw-p 00000000 00:00 0 
+7f26e9973000-7f26e9975000 r-xp 00000000 00:0f 112770                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/trans/transdb.so
+7f26e9975000-7f26e9b75000 ---p 00002000 00:0f 112770                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/trans/transdb.so
+7f26e9b75000-7f26e9b76000 rw-p 00002000 00:0f 112770                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/trans/transdb.so
+7f26e9b76000-7f26e9b78000 r-xp 00000000 00:0f 112719                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/encdb.so
+7f26e9b78000-7f26e9d77000 ---p 00002000 00:0f 112719                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/encdb.so
+7f26e9d77000-7f26e9d78000 rw-p 00001000 00:0f 112719                     /home/passcod/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/x86_64-linux/enc/encdb.so
+7f26e9d78000-7f26e9e79000 rw-p 00000000 00:00 0 
+7f26e9e79000-7f26ea01b000 r-xp 00000000 00:0f 263135                     /usr/lib/libc-2.18.so
+7f26ea01b000-7f26ea21a000 ---p 001a2000 00:0f 263135                     /usr/lib/libc-2.18.so
+7f26ea21a000-7f26ea21e000 r--p 001a1000 00:0f 263135                     /usr/lib/libc-2.18.so
+7f26ea21e000-7f26ea220000 rw-p 001a5000 00:0f 263135                     /usr/lib/libc-2.18.so
+7f26ea220000-7f26ea224000 rw-p 00000000 00:00 0 
+7f26ea224000-7f26ea326000 r-xp 00000000 00:0f 263778                     /usr/lib/libm-2.18.so
+7f26ea326000-7f26ea525000 ---p 00102000 00:0f 263778                     /usr/lib/libm-2.18.so
+7f26ea525000-7f26ea526000 r--p 00101000 00:0f 263778                     /usr/lib/libm-2.18.so
+7f26ea526000-7f26ea527000 rw-p 00102000 00:0f 263778                     /usr/lib/libm-2.18.so
+7f26ea527000-7f26ea52f000 r-xp 00000000 00:0f 263223                     /usr/lib/libcrypt-2.18.so
+7f26ea52f000-7f26ea72e000 ---p 00008000 00:0f 263223                     /usr/lib/libcrypt-2.18.so
+7f26ea72e000-7f26ea72f000 r--p 00007000 00:0f 263223                     /usr/lib/libcrypt-2.18.so
+7f26ea72f000-7f26ea730000 rw-p 00008000 00:0f 263223                     /usr/lib/libcrypt-2.18.so
+7f26ea730000-7f26ea75e000 rw-p 00000000 00:00 0 
+7f26ea75e000-7f26ea761000 r-xp 00000000 00:0f 263271                     /usr/lib/libdl-2.18.so
+7f26ea761000-7f26ea960000 ---p 00003000 00:0f 263271                     /usr/lib/libdl-2.18.so
+7f26ea960000-7f26ea961000 r--p 00002000 00:0f 263271                     /usr/lib/libdl-2.18.so
+7f26ea961000-7f26ea962000 rw-p 00003000 00:0f 263271                     /usr/lib/libdl-2.18.so
+7f26ea962000-7f26ea969000 r-xp 00000000 00:0f 264076                     /usr/lib/librt-2.18.so
+7f26ea969000-7f26eab68000 ---p 00007000 00:0f 264076                     /usr/lib/librt-2.18.so
+7f26eab68000-7f26eab69000 r--p 00006000 00:0f 264076                     /usr/lib/librt-2.18.so
+7f26eab69000-7f26eab6a000 rw-p 00007000 00:0f 264076                     /usr/lib/librt-2.18.so
+7f26eab6a000-7f26eab82000 r-xp 00000000 00:0f 264024                     /usr/lib/libpthread-2.18.so
+7f26eab82000-7f26ead82000 ---p 00018000 00:0f 264024                     /usr/lib/libpthread-2.18.so
+7f26ead82000-7f26ead83000 r--p 00018000 00:0f 264024                     /usr/lib/libpthread-2.18.so
+7f26ead83000-7f26ead84000 rw-p 00019000 00:0f 264024                     /usr/lib/libpthread-2.18.so
+7f26ead84000-7f26ead88000 rw-p 00000000 00:00 0 
+7f26ead88000-7f26eada8000 r-xp 00000000 00:0f 262739                     /usr/lib/ld-2.18.so
+7f26eade1000-7f26eaf6c000 r--p 00000000 00:0f 274733                     /usr/lib/locale/locale-archive
+7f26eaf6c000-7f26eaf71000 rw-p 00000000 00:00 0 
+7f26eaf9b000-7f26eaf9c000 rw-p 00000000 00:00 0 
+7f26eaf9c000-7f26eaf9f000 r--s 00000000 00:0f 732821                     /home/passcod/blograph/cache/theme/.git/objects/pack/pack-08f795f9119eef13892a7ab1b544c3f67e604bb8.pack (deleted)
+7f26eaf9f000-7f26eafa0000 r--s 00000000 00:0f 732822                     /home/passcod/blograph/cache/theme/.git/objects/pack/pack-08f795f9119eef13892a7ab1b544c3f67e604bb8.idx (deleted)
+7f26eafa0000-7f26eafa2000 r--s 00000000 00:0f 732780                     /home/passcod/blograph/cache/posts/.git/objects/pack/pack-7bbd11b690e75f28284e9cbc1c9aa84ac7560667.pack
+7f26eafa2000-7f26eafa3000 r--s 00000000 00:0f 732781                     /home/passcod/blograph/cache/posts/.git/objects/pack/pack-7bbd11b690e75f28284e9cbc1c9aa84ac7560667.idx
+7f26eafa3000-7f26eafa4000 ---p 00000000 00:00 0 
+7f26eafa4000-7f26eafa7000 rw-p 00000000 00:00 0                          [stack:3310]
+7f26eafa7000-7f26eafa8000 r--p 0001f000 00:0f 262739                     /usr/lib/ld-2.18.so
+7f26eafa8000-7f26eafa9000 rw-p 00020000 00:0f 262739                     /usr/lib/ld-2.18.so
+7f26eafa9000-7f26eafaa000 rw-p 00000000 00:00 0 
+7f26eafaa000-7f26eb255000 r-xp 00000000 00:0f 111482                     /home/passcod/.rbenv/versions/2.0.0-p247/bin/ruby
+7f26eb454000-7f26eb45a000 rw-p 002aa000 00:0f 111482                     /home/passcod/.rbenv/versions/2.0.0-p247/bin/ruby
+7f26eb45a000-7f26eb47b000 rw-p 00000000 00:00 0 
+7f26ec046000-7f26ef034000 rw-p 00000000 00:00 0                          [heap]
+7fff6cfe8000-7fff6d009000 rw-p 00000000 00:00 0                          [stack]
+7fff6d1fd000-7fff6d1ff000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+
+[NOTE]
+You may have encountered a bug in the Ruby interpreter or extension libraries.
+Bug reports are welcome.
+For details: http://www.ruby-lang.org/bugreport.html
+
