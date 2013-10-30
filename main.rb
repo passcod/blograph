@@ -60,5 +60,8 @@ post '/github-hook/:repo' do
   Blograph.fetch_repo params[:repo]
   if params[:repo] == 'posts'
     Blograph.reset_memoiz
+  elsif params[:repo] == 'theme'
+    puts 'Clear template cache'
+    template_cache.clear
   end
 end
