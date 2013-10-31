@@ -165,7 +165,14 @@ module Blograph
           p = self.new p
           p if p.path
         }.reject { |p| p.date.nil? }.sort { |x,y|
-          x.date <=> y.date
+          x.title <=> y.title
+        }.sort { |x,y|
+          d = x.date <=> y.date
+          if d == 0
+            x.title <=> y.title
+          else
+            d
+          end
         }
       end
 
