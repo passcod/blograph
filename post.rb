@@ -2,9 +2,25 @@ module Blograph
   class << self
     extend Memoist
     
-    def cache; Pathname.new('./cache') end
-    def config; YAML.load_file('config.yml') end
-    def meta; YAML.load_file(cache + 'posts' + 'metadata.yml') end
+    def cache
+      Pathname.new('./cache')
+    end
+    
+    def config
+      begin
+        YAML.load_file('config.yml')
+      rescue
+        {'repos' => {}}
+      end
+    end
+    
+    def meta
+      begin
+        YAML.load_file(cache + 'posts' + 'metadata.yml')
+      rescue
+        { 'title' => 'Blograph' }
+      end
+    end
 
     def reset_memoiz
       puts "Resetting memoization"

@@ -1,4 +1,4 @@
 ---
 repos:
-  posts: 'passcod/blograph-posts'
-  theme: 'passcod/blograph-theme'
+  posts: 'username/repo-containing-your-posts'
+  theme: 'username/repo-containing-your-theme'

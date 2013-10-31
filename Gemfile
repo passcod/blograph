@@ -26,6 +26,6 @@ gem 'rugged', git: 'git://github.com/libgit2/rugged.git', branch: 'development',
 gem 'sanitize'
 gem 'sinatra'
 gem 'slim'
-gem 'tumblr_client'
+#gem 'tumblr_client'
 gem 'typhoeus'
 gem 'wikicloth'

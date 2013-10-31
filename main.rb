@@ -10,7 +10,15 @@ require './post'
 configure do
   set :views, Blograph.cache + 'theme'
   set :public_folder, Blograph.cache + 'theme/static'
-  
+
+  if %w[posts theme].reduce(false) do |memo, k|
+    envvar = ENV["BLOGRAPH_#{k.upcase}"]
+    Blograph.config['repos'][k] = envvar unless envvar.empty?
+    memo || Blograph.config['repos'][k].empty?
+  end
+    raise 'Repositories aren´t set up, can´t start up.'
+  end
+
   Blograph.config['repos'].keys.each { |r| Blograph.fetch_repo(r) }
 end
 
@@ -48,7 +56,8 @@ get '/tag/:tag' do
     tag: params[:tag],
     taginfo: if Blograph.meta['tags']
       Blograph.meta['tags'][params[:tag]]
-    end
+    end,
+    title: "Posts tagged as #{params[:tag]}"
   }
 end
 
@@ -56,7 +65,7 @@ get '/:year/:month/:day/:slug' do
   yield_post %w[year month day slug].map { |k| params[k.to_sym] }.join('/')
 end
 
-post '/github-hook/:repo' do
+post '/hook/reload/:repo' do
   Blograph.fetch_repo params[:repo]
   if params[:repo] == 'posts'
     Blograph.reset_memoiz
