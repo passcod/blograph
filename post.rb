@@ -52,6 +52,7 @@ module Blograph
     extend Memoist
 
     attr_reader :date, :file
+    attr_accessor :template_options
 
     DATE_REGEXP = %r{\d{2,4}[-/]\w{3}[-/]\d{1,2}[-/]?}
 
@@ -63,6 +64,18 @@ module Blograph
 
       @raw = IO.read path
       @date = DateTime.parse(metadata['date']) if metadata['date']
+      @template_options = {
+        autolink: true,
+        disable_indented_code_blocks: true,
+        fenced_code_blocks: true,
+        footnotes: true,
+        highlight: true,
+        smartypants: true,
+        space_after_header: true,
+        strikethrough: true,
+        superscript: true,
+        tables: true
+      }
     end
 
     def author
@@ -129,7 +142,7 @@ module Blograph
     end
 
     def renderer
-      template.new { content }
+      template.new template_options do content end
     end
 
     def template
