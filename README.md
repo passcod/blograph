@@ -1,5 +1,8 @@
-https://github.com/passcod/blograph
-https://blog.passcod.name/2013/oct/31/blograph
+[![Code Climate](https://codeclimate.com/github/passcod/blograph.png)](https://codeclimate.com/github/passcod/blograph)
+[![Built with Heroku in mind](https://d1lpkba4w1baqt.cloudfront.net/heroku-logo-light-88x31.png)](https://heroku.com)
+[![Powered by Puma](http://i.imgur.com/nFmB4vq.png)](http://puma.io)
+
+## Notes:
 
 - Blograph is blogging done my way. Let's not use superlatives just yet.
 
@@ -21,7 +24,7 @@ https://blog.passcod.name/2013/oct/31/blograph
 
 - Blograph handles more markup languages than I currently use.
   Except for the theme where it uses ERB all the time and yes I'll
-  find a way to make this generic yes I will. *glowers at Sinatra*
+  find a way to make this generic yes I will. \*glowers at Sinatra\*
 
 - Blograph is not designed for static website generation, and thus
   cannot and should not be used to publish to Github Pages, Dropbox,
