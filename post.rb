@@ -25,6 +25,7 @@ module Blograph
     def reset_memoiz
       puts "Resetting memoization"
       Blograph::Post.flush_cache
+      meta true # Force metadata reload
     end
 
     def fetch_repo repo
