@@ -13,7 +13,7 @@ configure do
 
   if %w[posts theme].reduce(false) do |memo, k|
     envvar = ENV["BLOGRAPH_#{k.upcase}"]
-    Blograph.config['repos'][k] = envvar unless envvar.empty?
+    Blograph.config['repos'][k] = envvar unless envvar.nil? or envvar.empty?
     memo || Blograph.config['repos'][k].empty?
   end
     raise 'Repositories aren´t set up, can´t start up.'
@@ -30,7 +30,8 @@ helpers do
   end
 
   def yield_post(post, options = {})
-    post = Blograph::Post.from_link(post) if post.is_a? String
+    options[:ref] ||= 'master'
+    post = Blograph::Post.from_link(post, options[:ref]) if post.is_a? String
 
     options[:template] ||= :post
     options[:locals] ||= {}
@@ -45,6 +46,16 @@ end
 get '/' do
   erb :index, locals: {
     posts: Blograph::Post.all,
+  }
+end
+
+get '/@:ref/' do
+  redirect "/@#{params[:ref]}"
+end
+
+get '/@:ref' do
+  erb :index, locals: {
+    posts: Blograph::Post.all(params[:ref])
   }
 end
 
@@ -63,6 +74,11 @@ end
 
 get '/:year/:month/:day/:slug' do
   yield_post %w[year month day slug].map { |k| params[k.to_sym] }.join('/')
+end
+
+get '/@:ref/:year/:month/:day/:slug' do
+  yield_post %w[year month day slug].map { |k| params[k.to_sym] }.join('/'),
+    ref: params[:ref]
 end
 
 post '/hook/reload/:repo' do

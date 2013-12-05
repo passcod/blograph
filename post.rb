@@ -56,7 +56,8 @@ module Blograph
 
     DATE_REGEXP = %r{\d{2,4}[-/]\w{3}[-/]\d{1,2}[-/]?}
 
-    def initialize file
+    def initialize file, ref = 'master'
+      @ref = ref
       @file = file.split('posts/').last.sub /\..+?$/, ''
       
       datex = DATE_REGEXP.match @file
@@ -78,12 +79,16 @@ module Blograph
       }
     end
 
+    def all
+      self.class.all @ref
+    end
+
     def author
       metadata[:author] || Blograph.meta['author'] || 'anon'
     end
 
     def children
-      self.class.all.select { |p| p.parents.include?(self) }
+      all.select { |p| p.parents.include?(self) }
     end
     
     def content
@@ -101,11 +106,16 @@ module Blograph
     end
 
     def index
-      self.class.all.index self
+      all.index { |p| p.link == link }
     end
 
     def link
-      "/#{@date.strftime('%Y/%b/%d').downcase}/#{slug}"
+      base = "/#{@date.strftime('%Y/%b/%d').downcase}/#{slug}"
+      if @ref != 'master'
+        "/@#{@ref}" + base
+      else
+        base
+      end
     end
 
     def metadata
@@ -118,23 +128,24 @@ module Blograph
     end
 
     def next
-      self.class.all[index + 1] unless index >= self.class.all.length - 1
+      all[index + 1] unless index >= all.length - 1
     end
 
     def parents
       (metadata['parents'] || []).map do |p|
-        self.class.from_link p
+        self.class.from_link p, @ref
       end
     end
 
     def path
+      self.class.switch_ref @ref
       candidates = Dir[Blograph.cache + 'posts' + "#{@file}.*"]
       post = candidates.each { |c| break c if Tilt[c] }
       post if post.is_a? String
     end
 
     def previous
-      self.class.all[index - 1] unless index <= 0
+      all[index - 1] unless index <= 0
     end
 
     def render
@@ -170,12 +181,13 @@ module Blograph
     class << self
       extend Memoist
 
-      def all
+      def all ref = 'master'
+        self.switch_ref ref
         Dir[Blograph.cache + 'posts' + '*'].reject { |p|
           p =~ /metadata\.yml$/ ||
           p =~ /README\.\w+$/
         }.map { |p|
-          p = self.new p
+          p = self.new p, ref
           p if p.path
         }.reject { |p| p.date.nil? }.sort { |x,y|
           x.title <=> y.title
@@ -189,8 +201,22 @@ module Blograph
         }
       end
 
-      def from_link str
-        all.select { |p| p.link == str || p.link == "/#{str}" }.first
+      def from_link str, ref = 'master'
+        all(ref).select do |p|
+          if ref == 'master'
+            p.link == str || p.link == "/#{str}"
+          else
+            p.link == "/@#{ref}#{str}" || p.link == "/@#{ref}/#{str}"
+          end
+        end.first
+      end
+
+      def switch_ref ref = 'master'
+        # Goes through system for now, until I figure
+        # out how to do it using pure Rugged/libgit2.
+        changed = system "cd #{Blograph.cache + 'posts'}; git checkout #{ref}"
+        switch_ref unless changed
+        return changed
       end
 
       memoize :all, :from_link
