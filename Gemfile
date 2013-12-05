@@ -10,6 +10,7 @@ end
 gem 'activesupport', require: false
 gem 'asciidoctor'
 gem 'creole'
+gem 'foreman', group: :development
 gem 'haml'
 gem 'liquid'
 gem 'markaby'
