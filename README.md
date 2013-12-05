@@ -56,7 +56,7 @@
 
 - Blograph can and will show older versions of articles if that is so
   requested. If you do not want your typos or factual innacuracies to
-  show up, use --amend and rebase. 501 NOT IMPLEMENTED (YET)
+  show up, use --amend and rebase.
 
 - Blograph does not use SASS, LESS, Stylus, or other CSS preprocessors.
   If you think you can convince me otherwise, shoot me an email at
