@@ -37,7 +37,7 @@ helpers do
     options[:locals] ||= {}
     options[:locals].merge!({
       post: post,
-      title: post.title
+      title: post.nil? ? 404 : post.title
     })
     erb options[:template], options
   end
