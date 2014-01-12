@@ -138,11 +138,17 @@ module Blograph
       end
     end
 
-    def path
+    def path file = @file
       self.class.switch_ref @ref
-      candidates = Dir[Blograph.cache + 'posts' + "#{@file}.*"]
+      candidates = Dir[Blograph.cache + 'posts' + "#{file}.*"]
       post = candidates.each { |c| break c if Tilt[c] }
-      post if post.is_a? String
+      if post.is_a? String
+        post
+      elsif file == "404"
+        Pathname.new("./default-404.md").to_s
+      else
+        path "404"
+      end
     end
 
     def previous
