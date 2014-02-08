@@ -106,6 +106,10 @@ module Blograph
         .gsub(/\s/, ' ').strip[0..n]
     end
 
+    def future?
+      DateTime.now < @date
+    end
+
     def index
       all.index { |p| p.link == link }
     end
@@ -181,9 +185,9 @@ module Blograph
       @file.sub DATE_REGEXP, ''
     end
 
-    memoize :author, :children, :content, :excerpt, :index, :link,
-      :metadata, :next, :parents, :path, :previous, :render,
-      :renderer, :tags, :template, :title, :slug
+    memoize :author, :children, :content, :excerpt, :future?,
+      :index, :link, :metadata, :next, :parents, :path, :previous,
+      :render, :renderer, :tags, :template, :title, :slug
 
     class << self
       extend Memoist
