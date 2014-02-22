@@ -59,9 +59,34 @@ get '/@:ref' do
   }
 end
 
+get '/feed' do
+  erb :feed, locals: {
+    posts: Blograph::Post.all,
+  }, layout: false
+end
+
+get '/@:ref/feed' do
+  erb :feed, locals: {
+    posts: Blograph::Post.all(params[:ref])
+  }, layout: false
+end
+
 get '/tag/:tag' do
   erb :tag, locals: {
     posts: Blograph::Post.all.select do |post|
+      post.tags.include? params[:tag]
+    end,
+    tag: params[:tag],
+    taginfo: if Blograph.meta['tags']
+      Blograph.meta['tags'][params[:tag]]
+    end,
+    title: "Posts tagged as #{params[:tag]}"
+  }
+end
+
+get '/@:ref/tag/:tag' do
+  erb :tag, locals: {
+    posts: Blograph::Post.all(params[:ref]).select do |post|
       post.tags.include? params[:tag]
     end,
     tag: params[:tag],
