@@ -14,10 +14,6 @@
   Fortunately, I often painstakingly work to make my software generic,
   so you can use it without changing a single line of code.
 
-- Blograph does NOT read from tumblr. Any fork you make that reads
-  from tumblr will be ignored entirely. You can WRITE to tumblr,
-  though, that's okay.
-
 - Blograph is the source of truth for the information it displays.
   Or should be. What you do in your own home is the business of other
   residents, pets, some parts of the law, and your mom. Don't mind me.
@@ -42,7 +38,7 @@
 - Blograph can read any git://... repo. It doesn't have to be on
   github. It HAS to be git:// though, at least until libgit2 can
   support other things easily. Repos have to be public (again, this
-  until libgit2 supports more stuff).
+  is until libgit2 supports more stuff).
 
 - Blograph can be hit with POST requests (content doesn't matter) to
   /hook/reload/posts and /hook/reload/theme, and will trigger a reload
@@ -50,7 +46,8 @@
   to git without ever restarting the server.
 
 - Blograph would prefer to use Rubinius all the time but Heroku doesn't
-  like Rubinius 2 at the moment.
+  like Rubinius 2 at the moment. Edit 4 Apr 2014: Rubinius support
+  removed until I investigate this again.
 
 - Blograph uses Puma.
 
