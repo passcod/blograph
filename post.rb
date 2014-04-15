@@ -185,7 +185,12 @@ module Blograph
       @file.sub DATE_REGEXP, ''
     end
 
-    memoize :author, :children, :content, :excerpt, :future?,
+    def commit
+      `cd #{Blograph.cache + 'posts'}; git log -n1 --pretty=oneline`.\
+        split.first
+    end
+    
+    memoize :author, :children, :commit, :content, :excerpt, :future?,
       :index, :link, :metadata, :next, :parents, :path, :previous,
       :render, :renderer, :tags, :template, :title, :slug
 
@@ -229,6 +234,8 @@ module Blograph
         switch_ref unless changed
         return changed
       end
+
+
 
       memoize :all, :from_link
     end
