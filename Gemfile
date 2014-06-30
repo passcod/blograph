@@ -2,22 +2,15 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 gem 'activesupport', require: false
-gem 'asciidoctor'
-gem 'creole'
 gem 'foreman', group: :development
 gem 'haml'
-gem 'liquid'
 gem 'markaby'
 gem 'memoist'
 gem 'numbers_and_words'
-gem 'org-ruby'
 gem 'puma'
 gem 'redcarpet'
-gem 'RedCloth'
-gem 'rugged', '0.19.0'
+gem 'rugged', '0.19.0' # Pegged as Heroku doesn't have CMake
 gem 'sanitize'
-gem 'sinatra'
-gem 'slim'
-#gem 'tumblr_client'
+gem 'sinatra', '1.0'  # Pegged as Sinatra > 1.0 doesn't
+gem 'tilt', '>=2.0.0' # support Tilt 2.x.
 gem 'typhoeus'
-gem 'wikicloth'
