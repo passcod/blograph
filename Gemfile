@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.0'
+ruby '2.1.2'
 
 gem 'activesupport', require: false
 gem 'asciidoctor'
@@ -14,7 +14,7 @@ gem 'org-ruby'
 gem 'puma'
 gem 'redcarpet'
 gem 'RedCloth'
-gem 'rugged', git: 'git://github.com/libgit2/rugged.git', branch: 'development', submodules: true
+gem 'rugged', '0.19.0'
 gem 'sanitize'
 gem 'sinatra'
 gem 'slim'
