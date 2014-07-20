@@ -9,8 +9,8 @@ gem 'memoist'
 gem 'numbers_and_words'
 gem 'puma'
 gem 'redcarpet'
-gem 'rugged', '0.19.0' # Pegged as Heroku doesn't have CMake
-gem 'sanitize'
-gem 'sinatra', '1.0'  # Pegged as Sinatra > 1.0 doesn't
-gem 'tilt', '>=2.0.0' # support Tilt 2.x.
+gem 'rugged', '0.19.0'  # - Pegged as Heroku doesn't have CMake
+gem 'sanitize', '~>3.0' # - Sanitize is now Semver
+gem 'sinatra', '1.0'    # - Pegged as Sinatra > 1.0 doesn't
+gem 'tilt', '>=2.0.0'   # support Tilt 2.x.
 gem 'typhoeus'

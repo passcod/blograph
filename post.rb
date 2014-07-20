@@ -102,7 +102,7 @@ module Blograph
     end
 
     def excerpt n = 130
-      Sanitize.clean(render, Sanitize::Config::RESTRICTED)
+      Sanitize.fragment(render, Sanitize::Config::RESTRICTED)
         .gsub(/\s/, ' ').strip[0..n]
     end
 
