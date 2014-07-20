@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '2.1.0'
 
 gem 'activesupport', require: false
 gem 'foreman', group: :development
