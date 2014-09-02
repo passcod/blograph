@@ -8,6 +8,7 @@ gem 'markaby'
 gem 'memoist'
 gem 'numbers_and_words'
 gem 'puma'
+gem 'rack'
 gem 'redcarpet'
 gem 'rugged', '0.19.0'  # - Pegged as Heroku doesn't have CMake
 gem 'sanitize', '~>3.0' # - Sanitize is now Semver
