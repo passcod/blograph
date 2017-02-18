@@ -6,13 +6,13 @@ use yaml_rust::Yaml;
 static DateRx: &'static str = r"(?x)
     -?
     (?P<year>\d{4})               # 4-digit year
-    -
+    [-/]
     (?P<month>\d{1,2}             # 1- or 2-digit month
         | jan | feb | mar | apr
         | may | jun | jul | aug   # or 3-letter named
         | sep | oct | nov | dec
     )
-    -
+    [-/]
     (?P<day>\d{1,2})              # 1- or 2-digit day
     -?
 ";
@@ -98,6 +98,14 @@ mod test {
     fn with_number_month() {
         assert_eq!(from_path(
             &PathBuf::from("2017-02-18")),
+            Some(UTC.ymd(2017, 02, 18).and_hms(0, 0, 0))
+        );
+    }
+
+    #[test]
+    fn with_slashes() {
+        assert_eq!(from_path(
+            &PathBuf::from("2017/02/18")),
             Some(UTC.ymd(2017, 02, 18).and_hms(0, 0, 0))
         );
     }
