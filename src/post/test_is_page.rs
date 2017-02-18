@@ -1,24 +1,25 @@
+use chrono::prelude::*;
 use std::path::PathBuf;
 use super::*;
 use yaml_rust::{yaml, Yaml};
 
-fn metadata_test(path: &str, meta: Yaml, output: &str) {
+fn metadata_test(path: &str, meta: Yaml, output: DateTime<UTC>) {
     let post = Post {
         path: PathBuf::from(path),
         raw: String::from(""),
         metadata: meta,
         content: String::from("")
     };
-    assert_eq!(post.slug(), output);
+    assert_eq!(post.date(), output);
 }
 
-fn slug_test(input: &str, output: &str) {
-    metadata_test(input, Yaml::Hash(yaml::Hash::new()), output)
+fn path_test(path: &str, output: Date<UTC>) {
+    metadata_test(path, Yaml::Hash(yaml::Hash::new()), output.and_hms(0, 0, 0))
 }
 
 #[test]
-fn with_single_ext() {
-    slug_test("2017-feb-18-hello-world.md", "2017/feb/18/hello-world");
+fn with_file_date() {
+    date_test("2017-feb-18-hello-world.md", "2017/feb/18/hello-world");
 }
 
 #[test]
@@ -69,33 +70,11 @@ fn with_metadata_date() {
 }
 
 #[test]
-fn with_metadata_datetime() {
-    let mut meta = yaml::Hash::new();
-    meta.insert(
-        Yaml::String(String::from("date")),
-        Yaml::String(String::from("2017-02-18T01:02:03Z"))
-    );
-
-    metadata_test("hello-world.md", Yaml::Hash(meta), "2017/feb/18/hello-world");
-}
-
-#[test]
-fn with_metadata_datetime_not_utc() {
-    let mut meta = yaml::Hash::new();
-    meta.insert(
-        Yaml::String(String::from("date")),
-        Yaml::String(String::from("2017-02-18T01:02:03+13:00"))
-    );
-
-    metadata_test("hello-world.md", Yaml::Hash(meta), "2017/feb/17/hello-world");
-}
-
-#[test]
 fn with_metadata_and_file_date() {
     let mut meta = yaml::Hash::new();
     meta.insert(
         Yaml::String(String::from("date")),
-        Yaml::String(String::from("2016-02-04"))
+        Yaml::String(String::from("2017-02-04"))
     );
 
     metadata_test("2017-feb-18-hello-world.md", Yaml::Hash(meta), "2016/feb/04/hello-world")
