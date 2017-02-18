@@ -10,6 +10,7 @@ use yaml_rust::{Yaml, YamlLoader};
 mod date;
 
 #[cfg(test)] mod test_date;
+#[cfg(test)] mod test_is_page;
 #[cfg(test)] mod test_slug;
 
 pub struct Post {
