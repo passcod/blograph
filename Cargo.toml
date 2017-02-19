@@ -5,7 +5,6 @@ version = "0.1.0"
 
 [dependencies]
 chrono = "0.3.0"
-git2 = "0.6.4"
 iso8601 = "0.1.1"
 lazy_static = "0.2.2"
 num-traits = "0.1.36"

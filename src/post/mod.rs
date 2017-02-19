@@ -4,10 +4,11 @@ use num_traits::cast::FromPrimitive;
 use regex::Regex;
 use std::fs::File;
 use std::io::{Read, Result};
-use std::path::{Path, PathBuf};
-use yaml_rust::{Yaml, YamlLoader};
+use std::path::PathBuf;
+use yaml_rust::Yaml;
 
 mod date;
+mod metadata;
 
 #[cfg(test)] mod test_date;
 #[cfg(test)] mod test_is_future;
@@ -16,7 +17,6 @@ mod date;
 
 pub struct Post {
     path: PathBuf,
-    raw: String,
     metadata: Yaml,
     content: String,
 }
@@ -34,9 +34,8 @@ impl Post {
 
         Ok(Post {
             path: path,
-            raw: raw,
-            metadata: Yaml::from_str("123"),
-            content: String::from("")
+            metadata: metadata::parse(&raw),
+            content: metadata::strip(&raw)
         })
     }
 

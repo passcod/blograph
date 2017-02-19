@@ -5,7 +5,6 @@ use yaml_rust::{yaml, Yaml};
 fn metadata_test(path: &str, meta: Yaml, output: &str) {
     let post = Post {
         path: PathBuf::from(path),
-        raw: String::from(""),
         metadata: meta,
         content: String::from("")
     };

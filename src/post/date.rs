@@ -1,9 +1,8 @@
 use chrono::prelude::*;
 use regex::Regex;
 use std::path::PathBuf;
-use yaml_rust::Yaml;
 
-static DateRx: &'static str = r"(?x)
+static DATE_RX: &'static str = r"(?x)
     -?
     (?P<year>\d{4})               # 4-digit year
     [-/]
@@ -19,7 +18,7 @@ static DateRx: &'static str = r"(?x)
 
 pub fn from_path(path: &PathBuf) -> Option<DateTime<UTC>> {
     lazy_static! {
-        static ref DATE: Regex = Regex::new(DateRx).unwrap();
+        static ref DATE: Regex = Regex::new(DATE_RX).unwrap();
     }
 
     match DATE.find_iter(
@@ -45,7 +44,7 @@ pub fn from_path(path: &PathBuf) -> Option<DateTime<UTC>> {
 
 pub fn strip(path: &PathBuf) -> String {
     lazy_static! {
-        static ref DATE: Regex = Regex::new(DateRx).unwrap();
+        static ref DATE: Regex = Regex::new(DATE_RX).unwrap();
         static ref SLASHED: Regex = Regex::new(r"-*/-*").unwrap();
         static ref DASHED: Regex = Regex::new(r"(^-|-$|-{2,}|^/)").unwrap();
     }
