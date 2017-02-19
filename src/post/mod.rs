@@ -10,6 +10,7 @@ use yaml_rust::{Yaml, YamlLoader};
 mod date;
 
 #[cfg(test)] mod test_date;
+#[cfg(test)] mod test_is_future;
 #[cfg(test)] mod test_is_page;
 #[cfg(test)] mod test_slug;
 
@@ -39,44 +40,47 @@ impl Post {
         })
     }
 
+    pub fn is_future(&self) -> bool {
+        match self.date() {
+            None => false,
+            Some(d) => {
+                d.timestamp() > UTC::now().timestamp()
+            }
+        }
+    }
+
     pub fn is_page(&self) -> bool {
         if self.date().is_none() {
             return true;
         }
 
         match self.metadata["page"] {
-            Yaml::BadValue => false,
-            ref page @ _ => match page.as_bool() {
-                None => false,
-                Some(b) => b
-            }
+            Yaml::Boolean(b) => b,
+            _ => false
         }
     }
 
     #[inline]
     fn meta_date(&self) -> Option<DateTime<UTC>> {
         let iso = match self.metadata["date"] {
-            Yaml::BadValue => return None,
-            ref date @ _ => match date.as_str() {
-                None => return None,
-                Some(d) => match iso8601::datetime(d) {
-                    Err(_) => match iso8601::date(d) {
-                        Err(_) => return None,
-                        Ok(d) => iso8601::DateTime {
-                            date: d,
-                            time: iso8601::Time {
-                                hour: 0,
-                                minute: 0,
-                                second: 0,
-                                millisecond: 0,
-                                tz_offset_hours: 0,
-                                tz_offset_minutes: 0
-                            }
+            Yaml::String(ref d) => match iso8601::datetime(d) {
+                Ok(d) => d,
+                Err(_) => match iso8601::date(d) {
+                    Err(_) => return None,
+                    Ok(d) => iso8601::DateTime {
+                        date: d,
+                        time: iso8601::Time {
+                            hour: 0,
+                            minute: 0,
+                            second: 0,
+                            millisecond: 0,
+                            tz_offset_hours: 0,
+                            tz_offset_minutes: 0
                         }
-                    },
-                    Ok(d) => d
+                    }
                 }
-            }
+            },
+            _ => return None
         };
 
         let tz = match FixedOffset::east_opt(
