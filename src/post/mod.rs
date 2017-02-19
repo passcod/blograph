@@ -21,11 +21,9 @@ pub struct Post {
     content: String,
 }
 
-static POSTS: &'static str = "/home/write/blog";
-
 impl Post {
-    pub fn from_path(path: PathBuf) -> Result<Post> {
-        let mut abspath = PathBuf::from(POSTS);
+    pub fn new(base: PathBuf, path: PathBuf) -> Result<Post> {
+        let mut abspath = base.clone();
         abspath.push(path.clone());
 
         let mut file = try!(File::open(abspath));
@@ -125,7 +123,6 @@ impl Post {
             static ref EXT: Regex = Regex::new(r"\.[\w.]+$").unwrap();
         }
 
-        let file_date = date::from_path(&self.path);
         let without_date = date::strip(&self.path);
         let without_ext = EXT.replace_all(&without_date, "");
 
