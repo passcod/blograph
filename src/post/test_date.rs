@@ -1,12 +1,13 @@
 use chrono::prelude::*;
 use std::path::PathBuf;
 use super::*;
+use super::metadata::Metadata;
 use yaml_rust::{yaml, Yaml};
 
 fn metadata_test(path: &str, meta: Yaml, output: Option<DateTime<UTC>>) {
     let post = Post {
         path: PathBuf::from(path),
-        metadata: meta,
+        metadata: Metadata::from_yaml(meta),
         content: String::from("")
     };
     assert_eq!(post.date(), output);

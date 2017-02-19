@@ -1,7 +1,6 @@
 use chrono::prelude::*;
-use iso8601;
-use num_traits::cast::FromPrimitive;
 use regex::Regex;
+use self::metadata::Metadata;
 use std::fs::File;
 use std::io::{Read, Result};
 use std::path::PathBuf;
@@ -9,6 +8,7 @@ use yaml_rust::Yaml;
 
 mod date;
 mod metadata;
+mod metadata_parser;
 
 #[cfg(test)] mod test_date;
 #[cfg(test)] mod test_is_future;
@@ -17,7 +17,7 @@ mod metadata;
 
 pub struct Post {
     path: PathBuf,
-    metadata: Yaml,
+    metadata: Metadata,
     content: String,
 }
 
@@ -32,8 +32,8 @@ impl Post {
 
         Ok(Post {
             path: path,
-            metadata: metadata::parse(&raw),
-            content: metadata::strip(&raw)
+            metadata: Metadata::parse(&raw),
+            content: metadata_parser::strip(&raw)
         })
     }
 
@@ -47,72 +47,14 @@ impl Post {
     }
 
     pub fn is_page(&self) -> bool {
-        if self.date().is_none() {
-            return true;
-        }
-
-        match self.metadata["page"] {
-            Yaml::Boolean(b) => b,
-            _ => false
-        }
-    }
-
-    #[inline]
-    fn meta_date(&self) -> Option<DateTime<UTC>> {
-        let iso = match self.metadata["date"] {
-            Yaml::String(ref d) => match iso8601::datetime(d) {
-                Ok(d) => d,
-                Err(_) => match iso8601::date(d) {
-                    Err(_) => return None,
-                    Ok(d) => iso8601::DateTime {
-                        date: d,
-                        time: iso8601::Time {
-                            hour: 0,
-                            minute: 0,
-                            second: 0,
-                            millisecond: 0,
-                            tz_offset_hours: 0,
-                            tz_offset_minutes: 0
-                        }
-                    }
-                }
-            },
-            _ => return None
-        };
-
-        let tz = match FixedOffset::east_opt(
-            iso.time.tz_offset_hours * 3600 +
-            iso.time.tz_offset_minutes * 60
-        ) {
-            None => return None,
-            Some(t) => t
-        };
-
-        let tzed = match iso.date {
-            iso8601::Date::YMD { year, month, day }
-                => tz.ymd_opt(year, month, day),
-            iso8601::Date::Week { year, ww, d }
-                => tz.isoywd_opt(year, ww, match Weekday::from_u32(d) {
-                    None => return None,
-                    Some(d) => d
-                }),
-            iso8601::Date::Ordinal { year, ddd }
-                => tz.yo_opt(year, ddd)
-        }.and_hms_milli_opt(
-            iso.time.hour,
-            iso.time.minute,
-            iso.time.second,
-            iso.time.millisecond
-        ).earliest();
-
-        match tzed {
-            None => None,
-            Some(d) => Some(d.with_timezone(&UTC))
+        match self.date() {
+            None => true,
+            Some(_) => self.metadata.page()
         }
     }
 
     pub fn date(&self) -> Option<DateTime<UTC>> {
-        match self.meta_date() {
+        match self.metadata.date() {
             Some(d) => Some(d),
             None => date::from_path(&self.path)
         }

@@ -1,11 +1,12 @@
 use std::path::PathBuf;
 use super::*;
+use super::metadata::Metadata;
 use yaml_rust::{yaml, Yaml};
 
 fn metadata_test(path: &str, meta: Yaml, output: &str) {
     let post = Post {
         path: PathBuf::from(path),
-        metadata: meta,
+        metadata: Metadata::from_yaml(meta),
         content: String::from("")
     };
     assert_eq!(post.slug(), output);
