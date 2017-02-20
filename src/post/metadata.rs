@@ -2,7 +2,6 @@ use chrono::prelude::*;
 use iso8601;
 use num_traits::cast::FromPrimitive;
 use super::metadata_parser;
-use regex::Regex;
 use yaml_rust::{yaml, Yaml, YamlLoader};
 
 pub struct Metadata {
@@ -89,10 +88,18 @@ impl Metadata {
             Some(d) => Some(d.with_timezone(&UTC))
         }
     }
+
+    pub fn title(&self) -> Option<String> {
+        match self.yaml["title"] {
+            Yaml::String(ref s) => Some(s.clone()),
+            _ => None
+        }
+    }
 }
 
 #[cfg(test)]
 mod test {
+    use chrono::prelude::*;
     use super::*;
     use yaml_rust::{yaml, Yaml, YamlLoader};
 
@@ -101,23 +108,38 @@ mod test {
     }
 
     #[test]
-    fn path_true() {
+    fn page_true() {
         assert_eq!(meta("page: true").page(), true);
     }
 
     #[test]
-    fn path_false() {
+    fn page_false() {
         assert_eq!(meta("page: false").page(), false);
     }
 
     #[test]
-    fn path_else() {
+    fn page_else() {
         assert_eq!(meta("page: a string").page(), false);
     }
 
     #[test]
-    fn path_missing() {
+    fn page_missing() {
         assert_eq!(meta("not-page: true").page(), false);
+    }
+
+    #[test]
+    fn title_there() {
+        assert_eq!(meta("title: A good post").title(), Some(String::from("A good post")));
+    }
+
+    #[test]
+    fn title_else() {
+        assert_eq!(meta("title: true").title(), None);
+    }
+
+    #[test]
+    fn title_missing() {
+        assert_eq!(meta("not-title: true").title(), None);
     }
 
     #[test]
@@ -149,5 +171,79 @@ mod test {
     fn tags_missing() {
         let nop: Vec<String> = vec![];
         assert_eq!(meta("not-tags:\n- shhh").tags(), nop);
+    }
+
+    #[test]
+    fn date_missing() {
+        assert_eq!(meta("not-date: boo").date(), None);
+    }
+
+    #[test]
+    fn date_invalid() {
+        assert_eq!(meta("date: boo").date(), None);
+    }
+
+    #[test]
+    fn date_wrong_type() {
+        assert_eq!(meta("not-date: false").date(), None);
+    }
+
+    #[test]
+    fn date_ymd() {
+        assert_eq!(meta("date: 2017-02-18").date(),
+            Some(UTC.ymd(2017, 2, 18).and_hms(0, 0, 0)));
+    }
+
+    #[test]
+    fn date_ymd_hms() {
+        assert_eq!(meta("date: 2017-02-18T12:34:56Z").date(),
+            Some(UTC.ymd(2017, 2, 18).and_hms(12, 34, 56)));
+    }
+
+    #[test]
+    fn date_ymd_hms_offset() {
+        assert_eq!(meta("date: 2017-02-18T12:34:56-13:30").date(),
+            Some(UTC.ymd(2017, 2, 19).and_hms(2, 4, 56)));
+    }
+
+    #[test]
+    fn date_ywd() {
+        assert_eq!(meta("date: 2017W123").date(),
+            Some(UTC.ymd(2017, 3, 23).and_hms(0, 0, 0)));
+    }
+
+    #[test]
+    fn date_ywd_hms() {
+        assert_eq!(meta("date: 2017W123T12:34:56Z").date(),
+            Some(UTC.ymd(2017, 3, 23).and_hms(12, 34, 56)));
+    }
+
+    #[test]
+    fn date_ywd_hms_offset() {
+        assert_eq!(meta("date: 2017W123T12:34:56+13:30").date(),
+            Some(UTC.ymd(2017, 3, 22).and_hms(23, 4, 56)));
+    }
+
+    #[test]
+    fn date_yo() {
+        assert_eq!(meta("date: 2017123T").date(),
+            Some(UTC.ymd(2017, 5, 3).and_hms(0, 0, 0)));
+    }
+
+    #[test]
+    fn date_yo_without_trailing_t() {
+        assert_eq!(meta("date: 2017123").date(), None);
+    }
+
+    #[test]
+    fn date_yo_hms() {
+        assert_eq!(meta("date: 2017123T12:34:56Z").date(),
+            Some(UTC.ymd(2017, 5, 3).and_hms(12, 34, 56)));
+    }
+
+    #[test]
+    fn date_yo_hms_offset() {
+        assert_eq!(meta("date: 2017123T12:34:56-13:30").date(),
+            Some(UTC.ymd(2017, 5, 4).and_hms(2, 4, 56)));
     }
 }

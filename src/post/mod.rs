@@ -1,11 +1,13 @@
 use chrono::prelude::*;
 use regex::Regex;
+use self::capitalise::capitalise;
 use self::metadata::Metadata;
 use std::fs::File;
 use std::io::{Read, Result};
 use std::path::PathBuf;
 use yaml_rust::Yaml;
 
+mod capitalise;
 mod date;
 mod metadata;
 mod metadata_parser;
@@ -14,6 +16,7 @@ mod metadata_parser;
 #[cfg(test)] mod test_is_future;
 #[cfg(test)] mod test_is_page;
 #[cfg(test)] mod test_slug;
+#[cfg(test)] mod test_title;
 
 pub struct Post {
     path: PathBuf,
@@ -60,14 +63,16 @@ impl Post {
         }
     }
 
-    pub fn slug(&self) -> String {
+    fn extless_path(&self) -> String {
         lazy_static! {
             static ref EXT: Regex = Regex::new(r"\.[\w.]+$").unwrap();
         }
 
-        let without_date = date::strip(&self.path);
-        let without_ext = EXT.replace_all(&without_date, "");
+        let dateless = date::strip(&self.path);
+        String::from(EXT.replace_all(&dateless, ""))
+    }
 
+    pub fn slug(&self) -> String {
         let slug_date = match self.is_page() {
             true => None,
             false => match self.date() {
@@ -77,14 +82,27 @@ impl Post {
             }
         };
 
+        let extless = self.extless_path();
         match slug_date {
             Some(d) => format!(
                 "{}/{}",
                 d.format("%Y/%b/%d"),
-                without_ext
+                extless
             ).to_lowercase(),
-            None => String::from(without_ext)
+            None => String::from(extless)
+        }
+    }
+
+    pub fn title(&self) -> String {
+        lazy_static! {
+            static ref SPACED: Regex = Regex::new("-+").unwrap();
+        }
+
+        match self.metadata.title() {
+            Some(s) => s,
+            None => capitalise(
+                &String::from(SPACED.replace_all(&self.extless_path(), " "))
+            )
         }
     }
 }
-
