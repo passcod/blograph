@@ -4,6 +4,7 @@ use num_traits::cast::FromPrimitive;
 use super::metadata_parser;
 use yaml_rust::{yaml, Yaml, YamlLoader};
 
+#[derive(Debug)]
 pub struct Metadata {
     yaml: Yaml
 }
@@ -89,10 +90,32 @@ impl Metadata {
         }
     }
 
+    pub fn author(&self) -> Option<String> {
+        match self.yaml["author"] {
+            Yaml::String(ref s) => Some(s.clone()),
+            _ => None
+        }
+    }
+
     pub fn title(&self) -> Option<String> {
         match self.yaml["title"] {
             Yaml::String(ref s) => Some(s.clone()),
             _ => None
+        }
+    }
+
+    pub fn parents(&self) -> Vec<String> {
+        match self.yaml["parent"] {
+            Yaml::String(ref s) => vec![s.clone()],
+            _ => match self.yaml["parents"] {
+                Yaml::Array(ref v) => v.iter().filter_map(|s: &Yaml| {
+                    match s {
+                        &Yaml::String(ref s) => Some(s.clone()),
+                        _ => None
+                    }
+                }).collect(),
+                _ => vec![]
+            }
         }
     }
 }
@@ -125,6 +148,21 @@ mod test {
     #[test]
     fn page_missing() {
         assert_eq!(meta("not-page: true").page(), false);
+    }
+
+    #[test]
+    fn author_there() {
+        assert_eq!(meta("author: Me").author(), Some(String::from("Me")));
+    }
+
+    #[test]
+    fn author_else() {
+        assert_eq!(meta("author: true").author(), None);
+    }
+
+    #[test]
+    fn author_missing() {
+        assert_eq!(meta("not-author: true").author(), None);
     }
 
     #[test]
@@ -245,5 +283,46 @@ mod test {
     fn date_yo_hms_offset() {
         assert_eq!(meta("date: 2017123T12:34:56-13:30").date(),
             Some(UTC.ymd(2017, 5, 4).and_hms(2, 4, 56)));
+    }
+
+    #[test]
+    fn parents_single() {
+        assert_eq!(meta("parent: hello-world").parents(), vec!["hello-world"]);
+    }
+
+    #[test]
+    fn parents_single_array() {
+        assert_eq!(meta("parent:\n  - help").parents(), vec![] as Vec<String>);
+    }
+
+    #[test]
+    fn parents_single_bad_type() {
+        assert_eq!(meta("parent: true").parents(), vec![] as Vec<String>);
+    }
+
+    #[test]
+    fn parents_multi() {
+        assert_eq!(meta("parents:\n  - hello\n  - world").parents(),
+            vec!["hello", "world"]);
+    }
+
+    #[test]
+    fn parents_multi_one() {
+        assert_eq!(meta("parents:\n  - hello").parents(), vec!["hello"]);
+    }
+
+    #[test]
+    fn parents_multi_bad_type() {
+        assert_eq!(meta("parents:\n  - hello\n  - 123").parents(), vec!["hello"]);
+    }
+
+    #[test]
+    fn parents_shadowed_by_parent() {
+        assert_eq!(meta("parent: hello\nparents:\n  - world").parents(), vec!["hello"]);
+    }
+
+    #[test]
+    fn parents_missing() {
+        assert_eq!(meta("not-parent: hello-world").parents(), vec![] as Vec<String>);
     }
 }

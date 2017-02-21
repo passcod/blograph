@@ -9,6 +9,7 @@ use yaml_rust::Yaml;
 
 mod capitalise;
 mod date;
+mod markdown;
 mod metadata;
 mod metadata_parser;
 
@@ -18,6 +19,7 @@ mod metadata_parser;
 #[cfg(test)] mod test_slug;
 #[cfg(test)] mod test_title;
 
+#[derive(Debug)]
 pub struct Post {
     path: PathBuf,
     metadata: Metadata,
@@ -25,7 +27,7 @@ pub struct Post {
 }
 
 impl Post {
-    pub fn new(base: PathBuf, path: PathBuf) -> Result<Post> {
+    pub fn new(base: &PathBuf, path: PathBuf) -> Result<Post> {
         let mut abspath = base.clone();
         abspath.push(path.clone());
 
@@ -105,4 +107,8 @@ impl Post {
             )
         }
     }
+
+	pub fn render(&self) -> String {
+		markdown::render(&self.content)
+	}
 }
