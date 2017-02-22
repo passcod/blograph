@@ -1,9 +1,9 @@
-use std::rc::Rc;
+use std::sync::Arc;
 use super::*;
 
 #[test]
 fn empty_list() {
-    assert_eq!(List::new(vec![]).to_vec(), vec![] as Vec<Rc<Post>>);
+    assert_eq!(List::new(vec![]).to_vec(), vec![] as Vec<Arc<Post>>);
 }
 
 #[test]

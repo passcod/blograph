@@ -4,7 +4,7 @@ use num_traits::cast::FromPrimitive;
 use super::metadata_parser;
 use yaml_rust::Yaml;
 
-#[derive(Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Metadata {
     yaml: Yaml
 }

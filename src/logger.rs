@@ -14,7 +14,7 @@ pub fn init(verbose: usize) {
             LogLevel::Error => level.red().bold()
         };
 
-        format!("{} {} {}", "blog".cyan(), levelc, record.args())
+        format!("{} {} {}", levelc, record.target().cyan(), record.args())
     };
 
     let mut builder = LogBuilder::new();

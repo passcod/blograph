@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 use std::iter::FromIterator;
-use std::rc::Rc;
+use std::sync::Arc;
 use super::post::Post;
 
 #[cfg(test)] mod test_children;
@@ -15,26 +15,26 @@ use super::post::Post;
 #[cfg(test)] mod test_to_vec;
 #[cfg(test)] mod test_util;
 
-#[derive(Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct List {
-    posts: Vec<Rc<Post>>,
+    posts: Vec<Arc<Post>>,
 }
 
-#[derive(Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Iter<'a> {
     list: &'a List,
     cursor: usize,
 }
 
-#[derive(Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Item {
-    pub post: Rc<Post>,
-    pub previous: Option<Rc<Post>>,
-    pub next: Option<Rc<Post>>,
+    pub post: Arc<Post>,
+    pub previous: Option<Arc<Post>>,
+    pub next: Option<Arc<Post>>,
 }
 
 impl List {
-    pub fn new(posts: Vec<Rc<Post>>) -> List {
+    pub fn new(posts: Vec<Arc<Post>>) -> List {
         List { posts: posts }
     }
 
@@ -42,7 +42,7 @@ impl List {
         Iter { list: self, cursor: 0 }
     }
 
-    pub fn to_vec(&self) -> Vec<Rc<Post>> {
+    pub fn to_vec(&self) -> Vec<Arc<Post>> {
         self.posts.clone()
     }
 
@@ -50,15 +50,15 @@ impl List {
         self.posts.len()
     }
 
-    pub fn contains(&self, post: &Rc<Post>) -> bool {
+    pub fn contains(&self, post: &Arc<Post>) -> bool {
         self.posts.iter().any(|p| p == post)
     }
 
-    pub fn find_by_slug(&self, slug: &str) -> Option<&Rc<Post>> {
+    pub fn find_by_slug(&self, slug: &str) -> Option<&Arc<Post>> {
         self.posts.iter().find(|p| p.slug() == slug)
     }
 
-    pub fn parents_of(&self, post: &Rc<Post>) -> List {
+    pub fn parents_of(&self, post: &Arc<Post>) -> List {
         let mut parents = vec![];
         for slug in post.metadata.parents() {
             if let Some(parent) = self.find_by_slug(&slug) {
@@ -69,7 +69,7 @@ impl List {
         List::new(parents)
     }
 
-    pub fn children_of(&self, post: &Rc<Post>) -> List {
+    pub fn children_of(&self, post: &Arc<Post>) -> List {
         let mut children = vec![];
         for item in self.posts.iter() {
             for parent in item.metadata.parents() {
@@ -132,8 +132,8 @@ impl<'a> Iterator for Iter<'a> {
     }
 }
 
-impl FromIterator<Rc<Post>> for List {
-    fn from_iter<I: IntoIterator<Item=Rc<Post>>>(iter: I) -> Self {
+impl FromIterator<Arc<Post>> for List {
+    fn from_iter<I: IntoIterator<Item=Arc<Post>>>(iter: I) -> Self {
         let mut posts = vec![];
 
         for post in iter {
@@ -144,8 +144,8 @@ impl FromIterator<Rc<Post>> for List {
     }
 }
 
-impl<'a> FromIterator<&'a Rc<Post>> for List {
-    fn from_iter<I: IntoIterator<Item=&'a Rc<Post>>>(iter: I) -> Self {
+impl<'a> FromIterator<&'a Arc<Post>> for List {
+    fn from_iter<I: IntoIterator<Item=&'a Arc<Post>>>(iter: I) -> Self {
         let mut posts = vec![];
 
         for post in iter {

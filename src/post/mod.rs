@@ -18,7 +18,7 @@ mod metadata_parser;
 #[cfg(test)] mod test_slug;
 #[cfg(test)] mod test_title;
 
-#[derive(Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Post {
     path: PathBuf,
     pub metadata: Metadata,

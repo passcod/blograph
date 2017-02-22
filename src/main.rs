@@ -3,6 +3,7 @@ extern crate chrono;
 extern crate colored;
 extern crate crowbook_text_processing;
 extern crate env_logger;
+extern crate hyper;
 extern crate iso8601;
 #[macro_use] extern crate lazy_static;
 #[macro_use] extern crate log;
@@ -20,17 +21,33 @@ mod all;
 mod list;
 mod logger;
 mod post;
+mod router;
+mod server;
 
 fn main() {
     let args = clap_app!(myapp =>
-        (@arg posts: -p --posts +takes_value +required "Path to posts directory")
-        (@arg theme: -t --theme +takes_value +required "Path to theme directory")
+        (@arg posts: --posts +takes_value +required "Path to posts directory")
+        (@arg theme: --theme +takes_value +required "Path to theme directory")
+        (@arg port: -p --port +takes_value "Port to listen on [6920]")
         (@arg verbose: -v ... "Sets the level of verbosity")
     ).get_matches();
 
     logger::init(args.occurrences_of("verbose") as usize);
     debug!("Set verbose level {}", args.occurrences_of("verbose"));
     info!("Booting up");
+
+    let port = args.value_of("port")
+        .unwrap_or("6920")
+        .parse::<u16>()
+        .ok()
+        .unwrap_or(0);
+
+    if port == 0 {
+        error!("Bad format for --port, aborting");
+        process::exit(1);
+    } else {
+        debug!("Port: {}", port);
+    }
 
     let posts = PathBuf::from(args.value_of("posts").unwrap());
     let theme = PathBuf::from(args.value_of("theme").unwrap());
@@ -55,33 +72,9 @@ fn main() {
     let all = all::load(posts);
     info!("Loaded {} posts", all.len());
 
-    let frontpage = all.iter().filter(|item| {
-        !item.post.is_future() &&
-        !item.post.is_page()
-    }).collect::<List>().sort_by_date();
+    let server = server::init(port);
+    let handler = router::Handler::new(all);
 
-    let mut taglists: Vec<(String, List)> = vec![];
-    for tag in all.tags() {
-        taglists.push((tag.clone(), all.iter().filter(|item| {
-            item.post.metadata.tags().iter().any(|t| t == &tag)
-        }).collect::<List>().sort_by_date()));
-    }
-
-    // println!("Front page:");
-    // for item in frontpage.iter() {
-    //     println!("  - {}", item.post.slug());
-    // }
-
-    // for (tag, list) in taglists {
-    //     println!("\nTag {}:", tag);
-    //     for item in list.iter() {
-    //         println!("  - {}", item.post.slug());
-    //     }
-    // }
-
-    debug!("Shorts:");
-    let preface = all.find_by_slug("2015/jan/25/300-shorts").unwrap();
-    for item in all.children_of(preface).sort_by_date().iter() {
-        debug!("  - {}", item.post.slug());
-    }
+    info!("Starting server");
+    server.handle(handler);
 }

@@ -1,4 +1,4 @@
-use std::rc::Rc;
+use std::sync::Arc;
 use super::*;
 
 #[test]
@@ -52,11 +52,11 @@ fn next() {
 fn no_copy() {
     let list = test_util::make_list();
     let list_item = list.find_by_slug("2015/jan/25/300-shorts").unwrap();
-    assert_eq!(Rc::strong_count(list_item), 1);
+    assert_eq!(Arc::strong_count(list_item), 1);
 
     let mut iter = list.iter();
     let iter_item = iter.next().unwrap().post;
-    assert_eq!(Rc::strong_count(list_item), 2);
+    assert_eq!(Arc::strong_count(list_item), 2);
 
     assert_eq!(list_item, &iter_item);
 }

@@ -1,5 +1,5 @@
 use std::path::PathBuf;
-use std::rc::Rc;
+use std::sync::Arc;
 use super::list::List;
 use super::post::Post;
 use walkdir::{DirEntry, Error as WalkDirError, WalkDir, WalkDirIterator};
@@ -28,7 +28,7 @@ fn filter_file(entry: Result<DirEntry, WalkDirError>, base: &PathBuf) -> Option<
 }
 
 pub fn load(base: PathBuf) -> List {
-    let mut posts: Vec<Rc<Post>> = vec![];
+    let mut posts: Vec<Arc<Post>> = vec![];
 
     for entry in WalkDir::new(&base)
         .follow_links(true)
@@ -36,7 +36,7 @@ pub fn load(base: PathBuf) -> List {
         .filter_entry(|e| !is_hidden(e))
         .filter_map(|e| filter_file(e, &base)) {
         if let Ok(post) = Post::new(&base, entry) {
-            posts.push(Rc::new(post));
+            posts.push(Arc::new(post));
         }
     }
 
