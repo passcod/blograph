@@ -2,9 +2,9 @@ use chrono::prelude::*;
 use iso8601;
 use num_traits::cast::FromPrimitive;
 use super::metadata_parser;
-use yaml_rust::{yaml, Yaml, YamlLoader};
+use yaml_rust::Yaml;
 
-#[derive(Debug)]
+#[derive(Debug, Eq, PartialEq)]
 pub struct Metadata {
     yaml: Yaml
 }

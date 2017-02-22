@@ -5,7 +5,6 @@ use self::metadata::Metadata;
 use std::fs::File;
 use std::io::{Read, Result};
 use std::path::PathBuf;
-use yaml_rust::Yaml;
 
 mod capitalise;
 mod date;
@@ -19,10 +18,10 @@ mod metadata_parser;
 #[cfg(test)] mod test_slug;
 #[cfg(test)] mod test_title;
 
-#[derive(Debug)]
+#[derive(Debug, Eq, PartialEq)]
 pub struct Post {
     path: PathBuf,
-    metadata: Metadata,
+    pub metadata: Metadata,
     content: String,
 }
 
