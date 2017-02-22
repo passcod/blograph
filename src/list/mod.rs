@@ -3,6 +3,18 @@ use std::iter::FromIterator;
 use std::rc::Rc;
 use super::post::Post;
 
+#[cfg(test)] mod test_children;
+#[cfg(test)] mod test_contains;
+#[cfg(test)] mod test_find_by_slug;
+#[cfg(test)] mod test_from_iterator;
+#[cfg(test)] mod test_iter;
+#[cfg(test)] mod test_len;
+#[cfg(test)] mod test_parents;
+#[cfg(test)] mod test_sort;
+#[cfg(test)] mod test_tags;
+#[cfg(test)] mod test_to_vec;
+#[cfg(test)] mod test_util;
+
 #[derive(Debug, Eq, PartialEq)]
 pub struct List {
     posts: Vec<Rc<Post>>,
@@ -28,6 +40,10 @@ impl List {
 
     pub fn iter(&self) -> Iter {
         Iter { list: self, cursor: 0 }
+    }
+
+    pub fn to_vec(&self) -> Vec<Rc<Post>> {
+        self.posts.clone()
     }
 
     pub fn len(&self) -> usize {
@@ -113,18 +129,6 @@ impl<'a> Iterator for Iter<'a> {
         } else {
             None
         }
-    }
-}
-
-impl FromIterator<Post> for List {
-    fn from_iter<I: IntoIterator<Item=Post>>(iter: I) -> Self {
-        let mut posts = vec![];
-
-        for post in iter {
-            posts.push(Rc::new(post));
-        }
-
-        Self::new(posts)
     }
 }
 

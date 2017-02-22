@@ -9,7 +9,7 @@ use std::path::PathBuf;
 mod capitalise;
 mod date;
 mod markdown;
-mod metadata;
+pub mod metadata;
 mod metadata_parser;
 
 #[cfg(test)] mod test_date;
@@ -39,6 +39,14 @@ impl Post {
             metadata: Metadata::parse(&raw),
             content: metadata_parser::strip(&raw)
         })
+    }
+
+    pub fn from(path: &str, metadata: Metadata, content: &str) -> Post {
+        Post {
+            path: PathBuf::from(path),
+            metadata: metadata,
+            content: String::from(content),
+        }
     }
 
     pub fn is_future(&self) -> bool {
