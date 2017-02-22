@@ -1,4 +1,5 @@
 extern crate chrono;
+#[macro_use] extern crate clap;
 extern crate colored;
 extern crate crowbook_text_processing;
 extern crate env_logger;
@@ -11,9 +12,9 @@ extern crate regex;
 extern crate walkdir;
 extern crate yaml_rust;
 
-use env_logger::LogBuilder;
 use list::List;
 use std::path::PathBuf;
+use std::process;
 
 mod all;
 mod list;
@@ -21,10 +22,35 @@ mod logger;
 mod post;
 
 fn main() {
-    logger::init();
+    let args = clap_app!(myapp =>
+        (@arg posts: -p --posts +takes_value +required "Path to posts directory")
+        (@arg theme: -t --theme +takes_value +required "Path to theme directory")
+        (@arg verbose: -v ... "Sets the level of verbosity")
+    ).get_matches();
+
+    logger::init(args.occurrences_of("verbose") as usize);
+    debug!("Set verbose level {}", args.occurrences_of("verbose"));
     info!("Booting up");
 
-    let posts = PathBuf::from("/home/write/blog");
+    let posts = PathBuf::from(args.value_of("posts").unwrap());
+    let theme = PathBuf::from(args.value_of("theme").unwrap());
+    debug!("Posts: {:?}", posts);
+    debug!("Theme: {:?}", theme);
+
+    if !posts.exists() {
+        error!("{:?} does not exist, aborting", posts);
+        process::exit(1);
+    } else {
+        debug!("Checked {:?} exists", posts);
+    }
+
+    if !theme.exists() {
+        error!("{:?} does not exist, aborting", theme);
+        process::exit(1);
+    } else {
+        debug!("Checked {:?} exists", theme);
+    }
+
     info!("Loading posts from {:?}", posts);
     let all = all::load(posts);
     info!("Loaded {} posts", all.len());
@@ -53,9 +79,9 @@ fn main() {
     //     }
     // }
 
-    println!("\nShorts:");
+    debug!("Shorts:");
     let preface = all.find_by_slug("2015/jan/25/300-shorts").unwrap();
     for item in all.children_of(preface).sort_by_date().iter() {
-        println!("  - {}", item.post.slug());
+        debug!("  - {}", item.post.slug());
     }
 }

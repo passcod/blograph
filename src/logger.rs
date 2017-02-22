@@ -3,7 +3,7 @@ use env_logger::LogBuilder;
 use log::{LogRecord, LogLevel, LogLevelFilter};
 use std::env;
 
-pub fn init() {
+pub fn init(verbose: usize) {
     let format = |record: &LogRecord| {
         let level = format!("{: <5}", record.level());
         let levelc = match record.level() {
@@ -18,7 +18,11 @@ pub fn init() {
     };
 
     let mut builder = LogBuilder::new();
-    builder.format(format).filter(None, LogLevelFilter::Info);
+    builder.format(format).filter(None, match verbose {
+        0 => LogLevelFilter::Info,
+        1 => LogLevelFilter::Debug,
+        _ => LogLevelFilter::Trace,
+    });
 
     if env::var("RUST_LOG").is_ok() {
        builder.parse(&env::var("RUST_LOG").unwrap());
