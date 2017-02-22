@@ -9,6 +9,7 @@ extern crate iso8601;
 #[macro_use] extern crate log;
 extern crate num_traits;
 extern crate pulldown_cmark;
+extern crate time;
 extern crate regex;
 extern crate walkdir;
 extern crate yaml_rust;
@@ -72,9 +73,15 @@ fn main() {
     let all = all::load(posts);
     info!("Loaded {} posts", all.len());
 
-    let server = server::init(port);
+    let server = server::init(port.clone());
     let handler = router::Handler::new(all);
 
     info!("Starting server");
-    server.handle(handler);
+    if let Err(err) = server.handle(handler) {
+        error!("Failed to start server!");
+        error!("{}", err);
+        process::exit(1);
+    } else {
+        info!("Listening on port {}", port);
+    }
 }
