@@ -18,8 +18,34 @@ impl Metadata {
         Metadata { yaml: yaml }
     }
 
+    /// Access metadata using dotted syntax.
+    pub fn at(&self, dotted: &str) -> Option<&Yaml> {
+        dotted.split('.').fold(Some(&self.yaml), |branch, name| {
+            branch.and_then(|b| match b[name] {
+                Yaml::BadValue => None,
+                ref y @ _ => Some(y)
+            })
+        })
+    }
+
+    pub fn bool(&self, dotted: &str) -> Option<bool> {
+        self.at(dotted).and_then(|y| y.as_bool())
+    }
+
+    pub fn int(&self, dotted: &str) -> Option<i64> {
+        self.at(dotted).and_then(|y| y.as_i64())
+    }
+
+    pub fn str(&self, dotted: &str) -> Option<&str> {
+        self.at(dotted).and_then(|y| y.as_str())
+    }
+
+    pub fn string(&self, dotted: &str) -> Option<String> {
+        self.at(dotted).and_then(|y| y.as_str()).and_then(|s| Some(String::from(s)))
+    }
+
     pub fn page(&self) -> bool {
-        match self.yaml["page"].as_bool() {
+        match self.bool("page") {
             None => false,
             Some(p) => p
         }
@@ -38,8 +64,9 @@ impl Metadata {
     }
 
     pub fn date(&self) -> Option<DateTime<UTC>> {
-        let iso = match self.yaml["date"] {
-            Yaml::String(ref d) => match iso8601::datetime(d) {
+        let iso = match self.string("date") {
+            None => return None,
+            Some(ref d) => match iso8601::datetime(d) {
                 Ok(d) => d,
                 Err(_) => match iso8601::date(d) {
                     Err(_) => return None,
@@ -55,8 +82,7 @@ impl Metadata {
                         }
                     }
                 }
-            },
-            _ => return None
+            }
         };
 
         let tz = match FixedOffset::east_opt(
@@ -91,23 +117,17 @@ impl Metadata {
     }
 
     pub fn author(&self) -> Option<String> {
-        match self.yaml["author"] {
-            Yaml::String(ref s) => Some(s.clone()),
-            _ => None
-        }
+        self.string("author")
     }
 
     pub fn title(&self) -> Option<String> {
-        match self.yaml["title"] {
-            Yaml::String(ref s) => Some(s.clone()),
-            _ => None
-        }
+        self.string("title")
     }
 
     pub fn parents(&self) -> Vec<String> {
-        match self.yaml["parent"] {
-            Yaml::String(ref s) => vec![s.clone()],
-            _ => match self.yaml["parents"] {
+        match self.string("parent") {
+            Some(s) => vec![s],
+            None => match self.yaml["parents"] {
                 Yaml::Array(ref v) => v.iter().filter_map(|s: &Yaml| {
                     match s {
                         &Yaml::String(ref s) => Some(s.clone()),
@@ -128,6 +148,120 @@ mod test {
 
     fn meta(y: &str) -> Metadata {
         Metadata::from_yaml(YamlLoader::load_from_str(y).unwrap()[0].clone())
+    }
+
+    #[test]
+    fn at_single() {
+        assert_eq!(meta("foo: bar").at("foo"), Some(&Yaml::String(String::from("bar"))))
+    }
+
+    #[test]
+    fn at_single_missing() {
+        assert_eq!(meta("foo: bar").at("baz"), None)
+    }
+
+    #[test]
+    fn at_multiple() {
+        assert_eq!(
+            meta("foo:\n  fool:\n    foolish: bar").at("foo.fool.foolish"),
+            Some(&Yaml::String(String::from("bar")))
+        )
+    }
+
+    #[test]
+    fn at_multiple_missing_top_level() {
+        assert_eq!(
+            meta("foo:\n  fool:\n    foolish: bar").at("baz.fool.foolish"),
+            None
+        )
+    }
+
+    #[test]
+    fn at_multiple_missing_middle_level() {
+        assert_eq!(
+            meta("foo:\n  fool:\n    foolish: bar").at("foo.caps.foolish"),
+            None
+        )
+    }
+
+    #[test]
+    fn at_multiple_missing_last_level() {
+        assert_eq!(
+            meta("foo:\n  fool:\n    foolish: bar").at("foo.fool.fly"),
+            None
+        )
+    }
+
+    #[test]
+    fn bool_single() {
+        assert_eq!(meta("foo: true").bool("foo"), Some(true))
+    }
+
+    #[test]
+    fn bool_single_missing() {
+        assert_eq!(meta("foo: true").bool("baz"), None)
+    }
+
+    #[test]
+    fn bool_multiple() {
+        assert_eq!(
+            meta("foo:\n  fool:\n    foolish: false").bool("foo.fool.foolish"),
+            Some(false)
+        )
+    }
+
+    #[test]
+    fn int_single() {
+        assert_eq!(meta("foo: 1337").int("foo"), Some(1337))
+    }
+
+    #[test]
+    fn int_single_missing() {
+        assert_eq!(meta("foo: 1337").int("baz"), None)
+    }
+
+    #[test]
+    fn int_multiple() {
+        assert_eq!(
+            meta("foo:\n  fool:\n    foolish: 42").int("foo.fool.foolish"),
+            Some(42)
+        )
+    }
+
+    #[test]
+    fn str_single() {
+        assert_eq!(meta("foo: frodo").str("foo"), Some("frodo"))
+    }
+
+    #[test]
+    fn str_single_missing() {
+        assert_eq!(meta("foo: frodo").str("baz"), None)
+    }
+
+    #[test]
+    fn str_multiple() {
+        assert_eq!(
+            meta("foo:\n  fool:\n    foolish: took").str("foo.fool.foolish"),
+            Some("took")
+        )
+    }
+
+    #[test]
+    fn string_single() {
+        assert_eq!(meta("foo: baggins").string("foo"), Some(String::from("baggins")))
+    }
+
+    #[test]
+    fn string_single_missing() {
+        assert_eq!(meta("foo: baggins").string("baz"), None)
+    }
+
+    #[test]
+    fn string_multiple() {
+        assert_eq!(
+            meta("foo:\n  fool:\n    foolish: merry").string("foo.fool.foolish"),
+            Some(String::from("merry"))
+        )
     }
 
     #[test]
