@@ -3,7 +3,7 @@ use std::net::{Ipv4Addr, SocketAddrV4};
 use std::process;
 
 pub fn init(port: u16) -> Server {
-    info!("Preparing server");
+    trace!("Preparing server");
 
     let ip = Ipv4Addr::new(127, 0, 0, 1);
     let bind = SocketAddrV4::new(ip, port);
@@ -17,6 +17,6 @@ pub fn init(port: u16) -> Server {
         process::exit(1);
     }
 
-    info!("Prepared server");
+    trace!("Prepared server");
     server.unwrap()
 }

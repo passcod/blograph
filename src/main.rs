@@ -34,7 +34,7 @@ fn main() {
     ).get_matches();
 
     logger::init(args.occurrences_of("verbose") as usize);
-    debug!("Set verbose level {}", args.occurrences_of("verbose"));
+    trace!("Set verbose level {}", args.occurrences_of("verbose"));
     info!("Booting up");
 
     let port = args.value_of("port")
@@ -59,24 +59,24 @@ fn main() {
         error!("{:?} does not exist, aborting", posts);
         process::exit(1);
     } else {
-        debug!("Checked {:?} exists", posts);
+        trace!("Checked {:?} exists", posts);
     }
 
     if !theme.exists() {
         error!("{:?} does not exist, aborting", theme);
         process::exit(1);
     } else {
-        debug!("Checked {:?} exists", theme);
+        trace!("Checked {:?} exists", theme);
     }
 
-    info!("Loading posts from {:?}", posts);
+    trace!("Loading posts from {:?}", posts);
     let all = all::load(posts);
     info!("Loaded {} posts", all.len());
 
     let server = server::init(port.clone());
     let handler = router::Handler::new(all);
 
-    info!("Starting server");
+    trace!("Starting server");
     if let Err(err) = server.handle(handler) {
         error!("Failed to start server!");
         error!("{}", err);
