@@ -10,6 +10,7 @@ extern crate iso8601;
 extern crate num_traits;
 extern crate pulldown_cmark;
 extern crate time;
+extern crate url;
 extern crate regex;
 extern crate walkdir;
 extern crate yaml_rust;
