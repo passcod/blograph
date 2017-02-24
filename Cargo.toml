@@ -3,18 +3,18 @@ authors = ["Félix Saparelli <felix@passcod.name>"]
 name = "blograph"
 version = "0.1.0"
 
+[workspaces]
+
 [dependencies]
-chrono = "0.3.0"
+post = { path = "post" }
+list = { path = "list" }
+
 clap = "2.20.5"
 colored = "1.4.0"
-crowbook-text-processing = "0.2.6"
 env_logger = "0.4.0"
 hyper = "0.10.4"
-iso8601 = "0.1.1"
 lazy_static = "0.2.2"
 log = "0.3.6"
-num-traits = "0.1.36"
-pulldown-cmark = "0.0.8"
 regex = "0.2.1"
 time = "0.1.36"
 url = "1.4.0"

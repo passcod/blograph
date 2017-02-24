@@ -1,7 +1,16 @@
+extern crate chrono;
+#[macro_use] extern crate lazy_static;
+#[macro_use] extern crate log;
+extern crate time;
+extern crate regex;
+extern crate walkdir;
+extern crate yaml_rust;
+extern crate post;
+
 use std::collections::HashSet;
 use std::iter::FromIterator;
 use std::sync::Arc;
-use super::post::Post;
+use post::Post;
 
 #[cfg(test)] mod test_children;
 #[cfg(test)] mod test_contains;

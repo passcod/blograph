@@ -1,7 +1,18 @@
+extern crate chrono;
+extern crate crowbook_text_processing;
+extern crate iso8601;
+#[macro_use] extern crate lazy_static;
+#[macro_use] extern crate log;
+extern crate num_traits;
+extern crate pulldown_cmark;
+extern crate time;
+extern crate regex;
+extern crate yaml_rust;
+
 use chrono::prelude::*;
 use regex::Regex;
 use self::capitalise::capitalise;
-use self::metadata::Metadata;
+pub use self::metadata::Metadata;
 use std::fs::File;
 use std::io::{Read, Result};
 use std::path::PathBuf;

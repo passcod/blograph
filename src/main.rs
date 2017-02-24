@@ -1,28 +1,23 @@
-extern crate chrono;
 #[macro_use] extern crate clap;
 extern crate colored;
-extern crate crowbook_text_processing;
 extern crate env_logger;
 extern crate hyper;
-extern crate iso8601;
 #[macro_use] extern crate lazy_static;
 #[macro_use] extern crate log;
-extern crate num_traits;
-extern crate pulldown_cmark;
 extern crate time;
 extern crate url;
 extern crate regex;
 extern crate walkdir;
 extern crate yaml_rust;
+extern crate list;
+extern crate post;
 
 use list::List;
 use std::path::PathBuf;
 use std::process;
 
 mod all;
-mod list;
 mod logger;
-mod post;
 mod router;
 mod server;
 
