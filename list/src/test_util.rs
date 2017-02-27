@@ -1,8 +1,7 @@
+use post::{Metadata, Post};
 use std::path::PathBuf;
 use std::sync::Arc;
 use super::*;
-use super::super::post::Post;
-use super::super::post::metadata::Metadata;
 use yaml_rust::{yaml, Yaml, YamlLoader};
 
 pub fn make_post(path: &str, meta: &str) -> Arc<Post> {

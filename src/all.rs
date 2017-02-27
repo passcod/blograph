@@ -1,7 +1,7 @@
+use list::List;
+use post::Post;
 use std::path::PathBuf;
 use std::sync::Arc;
-use super::list::List;
-use super::post::Post;
 use walkdir::{DirEntry, Error as WalkDirError, WalkDir, WalkDirIterator};
 
 fn is_hidden(entry: &DirEntry) -> bool {
