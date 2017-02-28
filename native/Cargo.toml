@@ -2,26 +2,30 @@
 authors = ["Félix Saparelli <felix@passcod.name>"]
 name = "blograph"
 version = "0.1.0"
+license = "ISC"
+build = "build.rs"
+
+[lib]
+name = "blograph"
+crate-type = ["dylib"]
 
 [dependencies]
-clap = "2.20.5"
 colored = "1.4.0"
 env_logger = "0.4.0"
-futures = "0.1.10"
 lazy_static = "0.2.2"
 log = "0.3.6"
+neon = "0.1.13"
 regex = "0.2.1"
 time = "0.1.36"
-url = "1.4.0"
 walkdir = "1.0.7"
-
-[dependencies.hyper]
-git = "https://github.com/hyperium/hyper"
 
 [dependencies.list]
 path = "list"
 
 [dependencies.post]
 path = "post"
+
+[build-dependencies]
+neon-build = "0.1.13"
 
 [workspaces]

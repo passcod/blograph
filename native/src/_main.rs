@@ -20,14 +20,6 @@ mod logger;
 mod server;
 
 fn main() {
-    let args = clap_app!(myapp =>
-        (@arg posts: --posts +takes_value +required "Path to posts directory")
-        (@arg theme: --theme +takes_value +required "Path to theme directory")
-        (@arg bind: -b --bind +takes_value "IP to listen on [127.0.0.1]")
-        (@arg port: -p --port +takes_value "Port to listen on [6920]")
-        (@arg verbose: -v ... "Sets the level of verbosity")
-    ).get_matches();
-
     logger::init(args.occurrences_of("verbose") as usize);
     trace!("Set verbose level {}", args.occurrences_of("verbose"));
     info!("Booting up");
@@ -54,8 +46,4 @@ fn main() {
     trace!("Loading posts from {:?}", posts);
     let all = all::load(posts);
     info!("Loaded {} posts", all.len());
-
-    let bind = args.value_of("bind").unwrap_or("127.0.0.1");
-    let port = args.value_of("port").unwrap_or("6920");
-    server::start(&format!("{}:{}", bind, port), all);
 }
