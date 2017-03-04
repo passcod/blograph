@@ -5,10 +5,13 @@ extern crate list;
 #[macro_use] extern crate neon;
 extern crate post;
 extern crate walkdir;
+extern crate yaml_rust;
 
+mod jsmetadata;
 mod jspost;
 
 register_module!(m, {
-    try!(m.export("Post", jspost::new));
+    m.export("Metadata", jsmetadata::new)?;
+    m.export("Post", jspost::new)?;
     Ok(())
 });

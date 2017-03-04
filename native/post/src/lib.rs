@@ -39,9 +39,9 @@ impl Post {
         let mut abspath = base.clone();
         abspath.push(path.clone());
 
-        let mut file = try!(File::open(abspath));
+        let mut file = File::open(abspath)?;
         let mut raw = String::new();
-        try!(file.read_to_string(&mut raw));
+        file.read_to_string(&mut raw)?;
 
         Ok(Post {
             path: path,

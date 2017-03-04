@@ -41,7 +41,7 @@ impl Metadata {
     }
 
     pub fn string(&self, dotted: &str) -> Option<String> {
-        self.at(dotted).and_then(|y| y.as_str()).and_then(|s| Some(String::from(s)))
+        self.str(dotted).and_then(|s| Some(String::from(s)))
     }
 
     pub fn page(&self) -> bool {
