@@ -6,16 +6,18 @@ use yaml_rust::Yaml;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Metadata {
+    pub raw: String,
     yaml: Yaml
 }
 
 impl Metadata {
     pub fn parse(raw: &str) -> Metadata {
-        Metadata { yaml: metadata_parser::parse(raw) }
+        Metadata { raw: String::from(raw), yaml: metadata_parser::parse(raw) }
     }
 
+    #[cfg(test)]
     pub fn from_yaml(yaml: Yaml) -> Metadata {
-        Metadata { yaml: yaml }
+        Metadata { raw: String::from(""), yaml: yaml }
     }
 
     /// Access metadata using dotted syntax.

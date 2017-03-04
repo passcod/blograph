@@ -3,6 +3,7 @@ use neon::js::class::Class;
 use neon::js::{JsBoolean, JsNull, JsString};
 use post::Post;
 use std::path::PathBuf;
+use super::jsmetadata::JsMetadata;
 
 declare_types! {
     pub class JsPost for Post {
@@ -25,14 +26,15 @@ declare_types! {
             }
         }
 
-        // TODO: metadata()
-
-        // method metadata(call) {
-        //     let scope = call.scope;
-        //     let meta = call.arguments.this(scope)
-        //         .grab(|post| post.metadata.clone());
-        //     Ok(JsBoolean::new(scope, future).upcast())
-        // }
+        method metadata(call) {
+            let scope = call.scope;
+            let meta = call.arguments.this(scope)
+                .grab(|post| post.metadata.raw.clone());
+            let meta_arg = vec![JsString::new_or_throw(scope, &meta)?];
+            let meta_class = JsMetadata::class(scope)?;
+            let meta_ctor = meta_class.constructor(scope)?;
+            Ok(meta_ctor.construct(scope, meta_arg)?.upcast())
+        }
 
         method isFuture(call) {
             let scope = call.scope;
