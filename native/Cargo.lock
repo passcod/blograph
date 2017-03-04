@@ -9,6 +9,7 @@ dependencies = [
  "log 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",
  "neon 0.1.13 (registry+https://github.com/rust-lang/crates.io-index)",
  "neon-build 0.1.13 (registry+https://github.com/rust-lang/crates.io-index)",
+ "neon-runtime 0.1.13 (registry+https://github.com/rust-lang/crates.io-index)",
  "post 0.1.0",
  "regex 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "time 0.1.36 (registry+https://github.com/rust-lang/crates.io-index)",
