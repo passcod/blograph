@@ -1,4 +1,4 @@
-const { Metadata, Post } = require('../native')
+const { Metadata, Post } = require('../../native')
 const t = require('tap')
 
 t.test('construct', (t) => {

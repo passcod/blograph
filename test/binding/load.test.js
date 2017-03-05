@@ -1,4 +1,4 @@
-const { load } = require('../native')
+const { load } = require('../../native')
 const path = require('path')
 const t = require('tap')
 

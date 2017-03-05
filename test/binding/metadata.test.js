@@ -1,4 +1,4 @@
-const { Metadata } = require('../native')
+const { Metadata } = require('../../native')
 const t = require('tap')
 
 t.test('parsing and access', (t) => {

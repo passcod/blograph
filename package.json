@@ -14,7 +14,7 @@
   },
   "scripts": {
     "install": "neon build",
-    "test": "tap 'test/*.test.js'",
+    "test": "tap 'test/**/*.test.js'",
     "posttest": "standard"
   },
   "devDependencies": {

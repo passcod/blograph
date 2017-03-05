@@ -1,4 +1,4 @@
-const binding = require('../native')
+const binding = require('../../native')
 const t = require('tap')
 
 t.test((t) => {
