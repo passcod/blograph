@@ -1,13 +1,11 @@
 use post::{Metadata, Post};
-use std::path::PathBuf;
 use std::sync::Arc;
 use super::*;
-use yaml_rust::{yaml, Yaml, YamlLoader};
 
 pub fn make_post(path: &str, meta: &str) -> Arc<Post> {
     Arc::new(Post::from(
         path,
-        Metadata::from_yaml(YamlLoader::load_from_str(meta).unwrap()[0].clone()),
+        Metadata::parse(meta),
         ""
     ))
 }

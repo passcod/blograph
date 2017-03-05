@@ -146,7 +146,7 @@ impl Metadata {
 mod test {
     use chrono::prelude::*;
     use super::*;
-    use yaml_rust::{yaml, Yaml, YamlLoader};
+    use yaml_rust::{Yaml, YamlLoader};
 
     fn meta(y: &str) -> Metadata {
         Metadata::from_yaml(YamlLoader::load_from_str(y).unwrap()[0].clone())
