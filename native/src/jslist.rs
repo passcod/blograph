@@ -1,10 +1,12 @@
 use list::List;
-use neon::js::{JsArray, JsFunction, JsNull, Object};
+use neon::js::{JsArray, JsFunction, JsNull, JsString, JsValue, Object};
 use neon::js::class::Class;
+use neon::mem::Handle;
 use neon::vm::{Call, JsResult, Lock};
 use post::Post;
 use std::ops::DerefMut;
 use std::sync::Arc;
+use super::jsmetadata::{self, JsMetadata};
 use super::jspost::{self, JsPost};
 
 pub struct WrapList(pub List);
@@ -37,9 +39,19 @@ declare_types! {
                 let mut i = 0u32;
                 let raw_array = array.deref_mut();
                 for post in vec {
-                    let farg = vec![JsArray::new(scope, 0)];
+                    let marg = vec![JsString::new_or_throw(scope, "")?];
+                    let meta = JsFunction::new(scope, jsmetadata::new)?
+                        .call(scope, JsNull::new(), marg)?
+                        .check::<JsMetadata>()?;
+
+                    let parg: Vec<Handle<JsValue>> = vec![
+                        JsString::new_or_throw(scope, "")?.upcast(),
+                        meta.upcast(),
+                        JsString::new_or_throw(scope, "")?.upcast(),
+                    ];
+
                     let mut newpost = JsFunction::new(scope, jspost::new)?
-                        .call(scope, JsNull::new(), farg)?
+                        .call(scope, JsNull::new(), parg)?
                         .check::<JsPost>()?;
 
                     newpost.grab(|p| p.0 = post);

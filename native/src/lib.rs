@@ -17,6 +17,7 @@ mod all;
 mod jsmetadata;
 mod jspost;
 mod jslist;
+mod logger;
 
 fn load(call: Call) -> JsResult<JsList> {
     let scope = call.scope;
@@ -35,6 +36,7 @@ fn load(call: Call) -> JsResult<JsList> {
 }
 
 register_module!(m, {
+    logger::init();
     m.export("load", load)?;
     m.export("List", jslist::new)?;
     m.export("Metadata", jsmetadata::new)?;

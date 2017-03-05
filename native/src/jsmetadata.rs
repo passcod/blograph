@@ -3,7 +3,7 @@ use neon::js::{JsArray, JsBoolean, JsInteger, JsNull, JsNumber, JsObject, JsStri
 use neon::mem::Handle;
 use neon::vm::{Call, JsResult, Lock};
 use neon::scope::Scope;
-use post::Metadata;
+use post::Metadata as RustMetadata;
 use std::i32;
 use std::ops::DerefMut;
 use yaml_rust::Yaml;
@@ -74,16 +74,16 @@ fn yaml_to_js<'a, T: Scope<'a>>(scope: &mut T, yaml: &Yaml) -> Handle<'a, JsValu
     }
 }
 
-pub struct WrapMeta(pub Metadata);
+pub struct Metadata(pub RustMetadata);
 
 declare_types! {
-    pub class JsMetadata for WrapMeta {
+    pub class JsMetadata for Metadata {
         init(call) {
             let scope = call.scope;
             let args = call.arguments;
             let yaml = args.require(scope, 0)?.check::<JsString>()?.value();
 
-            Ok(WrapMeta(Metadata::parse(&yaml)))
+            Ok(Metadata(RustMetadata::parse(&yaml)))
         }
 
         method at(call) {

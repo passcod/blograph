@@ -15,12 +15,11 @@ declare_types! {
             let args = call.arguments;
 
             let path = args.require(scope, 0)?.check::<JsString>()?.value();
-            let content = args.require(scope, 2)?.check::<JsString>()?.value();
-
             let metadata = args
                 .require(scope, 1)?
                 .check::<JsMetadata>()?
                 .grab(|meta| meta.0.clone());
+            let content = args.require(scope, 2)?.check::<JsString>()?.value();
 
             Ok(ArcPost(Arc::new(Post::from(&path, metadata, &content))))
         }
@@ -87,8 +86,9 @@ pub fn new(call: Call) -> JsResult<JsPost> {
     let args = call.arguments;
     let arg0 = args.require(scope, 0)?;
     let arg1 = args.require(scope, 1)?;
+    let arg2 = args.require(scope, 2)?;
 
     let post_class = JsPost::class(scope)?;
     let post_ctor = post_class.constructor(scope)?;
-    post_ctor.construct(scope, vec![arg0, arg1])
+    post_ctor.construct(scope, vec![arg0, arg1, arg2])
 }

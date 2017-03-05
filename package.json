@@ -13,6 +13,12 @@
     "neon-cli": "^0.1.13"
   },
   "scripts": {
-    "install": "neon build"
+    "install": "neon build",
+    "test": "tap 'test/*.test.js'",
+    "posttest": "standard"
+  },
+  "devDependencies": {
+    "standard": "^9.0.0",
+    "tap": "^10.3.0"
   }
 }
