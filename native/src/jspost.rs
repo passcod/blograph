@@ -1,56 +1,60 @@
-use neon::vm::{Call, JsResult, Lock, Throw};
 use neon::js::class::Class;
-use neon::js::{JsBoolean, JsNull, JsString};
+use neon::js::{JsBoolean, JsFunction, JsNull, JsString};
+use neon::vm::{Call, JsResult, Lock};
 use post::Post;
-use std::path::PathBuf;
-use super::jsmetadata::JsMetadata;
+use std::sync::Arc;
+use super::jsmetadata::{self, JsMetadata};
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ArcPost(pub Arc<Post>);
 
 declare_types! {
-    pub class JsPost for Post {
+    pub class JsPost for ArcPost {
         init(call) {
             let scope = call.scope;
             let args = call.arguments;
 
-            let base = PathBuf::from(
-                args.require(scope, 0)?.check::<JsString>()?.value());
+            let path = args.require(scope, 0)?.check::<JsString>()?.value();
+            let content = args.require(scope, 2)?.check::<JsString>()?.value();
 
-            let path = PathBuf::from(
-                args.require(scope, 1)?.check::<JsString>()?.value());
+            let metadata = args
+                .require(scope, 1)?
+                .check::<JsMetadata>()?
+                .grab(|meta| meta.0.clone());
 
-            match Post::new(&base, path) {
-                Ok(p) => Ok(p),
-                Err(e) => {
-                    error!("{}", e);
-                    Err(Throw)
-                }
-            }
+            Ok(ArcPost(Arc::new(Post::from(&path, metadata, &content))))
         }
 
         method metadata(call) {
             let scope = call.scope;
-            let meta = call.arguments.this(scope)
-                .grab(|post| post.metadata.raw.clone());
-            let meta_arg = vec![JsString::new_or_throw(scope, &meta)?];
-            let meta_class = JsMetadata::class(scope)?;
-            let meta_ctor = meta_class.constructor(scope)?;
-            Ok(meta_ctor.construct(scope, meta_arg)?.upcast())
+
+            let data = call.arguments.this(scope)
+                .grab(|post| post.0.metadata.clone());
+
+            let farg = vec![JsString::new_or_throw(scope, "")?];
+            let mut meta = JsFunction::new(scope, jsmetadata::new)?
+                .call(scope, JsNull::new(), farg)?
+                .check::<JsMetadata>()?;
+
+            meta.grab(|meta| meta.0 = data);
+            Ok(meta.upcast())
         }
 
         method isFuture(call) {
             let scope = call.scope;
-            let future = call.arguments.this(scope).grab(|post| post.is_future());
+            let future = call.arguments.this(scope).grab(|post| post.0.is_future());
             Ok(JsBoolean::new(scope, future).upcast())
         }
 
         method isPage(call) {
             let scope = call.scope;
-            let page = call.arguments.this(scope).grab(|post| post.is_page());
+            let page = call.arguments.this(scope).grab(|post| post.0.is_page());
             Ok(JsBoolean::new(scope, page).upcast())
         }
 
         method date(call) {
             let scope = call.scope;
-            let datetime = call.arguments.this(scope).grab(|post| post.date());
+            let datetime = call.arguments.this(scope).grab(|post| post.0.date());
             Ok(match datetime {
                 None => JsNull::new().upcast(),
                 Some(dt) =>
@@ -60,19 +64,19 @@ declare_types! {
 
         method slug(call) {
             let scope = call.scope;
-            let s = call.arguments.this(scope).grab(|post| post.slug());
+            let s = call.arguments.this(scope).grab(|post| post.0.slug());
             Ok(JsString::new_or_throw(scope, &s)?.upcast())
         }
 
         method title(call) {
             let scope = call.scope;
-            let s = call.arguments.this(scope).grab(|post| post.title());
+            let s = call.arguments.this(scope).grab(|post| post.0.title());
             Ok(JsString::new_or_throw(scope, &s)?.upcast())
         }
 
         method render(call) {
             let scope = call.scope;
-            let s = call.arguments.this(scope).grab(|post| post.render());
+            let s = call.arguments.this(scope).grab(|post| post.0.render());
             Ok(JsString::new_or_throw(scope, &s)?.upcast())
         }
     }

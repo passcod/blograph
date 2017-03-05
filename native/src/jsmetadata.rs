@@ -74,14 +74,16 @@ fn yaml_to_js<'a, T: Scope<'a>>(scope: &mut T, yaml: &Yaml) -> Handle<'a, JsValu
     }
 }
 
+pub struct WrapMeta(pub Metadata);
+
 declare_types! {
-    pub class JsMetadata for Metadata {
+    pub class JsMetadata for WrapMeta {
         init(call) {
             let scope = call.scope;
             let args = call.arguments;
             let yaml = args.require(scope, 0)?.check::<JsString>()?.value();
 
-            Ok(Metadata::parse(&yaml))
+            Ok(WrapMeta(Metadata::parse(&yaml)))
         }
 
         method at(call) {
@@ -89,7 +91,7 @@ declare_types! {
             let args = call.arguments;
             let dots = args.require(scope, 0)?.check::<JsString>()?.value();
 
-            Ok(match args.this(scope).grab(|meta| meta.at(&dots)) {
+            Ok(match args.this(scope).grab(|meta| meta.0.at(&dots)) {
                 None => JsNull::new().upcast(),
                 Some(y) => yaml_to_js(scope, y)
             })
@@ -100,7 +102,7 @@ declare_types! {
             let args = call.arguments;
             let dots = args.require(scope, 0)?.check::<JsString>()?.value();
 
-            Ok(match args.this(scope).grab(|meta| meta.bool(&dots)) {
+            Ok(match args.this(scope).grab(|meta| meta.0.bool(&dots)) {
                 None => JsNull::new().upcast(),
                 Some(b) => JsBoolean::new(scope, b).upcast()
             })
@@ -111,7 +113,7 @@ declare_types! {
             let args = call.arguments;
             let dots = args.require(scope, 0)?.check::<JsString>()?.value();
 
-            Ok(match args.this(scope).grab(|meta| meta.int(&dots)) {
+            Ok(match args.this(scope).grab(|meta| meta.0.int(&dots)) {
                 None => JsNull::new().upcast(),
                 Some(i) => i64_to_js(scope, i)
             })
@@ -122,7 +124,7 @@ declare_types! {
             let args = call.arguments;
             let dots = args.require(scope, 0)?.check::<JsString>()?.value();
 
-            Ok(match args.this(scope).grab(|meta| meta.str(&dots)) {
+            Ok(match args.this(scope).grab(|meta| meta.0.str(&dots)) {
                 None => JsNull::new().upcast(),
                 Some(s) => str_to_js(scope, s)
             })
@@ -131,14 +133,14 @@ declare_types! {
         method page(call) {
             let scope = call.scope;
             let args = call.arguments;
-            let b = args.this(scope).grab(|meta| meta.page());
+            let b = args.this(scope).grab(|meta| meta.0.page());
 
             Ok(JsBoolean::new(scope, b).upcast())
         }
 
         method date(call) {
             let scope = call.scope;
-            let datetime = call.arguments.this(scope).grab(|meta| meta.date());
+            let datetime = call.arguments.this(scope).grab(|meta| meta.0.date());
 
             Ok(match datetime {
                 None => JsNull::new().upcast(),
@@ -149,7 +151,7 @@ declare_types! {
 
         method parents(call) {
             let scope = call.scope;
-            let ps = call.arguments.this(scope).grab(|meta| meta.parents());
+            let ps = call.arguments.this(scope).grab(|meta| meta.0.parents());
 
             let mut array: Handle<JsArray> = JsArray::new(scope, ps.len() as u32);
 
@@ -157,11 +159,8 @@ declare_types! {
                 let raw_array = array.deref_mut();
                 let mut i: u32 = 0;
                 for val in ps.iter().map(|s| str_to_js(scope, &s)) {
-                    if let Err(_) = raw_array.set(i, val) {
-                        warn!("Couldn't set array index {}, skipping", i);
-                    } else {
-                        i += 1;
-                    }
+                    raw_array.set(i, val)?;
+                    i += 1;
                 }
             }
 
