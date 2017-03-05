@@ -16,3 +16,28 @@ t.test('toArray', (t) => {
   t.same(new List(posts).toArray(), posts, '.toArray()')
   t.same(new List([]).toArray(), [], '.toArray() with empty list')
 })
+
+t.test('iter', (t) => {
+  t.plan(7)
+
+  const posts = new List([
+    new Post('hello', new Metadata(''), ''),
+    new Post('jolly', new Metadata(''), ''),
+    new Post('world', new Metadata(''), '')
+  ])
+
+  let i = 0
+  posts.iter((post, prev, next) => {
+    if (i === 0) {
+      t.notOk(prev, 'first iteration has no prev')
+      t.type(next, 'Post', 'first iteration has a next')
+    } else if (i === 2) {
+      t.notOk(next, 'last iteration has no next')
+      t.type(prev, 'Post', 'last iteration has a prev')
+    }
+
+    t.type(post, 'Post', 'all iterations have a post')
+
+    i += 1
+  })
+})

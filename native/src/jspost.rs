@@ -1,15 +1,15 @@
 use neon::js::class::Class;
 use neon::js::{JsBoolean, JsFunction, JsNull, JsString};
 use neon::vm::{Call, JsResult, Lock};
-use post::Post;
+use post::Post as RustPost;
 use std::sync::Arc;
 use super::jsmetadata::{self, JsMetadata};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
-pub struct ArcPost(pub Arc<Post>);
+pub struct Post(pub Arc<RustPost>);
 
 declare_types! {
-    pub class JsPost for ArcPost {
+    pub class JsPost for Post {
         init(call) {
             let scope = call.scope;
             let args = call.arguments;
@@ -21,7 +21,7 @@ declare_types! {
                 .grab(|meta| meta.0.clone());
             let content = args.require(scope, 2)?.check::<JsString>()?.value();
 
-            Ok(ArcPost(Arc::new(Post::from(&path, metadata, &content))))
+            Ok(Post(Arc::new(RustPost::from(&path, metadata, &content))))
         }
 
         method metadata(call) {
