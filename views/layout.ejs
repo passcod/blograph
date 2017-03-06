@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>var _gaq = _gaq || []; _gaq.push(['_setDomainName', location.hostname]);</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1">
+    <title>
+      <%_ if (typeof title !== 'undefined' && title) { %><%= title + ' - ' %><% } _%>
+      Félix “passcod” Saparelli - Blog
+    </title>
+    <link rel="alternate" href="/feed">
+    <link rel="stylesheet" href="/style.css">
+    <link href="//fonts.googleapis.com/css?family=Ubuntu+Mono:400,400italic,700,700italic&subset=latin,greek" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Félix Saparelli</a></h1>
+      <p class="sidelong"><a rel="me" href="https://passcod.name">(about)</a></p>
+      <p class="subtitle">a.k.a. passcod</p>
+    </header>
+    <div class="container">
+    <%- include(partial, locals) %>
+    </div>
+    <footer>
+      <button class="flip" title="Click to turn lights on xor off.">day</button>
+      <p>Content licensed under <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. <a rel="alternate" href="/feed">Feed</a>.</p>
+    </footer>
+    <script>
+      var flip = document.querySelector('.flip'),
+        html = document.querySelector('html'),
+        flipper = function(night) {
+          if (/flipped/.test(html.className) || !night) {
+            html.className = html.className.replace('flipped', '');
+            flip.innerHTML = 'day';
+            localStorage.setItem('flip', '');
+          } else {
+            html.className += ' flipped';
+            flip.innerHTML = 'night';
+            localStorage.setItem('flip', '✓');
+          }
+        };
+      flip.addEventListener('click', flipper, null);
+      flipper(localStorage.getItem('flip'));
+      setTimeout(function() {
+        html.className += ' js';
+      }, 1000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+const app = require('../../app')
+const request = require('supertest')
+const t = require('tap')
+
+t.test('always responds', (t) => request(app)
+  .get('/')
+  .expect('Content-Type', /html/)
+  .expect(200)
+  .expect((res) => res.body.toString().match(/hello world/))
+)
