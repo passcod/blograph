@@ -1,10 +1,10 @@
-<%= 'hello world' %>
-<%- posts.forEach(({ post }) => { -%>
+<% posts.forEach(({ post }) => { %>
 <article class="h-entry">
   <h1><a href="<%= post.slug %>" class="p-name u-url"><%= post.title %></a></h1>
-  <p class="p-summary"><% 0 _%>
+  <p class="p-summary">
     <date datetime="<%= post.date.rfc3339 %>" class="dt-published">
-    <%= moment(post.date).format('MMM D ‘YY') + ' ' _%>
-    &mdash; <%= post.render.substr(0, 140) %>&hellip;</p>
+      <%= moment(post.date).format('MMM D ‘YY') + ' ' %>
+    </date>
+    — <%- post.render.substr(0, 140).trim() %>…</p>
 </article>
-<%- }) %>
+<% }); %>

@@ -30,16 +30,22 @@ app.use(compression())
 app.use(helmet())
 app.use(express.static('./public'))
 app.use((req, res, next) => {
-  const globals = { moment }
-  res.view = (partial, locals = {}) => res.render('layout', Object.assign(
-    { partial },
-    globals,
-    { locals: Object.assign({}, globals, locals) }
-  ))
-
+  res.view = (partial, locals = {}) => res.render('layout', {
+    partial,
+    locals,
+    moment
+  })
   next()
 })
 
 app.get('/', (req, res) =>
-  res.view('index', { posts: req.app.get('posts') })
+  res.view('index', {
+    posts: req.app.get('posts')
+      .filter(({ post }) =>
+        (!post.isFuture) &&
+        (!post.isPage) &&
+        (`${post.metadata.bool('frontpage')}` !== 'false')
+      )
+      .sortByDate()
+  })
 )
