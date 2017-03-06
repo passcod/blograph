@@ -1,5 +1,5 @@
 use list::List as RustList;
-use neon::js::{JsArray, JsFunction, JsNull, JsString, JsUndefined, JsValue, Object};
+use neon::js::{JsArray, JsFunction, JsInteger, JsNull, JsString, JsUndefined, JsValue, Object};
 use neon::js::class::Class;
 use neon::mem::Handle;
 use neon::vm::{Call, JsResult, Lock};
@@ -26,6 +26,13 @@ declare_types! {
             }
 
             Ok(List(RustList::new(posts)))
+        }
+
+        method length(call) {
+            let scope = call.scope;
+            let args = call.arguments;
+            let len = args.this(scope).grab(|list| list.0.len());
+            Ok(JsInteger::new(scope, len as i32).upcast())
         }
 
         method toArray(call) {

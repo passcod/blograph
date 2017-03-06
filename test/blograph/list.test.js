@@ -21,6 +21,14 @@ t.test('toArray', (t) => {
   t.same(new List([]).toArray(), [], '.toArray() with empty list')
 })
 
+t.test('length', (t) => {
+  t.plan(2)
+
+  const posts = [new Post('', new Metadata(''), '')]
+  t.same(new List(posts).length, 1, '.length')
+  t.same(new List([]).length, 0, '.length with empty list')
+})
+
 t.test('iter', (t) => {
   t.plan(7)
 
