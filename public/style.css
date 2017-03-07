@@ -1,0 +1,160 @@
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.js, .js * {
+  transition: 10s
+}
+
+html {
+  color: #494949;
+  font-size: 14px;
+}
+
+html, pre, code, kbd, samp {
+  font-family: 'Ubuntu Mono', monospace;
+}
+
+pre, code {
+  padding: 0 0.5em;
+  background: #eee;
+  border-radius: 3px;
+}
+
+pre, pre code {
+  padding: 0;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 41rem;
+  max-width: 90ch;
+  min-width: 7rem;
+  min-width: 30ch;
+  padding: 1rem;
+  width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6, th, thead, tfoot {
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  color: #494949;
+}
+
+article img {
+  border-radius: 5px;
+  box-shadow: 0 0 10px 1px #AAA;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+button {
+  background: none;
+  border: 0px;
+  cursor: pointer;
+  font-family: inherit;
+  outline: 0 none transparent;
+}
+
+a, a:active, a:visited, button {
+  border-bottom: 1px dashed black;
+  color: black;
+  text-decoration: none;
+}
+
+a:focus, a:hover, button:focus, button:hover {
+  border-bottom-style: solid;
+}
+
+p {
+  text-align: justify;
+}
+
+
+hr {
+  border: none;
+  padding: 0.5rem;
+  position: relative;
+}
+
+hr:before {
+  color: black;
+  content: '⁂';
+  left: 50%;
+  position: absolute;
+  top: 50%;
+}
+
+body > header {
+  border-bottom: 1px solid #494949;
+  padding-bottom: 1em;
+  margin: 1em 0;
+}
+
+body > header a {
+  border-bottom: 0;
+}
+
+header p, footer p {
+  margin: 0;
+}
+
+body > footer {
+  border-top: 1px solid #494949;
+  padding-top: 1em;
+  margin: 1em 0;
+}
+
+article > header p, article > footer p {
+  text-align: right;
+}
+
+.sidelong {
+  float: right;
+}
+
+.sidelong a {
+  color: inherit;
+}
+
+.flipped pre, .flipped code {
+  background: #222;
+}
+
+.flipped, mark {
+  color: #AAA;
+  background: black;
+}
+
+.flipped mark {
+  color: #494949;
+  background: white;
+}
+
+.flipped h1, .flipped h3, .flipped h4, .flipped h5, .flipped h6, .flipped th, .flipped thead, .flipped tfoot, .flipped hr:before {
+  color: white;
+}
+
+.flipped h2 {
+  color: #AAA;
+}
+
+.flipped a, .flipped a:active, .flipped a:visited, .flipped button {
+  color: white;
+  border-bottom-color: white;
+}
+
+.flipped body > header, .flipped body > footer {
+  border-color: #AAA;
+}
+
+button.flip {
+  float: right;
+}
