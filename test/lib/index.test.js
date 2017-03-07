@@ -1,4 +1,4 @@
-const blograph = require('../../lib/blograph')
+const blograph = require('../../lib')
 const t = require('tap')
 
 t.test('members', (t) => {

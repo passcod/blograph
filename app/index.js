@@ -6,7 +6,7 @@ const helmet = require('helmet')
 const moment = require('moment')
 const morgan = require('morgan')
 const ms = require('ms')
-const { load } = require('../lib/blograph')
+const { load } = require('../lib')
 
 const app = module.exports = express()
 app.set('view engine', 'ejs')

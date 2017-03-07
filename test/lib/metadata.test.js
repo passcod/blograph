@@ -1,4 +1,4 @@
-const Metadata = require('../../lib/blograph/metadata')
+const Metadata = require('../../lib/metadata')
 const { Metadata: NativeMetadata } = require('../../native')
 const t = require('tap')
 

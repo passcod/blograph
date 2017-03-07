@@ -1,5 +1,5 @@
-const Metadata = require('../../lib/blograph/metadata')
-const Post = require('../../lib/blograph/post')
+const Metadata = require('../../lib/metadata')
+const Post = require('../../lib/post')
 const { Metadata: NativeMetadata, Post: NativePost } = require('../../native')
 const t = require('tap')
 
@@ -57,4 +57,9 @@ t.test('title', (t) => {
 t.test('render', (t) => {
   t.plan(1)
   t.equal(new Post('', new Metadata(''), 'Hello world\n\nBoo\n\n- Bam').render, '<p>Hello world</p>\n<p>Boo</p>\n<ul>\n<li>Bam</li>\n</ul>\n', 'render markdown')
+})
+
+t.test('excerpt', (t) => {
+  t.plan(1)
+  t.equal(new Post('', new Metadata(''), '## Hello\n\nworld\n\n*Boo*\n\n- [Bam](.)\n\nLOrem ipsum dolore sit amet.\n\nThe key here is that while some millennials do find "you’re welcome" off-putting, there’s not the same visceral reaction.\n\n<style><script>window.location="google.com"</style></script>\n\nRound and round we go').excerpt, '<b>Hello</b> world <em>Boo</em> Bam LOrem ipsum dolore sit amet. The key here is that')
 })

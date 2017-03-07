@@ -1,6 +1,6 @@
-const List = require('../../lib/blograph/list')
-const Metadata = require('../../lib/blograph/metadata')
-const Post = require('../../lib/blograph/post')
+const List = require('../../lib/list')
+const Metadata = require('../../lib/metadata')
+const Post = require('../../lib/post')
 const { List: NativeList, Metadata: NativeMetadata, Post: NativePost } = require('../../native')
 const t = require('tap')
 
