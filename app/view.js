@@ -10,7 +10,7 @@ function htmlstrip (html) {
   })
 }
 
-module.exports = (req, res, next) => {
+function view (req, res, next) {
   res.view = (partial, locals = {}) => res.render('layout', {
     htmlstrip,
     locals,
@@ -19,5 +19,9 @@ module.exports = (req, res, next) => {
     plur,
     words
   })
+
   next()
 }
+
+module.exports = view
+module.exports.htmlstrip = htmlstrip
