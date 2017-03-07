@@ -24,7 +24,10 @@ before_script:
   - rustc --version
   - cargo --version
   - npm install
-after_script:
+script:
+  - npm test
   - cd native
   - cargo test -p post
+after_script:
+  - cd native
   - cargo test -p list

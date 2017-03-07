@@ -28,10 +28,10 @@ app.get('/', (req, res) =>
   res.view('index', { posts: app.get('frontpage') })
 )
 
-app.get('/:year/:month/:day/:slug', (req, res, notFound) => {
+app.get('/:year/:month/:day/:slug', (req, res) => {
   const path = req.path.replace(/(^\/|\/$)/g, '')
   const post = req.app.get('posts').findBySlug(path)
-  if (!post) { return notFound() }
+  if (!post) { return res.status(404).view('post', { post: false }) }
 
   let list
   if (req.app.get('frontpage').includes(post)) {
