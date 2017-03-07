@@ -47,6 +47,13 @@ t.test('slug', (t) => {
   t.equal(new Post('2010-03-01-hello-world', new Metadata(''), '').slug, '2010/mar/01/hello-world', '.slug with value')
 })
 
+t.test('tags', (t) => {
+  t.plan(2)
+
+  t.same(new Post('', new Metadata(''), '').tags, [], '.tags with nothing')
+  t.same(new Post('', new Metadata('---\ntags:\n - foo\n - bar'), '').tags, ['foo', 'bar'], '.tags with multiple in array')
+})
+
 t.test('title', (t) => {
   t.plan(2)
 

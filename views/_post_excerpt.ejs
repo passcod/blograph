@@ -1,5 +1,5 @@
 <article class="h-entry">
-  <h1><a href="<%= post.slug %>" class="p-name u-url"><%= post.title %></a></h1>
+  <h1><a href="/<%= post.slug %>" class="p-name u-url"><%= post.title %></a></h1>
   <p class="p-summary"><date datetime="<%= post.date.toISOString() %>" class="dt-published"><%=
     moment(post.date).format('MMM D ‘YY') + ' ' %></date>
     —

@@ -1,0 +1,58 @@
+<article class="h-entry e-content">
+<% if (typeof post === 'undefined' || !post) { %>
+  <header>
+    <h1>Nothing here</h1>
+  </header>
+  <p>(function notFound() { return '(' + notFound.toString() + ')()'; })()</p>
+<% } else { %>
+  <header>
+    <h1 class="p-name"><%= post.title %></h1>
+    <p><%= post.isFuture ? 'P' : 'To be p' %>osted on <a href="/<%= post.slug %>" class="u-url"><date datetime="<%= post.date.toISOString() %>" title="<%= post.date.toISOString() %>" class="dt-published"><%= moment(post.date).format('MMM D ‘YY') %></date></a></p>
+  <% if (post.tags.length === 0) { %>
+    <p>This
+      <% if (post.tags.length === 1) { %>is a <% } %>
+      <a href="/tag/<%= tags[0] %>" rel="main tag" class="p-category"><%= tags[0] %></a>
+      <% if (post.tags.length > 1) { %>is also tagged as
+        <%- post.tags.slice(1).map((tag) => `
+        <a href="/tag/${tag}" rel="tag" class="p-category">${tag}</a>
+        `.trim()).join(', ') %>
+      <% } %>
+    </p>
+  <% }  %>
+
+  <% if (parents && parents.length > 0) { %>
+    <p>
+      It has <%= words(parents.length) %>
+      <abbr title="Parent posts are posts that inspired, led to, or are obsoleted by this one."><%= plur('parent', parents.length) %></abbr>:
+      <%- parents.map(({ post: p }) => `
+      <a href="/${p.slug}" rel="up" title="${htmlstrip(p.excerpt)}…" class="u-in-reply-to">${p.title}</a>
+      `.trim()).join(', ') %>.
+    </p>
+  <% } %>
+  </header>
+
+  <%- post.render %>
+
+  <footer>
+  <% if (previous) { %>
+    <p>Travel back to the <a rel="prev" href="/<%= previous.slug %>" title="<%= htmlstrip(previous.excerpt) %>…">previous</a> article</p>
+  <% } %>
+
+  <% if (next) { %>
+    <p>Skip forward to the <a rel="next" href="/<%= next.slug %>" title="<%= htmlstrip(next.excerpt) %>…">next</a> <%= previous ? 'one' : 'article' %></p>
+  <% } %>
+
+    <p>Praise, thoughts, criticism? <a href="https://twitter.com/passcod">@passcod</a> or <a href="mailto:felix@passcod.name">felix@passcod.name</a></p>
+
+  <% if (children && children.length > 0) { %>
+    <p>
+      This post has <%= words(children.length) %>
+      <abbr title="Child posts are posts that were inspired by, are updates on, obsolete, or follow this one."><%= plur('child', children.length) %></abbr>:
+      <%- children.map(({ post: p }) => `
+        <a href="/${p.slug}" rel="down" title="${htmlstrip(p.excerpt)}…">${p.title}</a>
+      `.trim()).join(', ') %>.
+    </p>
+  <% } %>
+  </footer>
+<% } %>
+</article>

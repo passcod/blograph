@@ -20,6 +20,8 @@
     "morgan": "^1.8.1",
     "ms": "^0.7.2",
     "neon-cli": "^0.1.13",
+    "number-to-words": "^1.2.3",
+    "plur": "^2.1.2",
     "sanitize-html": "^1.14.1"
   },
   "scripts": {

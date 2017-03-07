@@ -105,3 +105,6 @@ t.test('filter', (t) => {
   t.same(filtered.map(({ post }) => post.slug), ['hello', 'world'])
   t.type(filtered, List, '.filter() returns a List')
 })
+
+t.test('parentsOf')
+t.test('childrenOf')

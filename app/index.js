@@ -1,51 +1,73 @@
-const bytes = require('bytes')
-const chalk = require('chalk')
 const compression = require('compression')
 const express = require('express')
 const helmet = require('helmet')
-const moment = require('moment')
-const morgan = require('morgan')
-const ms = require('ms')
+const logger = require('./logger')
 const { load } = require('../lib')
+const view = require('./view')
 
 const app = module.exports = express()
 app.set('view engine', 'ejs')
+
 app.set('posts', load('./posts'))
+app.set('frontpage', app.get('posts')
+  .filter(({ post }) =>
+    (!post.isFuture) &&
+    (!post.isPage) &&
+    (`${post.metadata.bool('frontpage')}` !== 'false')
+  )
+  .sortByDate()
+)
 
-app.use(morgan((tokens, req, res) => [
-  [
-    chalk.bold('←'),
-    chalk.magenta(tokens.method(req, res)),
-    tokens.url(req, res)
-  ].join(' '),
-  [
-    chalk.bold('→'),
-    chalk.magenta(tokens.status(req, res)),
-    '(' + chalk.cyan(bytes.format(+tokens.res(req, res, 'content-length'))) + ')',
-    '(' + chalk.blue(ms(+tokens['response-time'](req, res))) + ')'
-  ].join(' ')
-].join('\n')))
-
+app.use(logger)
 app.use(compression())
 app.use(helmet())
 app.use(express.static('./public'))
-app.use((req, res, next) => {
-  res.view = (partial, locals = {}) => res.render('layout', {
-    partial,
-    locals,
-    moment
-  })
-  next()
-})
+app.use(view)
 
 app.get('/', (req, res) =>
-  res.view('index', {
-    posts: req.app.get('posts')
-      .filter(({ post }) =>
-        (!post.isFuture) &&
-        (!post.isPage) &&
-        (`${post.metadata.bool('frontpage')}` !== 'false')
-      )
-      .sortByDate()
-  })
+  res.view('index', { posts: app.get('frontpage') })
 )
+
+app.get('/:year/:month/:day/:slug', (req, res, notFound) => {
+  const path = req.path.replace(/(^\/|\/$)/g, '')
+  const post = req.app.get('posts').findBySlug(path)
+  if (!post) { return notFound() }
+
+  let list
+  if (req.app.get('frontpage').includes(post)) {
+    list = req.app.get('frontpage')
+  } else {
+    list = req.app.get('posts')
+  } // TODO: support more lists (based on query string?)
+
+  let previous = null
+  let next = null
+  list.forEach(({ post: p, prev, next: n }) => {
+    if (post.slug === p.slug) {
+      previous = prev
+      next = n
+    }
+  })
+
+  let children = list.childrenOf(post)
+  let parents = list.parentsOf(post)
+
+  if (!post.isFuture) {
+    // That first one is unlikely now, but there for
+    // future-proofing in case of non-chrono lists.
+    if (previous.isFuture) { previous = null }
+    if (next.isFuture) { next = null }
+
+    children = children.filter((p) => !p.isFuture)
+    parents = parents.filter((p) => !p.isFuture)
+  }
+
+  res.view('post', {
+    children,
+    list,
+    next,
+    parents,
+    post,
+    previous
+  })
+})
