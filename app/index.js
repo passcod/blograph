@@ -8,7 +8,7 @@ const view = require('./view')
 const app = module.exports = express()
 app.set('view engine', 'ejs')
 
-app.set('posts', load(process.env.BLOGRAPH_POSTS || './posts'))
+app.set('posts', load(process.env.BLOGRAPH_POSTS || './posts').sortByDate())
 app.set('frontpage', app.get('posts')
   .filter(({ post }) =>
     (!post.isFuture) &&
@@ -25,13 +25,13 @@ app.use(express.static('./public'))
 app.use(view)
 
 app.get('/', (req, res) =>
-  res.view('index', { posts: app.get('frontpage') })
+  res.view('index', { posts: app.get('frontpage').reverse() })
 )
 
-app.get('/:year/:month/:day/:slug', (req, res) => {
+app.get('/:year/:month/:day/:slug', (req, res, notFound) => {
   const path = req.path.replace(/(^\/|\/$)/g, '')
   const post = req.app.get('posts').findBySlug(path)
-  if (!post) { return res.status(404).view('post', { post: false }) }
+  if (!post) { return notFound() }
 
   let list
   if (req.app.get('frontpage').includes(post)) {
@@ -68,6 +68,9 @@ app.get('/:year/:month/:day/:slug', (req, res) => {
     next,
     parents,
     post,
-    previous
+    previous,
+    title: post.title
   })
 })
+
+app.use((req, res) => res.status(404).view('not-found', { title: 'Not Found' }))

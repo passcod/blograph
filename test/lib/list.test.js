@@ -112,6 +112,7 @@ t.test('filter', (t) => {
 
 t.test('findBySlug')
 t.test('sortByDate')
+t.test('reverse')
 
 t.test('includes', (t) => {
   t.plan(3)

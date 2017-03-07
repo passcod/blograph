@@ -1,17 +1,11 @@
 <article class="h-entry e-content">
-<% if (typeof post === 'undefined' || !post) { %>
-  <header>
-    <h1>Nothing here</h1>
-  </header>
-  <p>(function notFound() { return '(' + notFound.toString() + ')()'; })()</p>
-<% } else { %>
   <header>
     <h1 class="p-name"><%= post.title %></h1>
-    <p><%= post.isFuture ? 'P' : 'To be p' %>osted on <a href="/<%= post.slug %>" class="u-url"><date datetime="<%= post.date.toISOString() %>" title="<%= post.date.toISOString() %>" class="dt-published"><%= moment(post.date).format('MMM D ‘YY') %></date></a></p>
-  <% if (post.tags.length === 0) { %>
+    <p><%= post.isFuture ? 'To be p' : 'P' %>osted on <a href="/<%= post.slug %>" class="u-url"><date datetime="<%= post.date.toISOString() %>" title="<%= post.date.toISOString() %>" class="dt-published"><%= moment(post.date).format('MMM D ‘YY') %></date></a></p>
+  <% if (post.tags.length > 0) { %>
     <p>This
       <% if (post.tags.length === 1) { %>is a <% } %>
-      <a href="/tag/<%= tags[0] %>" rel="main tag" class="p-category"><%= tags[0] %></a>
+      <a href="/tag/<%= post.tags[0] %>" rel="main tag" class="p-category"><%= post.tags[0] %></a>
       <% if (post.tags.length > 1) { %>is also tagged as
         <%- post.tags.slice(1).map((tag) => `
         <a href="/tag/${tag}" rel="tag" class="p-category">${tag}</a>
@@ -54,5 +48,4 @@
     </p>
   <% } %>
   </footer>
-<% } %>
 </article>
