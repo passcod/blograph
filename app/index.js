@@ -8,7 +8,7 @@ const view = require('./view')
 const app = module.exports = express()
 app.set('view engine', 'ejs')
 
-app.set('posts', load('./posts'))
+app.set('posts', load(process.env.BLOGRAPH_POSTS || './posts'))
 app.set('frontpage', app.get('posts')
   .filter(({ post }) =>
     (!post.isFuture) &&
