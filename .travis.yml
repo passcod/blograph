@@ -26,4 +26,5 @@ before_script:
   - npm install
 after_script:
   - cd native
-  - cargo test --all
+  - cargo test -p post
+  - cargo test -p list
