@@ -22,7 +22,9 @@
     "neon-cli": "^0.1.13",
     "number-to-words": "^1.2.3",
     "plur": "^2.1.2",
-    "sanitize-html": "^1.14.1"
+    "rimraf": "^2.6.1",
+    "sanitize-html": "^1.14.1",
+    "simple-git": "^1.67.0"
   },
   "scripts": {
     "install": "neon build",

@@ -1,22 +1,20 @@
 const compression = require('compression')
 const express = require('express')
 const helmet = require('helmet')
+const { List } = require('../lib')
 const logger = require('./logger')
-const { load } = require('../lib')
+const { reclone, reloadLists } = require('./loader')
 const view = require('./view')
 
 const app = module.exports = express()
 app.set('view engine', 'ejs')
 
-app.set('posts', load(process.env.BLOGRAPH_POSTS || './posts').sortByDate())
-app.set('frontpage', app.get('posts')
-  .filter(({ post }) =>
-    (!post.isFuture) &&
-    (!post.isPage) &&
-    (`${post.metadata.bool('frontpage')}` !== 'false')
-  )
-  .sortByDate()
-)
+app.set('posts', new List([]))
+app.set('frontpage', new List([]))
+
+reclone()
+.then(() => reloadLists(app))
+.catch((err) => { throw err })
 
 app.use(logger)
 app.use(compression())
@@ -88,5 +86,12 @@ app.get('(/:year/:month/:day)?/:slug', (req, res, notFound) => {
     title: post.title
   })
 })
+
+app.post('/hook/reload/posts', (req, res) =>
+  reclone()
+  .then(() => reloadLists(req.app))
+  .then(() => res.json({ ok: true }))
+  .catch((err) => { throw err })
+)
 
 app.use((req, res) => res.status(404).view('not-found', { title: 'Not Found' }))
