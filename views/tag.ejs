@@ -1,0 +1,12 @@
+<header>
+  <h1>Tag: <%= tag %></h1>
+  <hr />
+</header>
+
+<% if (posts.length === 0) { %>
+<p>No posts in this tag.</p>
+<% } %>
+
+<% for (const { post } of posts) { %>
+<%- include('_post_excerpt', { post }) %>
+<% } %>

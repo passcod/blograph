@@ -20,7 +20,7 @@
       <abbr title="Parent posts are posts that inspired, led to, or are obsoleted by this one."><%= plur('parent', parents.length) %></abbr>:
       <%- parents.map(({ post: p }) => `
       <a href="/${p.slug}" rel="up" title="${htmlstrip(p.excerpt)}…" class="u-in-reply-to">${p.title}</a>
-      `.trim()).join(', ') %>.
+      `.trim()).join(', ') %>
     </p>
   <% } %>
   </header>
@@ -44,7 +44,7 @@
       <abbr title="Child posts are posts that were inspired by, are updates on, obsolete, or follow this one."><%= plur('child', children.length) %></abbr>:
       <%- children.map(({ post: p }) => `
         <a href="/${p.slug}" rel="down" title="${htmlstrip(p.excerpt)}…">${p.title}</a>
-      `.trim()).join(', ') %>.
+      `.trim()).join(', ') %>
     </p>
   <% } %>
   </footer>

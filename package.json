@@ -30,9 +30,6 @@
     "posttest": "standard"
   },
   "devDependencies": {
-    "cssnano": "^3.10.0",
-    "postcss": "^5.2.15",
-    "postcss-cssnext": "^2.9.0",
     "standard": "^9.0.0",
     "supertest": "^3.0.0",
     "tap": "^10.3.0"

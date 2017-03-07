@@ -28,8 +28,24 @@ app.get('/', (req, res) =>
   res.view('index', { posts: app.get('frontpage').reverse() })
 )
 
-app.get('/:year/:month/:day/:slug', (req, res, notFound) => {
-  const path = req.path.replace(/(^\/|\/$)/g, '')
+app.get('/tag/:tag', (req, res) => {
+  const { tag } = req.params
+  res.view('tag', {
+    tag,
+    title: `Tag: ${tag}`,
+    posts: app.get('posts')
+      .filter(({ post }) =>
+        (post.tags.includes(tag)) &&
+        (!post.isFuture)
+      )
+      .sortByDate()
+      .reverse()
+  })
+})
+
+app.get('(/:year/:month/:day)?/:slug', (req, res, notFound) => {
+  const { year, month, day, slug } = req.params
+  const path = [year, month, day, slug].filter((c) => c).join('/')
   const post = req.app.get('posts').findBySlug(path)
   if (!post) { return notFound() }
 
@@ -49,8 +65,8 @@ app.get('/:year/:month/:day/:slug', (req, res, notFound) => {
     }
   })
 
-  let children = list.childrenOf(post)
-  let parents = list.parentsOf(post)
+  let children = req.app.get('posts').childrenOf(post)
+  let parents = req.app.get('posts').parentsOf(post)
 
   if (!post.isFuture) {
     // That first one is unlikely now, but there for
