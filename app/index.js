@@ -55,8 +55,8 @@ app.get('/:year/:month/:day/:slug', (req, res, notFound) => {
   if (!post.isFuture) {
     // That first one is unlikely now, but there for
     // future-proofing in case of non-chrono lists.
-    if (previous.isFuture) { previous = null }
-    if (next.isFuture) { next = null }
+    if (previous && previous.isFuture) { previous = null }
+    if (next && next.isFuture) { next = null }
 
     children = children.filter((p) => !p.isFuture)
     parents = parents.filter((p) => !p.isFuture)
