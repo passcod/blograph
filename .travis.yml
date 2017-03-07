@@ -1,19 +1,29 @@
 ---
-language: rust
+language: node_js
+dist: trusty
 sudo: false
-rust:
-  - stable
-  - beta
-  - nightly
+node_js:
+  - "6"
+  - "7"
+env:
+  matrix:
+    - RUST=stable
+    - RUST=beta
+    - RUST=nightly
+  global:
+    - "PATH=$PATH:$HOME/rust/bin"
 matrix:
   allow_failures:
-    - rust: nightly
+    - env: RUST=nightly
+    - node_js: "7"
+install: echo Running npm install AFTER rustup
 before_script:
-  - nvm install lts
+  - mkdir $HOME/rust
+  - "curl -sL https://static.rust-lang.org/rustup.sh -o ~/rustup.sh"
+  - "sh ~/rustup.sh --prefix=~/rust --spec=$RUST -y --disable-sudo"
+  - rustc --version
+  - cargo --version
   - npm install
-script:
+after_script:
   - cd native
   - cargo test --all
-  - cd ..
-  - npm run install
-  - npm test
