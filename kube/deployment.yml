@@ -7,7 +7,7 @@ metadata:
   name: blograph
   namespace: default
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: blograph
