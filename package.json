@@ -32,6 +32,9 @@
     "posttest": "standard",
     "start": "node ."
   },
+  "standard": {
+    "ignore": ["public/prism.js", "public/languages"]
+  },
   "devDependencies": {
     "standard": "^9.0.0",
     "supertest": "^3.0.0",
