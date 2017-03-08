@@ -1,0 +1,19 @@
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: blograph
+    version: 2017-03-08
+  name: blograph
+  namespace: default
+spec:
+  ports:
+  - name: blograph-public
+    protocol: TCP
+    port: 80
+    targetPort: 5000
+  selector:
+    app: blograph
+    version: 2017-03-08
+  sessionAffinity: None
+  type: LoadBalancer

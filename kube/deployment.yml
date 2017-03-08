@@ -1,0 +1,49 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  labels:
+    app: blograph
+    version: 2017-03-08
+  name: blograph
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: blograph
+      version: 2017-03-08
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      name: blograph
+      labels:
+        app: blograph
+        version: 2017-03-08
+    spec:
+      terminationGracePeriodSeconds: 30
+      restartPolicy: Always
+      containers:
+      - env:
+        - name: BLOGRAPH_REPO
+          value: https://github.com/passcod/blograph-posts
+        image: gcr.io/passcod-services/github-passcod-blograph:2017-03-08
+        imagePullPolicy: IfNotPresent
+        name: blograph
+        resources: {}
+        readinessProbe:
+          timeoutSeconds: 3
+          initialDelaySeconds: 3
+          httpGet:
+            path: "/2015/apr/29/hold"
+            port: 5000
+        livenessProbe:
+          timeoutSeconds: 3
+          initialDelaySeconds: 30
+          httpGet:
+            path: "/2015/apr/29/hold"
+            port: 5000
+
