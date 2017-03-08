@@ -1,22 +1,27 @@
-FROM node:6-alpine
+FROM base/devel
 EXPOSE 5000
 
-#RUN apt update && apt install -y build-essential curl git sudo
-RUN apk add --update --no-cache build-base curl file git sudo
-RUN curl -sL https://static.rust-lang.org/rustup.sh -o /rustup.sh \
-    && sh /rustup.sh --prefix=/usr/local --spec=stable -y \
+RUN pacman -Sy --noconfirm cargo git nodejs python2 npm rust \
+    && set -x \
     && rustc --version \
     && cargo --version \
-    && mkdir /app
+    && node --version \
+    && npm --version
 
+RUN useradd -d /app -G users -mrU app
 ENV NODE_ENV production
 WORKDIR /app
 
-COPY package.json .
-RUN npm install --no-scripts
-
+COPY index.js package.json ./
 COPY native ./native
-RUN npm run install
+RUN chown -R app:app . \
+    && sudo -u app npm install
 
-COPY app index.js lib public views ./
-ENV RUST_LOG info
+COPY app ./app
+COPY lib ./lib
+COPY public ./public
+COPY views ./views
+RUN chown -R app:app .
+
+USER app
+CMD ["npm", "start", "-s"]

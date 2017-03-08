@@ -29,7 +29,8 @@
   "scripts": {
     "install": "neon build",
     "test": "env \"BLOGRAPH_POSTS=$(pwd)/test/posts\" tap 'test/**/*.test.js'",
-    "posttest": "standard"
+    "posttest": "standard",
+    "start": "node ."
   },
   "devDependencies": {
     "standard": "^9.0.0",

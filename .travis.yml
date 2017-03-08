@@ -15,7 +15,6 @@ env:
 matrix:
   allow_failures:
     - env: RUST=nightly
-    - node_js: "7"
 install: echo Running npm install AFTER rustup
 before_script:
   - mkdir $HOME/rust
