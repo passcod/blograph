@@ -1,3 +1,7 @@
 <% posts.forEach(({ post }) => { %>
 <%- include('_post_excerpt', { post }) %>
 <% }) %>
+
+<% if (posts.length === 0) { %>
+<p>Blog is being updated, refresh in a few seconds.</p>
+<% } %>
