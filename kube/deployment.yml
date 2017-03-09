@@ -27,7 +27,7 @@ spec:
       - env:
         - name: BLOGRAPH_REPO
           value: https://github.com/passcod/blograph-posts
-        image: gcr.io/passcod-services/github-passcod-blograph:v1.0.2
+        image: gcr.io/passcod-services/github-passcod-blograph:v1.0.3
         imagePullPolicy: IfNotPresent
         name: blograph
         resources: {}
