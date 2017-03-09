@@ -3,7 +3,7 @@ apiVersion: extensions/v1beta1
 metadata:
   labels:
     app: blograph
-    version: 2017-03-08
+    version: 2017-03-10
   name: blograph
   namespace: default
 spec:
@@ -11,7 +11,7 @@ spec:
   selector:
     matchLabels:
       app: blograph
-      version: 2017-03-08
+      version: 2017-03-10
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -22,7 +22,7 @@ spec:
       name: blograph
       labels:
         app: blograph
-        version: 2017-03-08
+        version: 2017-03-10
     spec:
       terminationGracePeriodSeconds: 30
       restartPolicy: Always
@@ -30,7 +30,7 @@ spec:
       - env:
         - name: BLOGRAPH_REPO
           value: https://github.com/passcod/blograph-posts
-        image: gcr.io/passcod-services/github-passcod-blograph:2017-03-08
+        image: gcr.io/passcod-services/github-passcod-blograph:2017-03-10
         imagePullPolicy: IfNotPresent
         name: blograph
         resources: {}
