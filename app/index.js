@@ -59,8 +59,9 @@ app.get('/tag/:tag', (req, res) => {
 })
 
 // Any other GET is potentially a post or page
-app.get((req, res, notFound) => {
-  const post = req.app.get('posts').findBySlug(req.path)
+app.get('/*', (req, res, notFound) => {
+  const path = req.path.replace(/(^\/|\/$)/g, '')
+  const post = req.app.get('posts').findBySlug(path)
   if (!post) { return notFound() }
 
   let list

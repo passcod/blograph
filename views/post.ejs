@@ -1,7 +1,11 @@
 <article class="h-entry e-content">
   <header>
     <h1 class="p-name"><%= post.title %></h1>
+
+  <% if (post.date) { %>
     <p><%= post.isFuture ? 'To be p' : 'P' %>osted on <a href="/<%= post.slug %>" class="u-url"><date datetime="<%= post.date.toISOString() %>" title="<%= post.date.toISOString() %>" class="dt-published"><%= moment(post.date).format('MMM D ‘YY') %></date></a></p>
+  <% } %>
+
   <% if (post.tags.length > 0) { %>
     <p>This
       <% if (post.tags.length === 1) { %>is a <% } %>
