@@ -12,8 +12,8 @@ spec:
       app: blograph
   strategy:
     rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+      maxSurge: 2
+      maxUnavailable: 0
     type: RollingUpdate
   template:
     metadata:
@@ -35,12 +35,12 @@ spec:
           timeoutSeconds: 3
           initialDelaySeconds: 3
           httpGet:
-            path: "/2015/apr/29/hold"
+            path: "/healthz"
             port: 5000
         livenessProbe:
           timeoutSeconds: 3
           initialDelaySeconds: 30
           httpGet:
-            path: "/2015/apr/29/hold"
+            path: "/healthz"
             port: 5000
 

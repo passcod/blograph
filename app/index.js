@@ -20,6 +20,13 @@ reclone()
 app.use(logger)
 app.use(compression())
 
+// Before the HTTPS enforcer so it can be used internally
+app.get('/healthz', (req, res) =>
+  req.app.get('posts').length > 0
+    ? res.status(204).send()
+    : res.status(503).send()
+)
+
 if (process.env.NODE_ENV === 'production') {
   app.enable('trust proxy')
   app.use(enforceHttps())
