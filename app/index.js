@@ -1,5 +1,4 @@
 const compression = require('compression')
-const enforceHttps = require('express-enforces-ssl')
 const express = require('express')
 const helmet = require('helmet')
 const { List } = require('../lib')
@@ -20,7 +19,6 @@ reclone()
 app.use(logger)
 app.use(compression())
 
-// Before the HTTPS enforcer so it can be used internally
 app.get('/healthz', (req, res) =>
   req.app.get('posts').length > 0
     ? res.status(204).send()
@@ -29,7 +27,6 @@ app.get('/healthz', (req, res) =>
 
 if (process.env.NODE_ENV === 'production') {
   app.enable('trust proxy')
-  app.use(enforceHttps())
   app.use(helmet({ hsts: {
     maxAge: 10886400, // 18 weeks
     preload: true
