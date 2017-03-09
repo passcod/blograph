@@ -8,9 +8,15 @@ Blograph's model is that posts have metadata and content. Metadata can include
 a list of parent posts. Posts are organised in Lists, and there's always a
 master List of all the posts in the source. That is then filtered down to lists
 for e.g. the frontpage, the tags, the parents and children of a post, etc.
-Posts (and Lists) are immutable. Once the Source is first read by the library,
-that's it, there's no more dependency on files on disk. The only variable is
-the current time, because posts can be dated to the future.
+Posts (and Lists) are immutable. The only variable is the current time, because
+posts can be dated to the future.
+
+Once the Source is first read by the library, that's it, there's no more
+dependency on files on disk. Systems engineering tells you why this is
+important: RAM access is **four times faster** than SSD access. But also, it
+means the files can change on disk without the program being affected in the
+least. Thus, I can update the Source files on disk while the server is running,
+and only _then_ reload, and the server will never be in an inconsistent state.
 
 The name is rather simple: through parents and children posts, a Blograph is
 not only a chronological collection of posts, but contains directed **graphs**.
@@ -104,3 +110,35 @@ pushed to the repo, even when force-pushed!
 The Rust backend grants us _seriously fast_ loads. After the git clone is done,
 it takes about a second to load a hundred posts… and then that's it, no more
 disk I/O required. It feels **instant**.
+
+## Can I use this?
+
+Probably not. This is very heavily opinionated for me. If you do want to use
+any part or all of it, feel free to fork it! It's licensed under ISC, so just
+go at it.
+
+## Why Rust stable?
+
+The history of this project is that in late 2013, I created the first version
+of Blograph in Ruby. Then I set it running and tweaked it until it got to a
+"final" version in late 2014. And then I didn't touch it for _two years_. It
+ran for two years uninterrupted. When I picked it up again in late 2016 to fix
+a few bugs that finally annoyed me enough, it just refused to work on my local
+machine. The Ruby engine, all the dependencies, _something_ changed in those
+two years and figuring out the right configuration was taking way too long.
+
+Rust **stable** makes a strong guarantee that code written today will still
+compile and work with a compiler released years from now, as long as it's still
+the same major version. The Rust team is really strict on semver adherence in
+that way. Using nightly doesn't have that guarantee at all.
+
+This means that if I leave this project alone and don't touch it for a few
+years, I have strong belief that when I eventually do pick it up, as long as I
+use the latest Rust **1.x**, it will compile, and it will work. It also means
+that whatever performance improvements the compiler picks up in the meantime, I
+can get for free, without even having to update my code to work with the latest
+Rust version.
+
+This blog has happily lasted four years on one engine so far. I am confident
+that it will last at least another four on this new one. I would like it if I
+didn't have to rewrite it all when I do pick it up again.

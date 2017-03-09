@@ -1,4 +1,5 @@
 const compression = require('compression')
+const enforceHttps = require('express-enforces-ssl')
 const express = require('express')
 const helmet = require('helmet')
 const { List } = require('../lib')
@@ -18,9 +19,23 @@ reclone()
 
 app.use(logger)
 app.use(compression())
-app.use(helmet())
+
+app.enable('trust proxy')
+app.use(enforceHttps())
+app.use(helmet({ hsts: {
+  maxAge: 10886400, // 18 weeks
+  preload: true
+} }))
+
 app.use(express.static('./public'))
 app.use(view)
+
+app.post('/hook/reload/posts', (req, res) =>
+  reclone()
+  .then(() => reloadLists(req.app))
+  .then(() => res.json({ ok: true }))
+  .catch((err) => { throw err })
+)
 
 app.get('/', (req, res) =>
   res.view('index', { posts: app.get('frontpage').reverse() })
@@ -41,10 +56,9 @@ app.get('/tag/:tag', (req, res) => {
   })
 })
 
-app.get('(/:year/:month/:day)?/:slug', (req, res, notFound) => {
-  const { year, month, day, slug } = req.params
-  const path = [year, month, day, slug].filter((c) => c).join('/')
-  const post = req.app.get('posts').findBySlug(path)
+// Any other GET is potentially a post or page
+app.get((req, res, notFound) => {
+  const post = req.app.get('posts').findBySlug(req.path)
   if (!post) { return notFound() }
 
   let list
@@ -87,11 +101,13 @@ app.get('(/:year/:month/:day)?/:slug', (req, res, notFound) => {
   })
 })
 
-app.post('/hook/reload/posts', (req, res) =>
-  reclone()
-  .then(() => reloadLists(req.app))
-  .then(() => res.json({ ok: true }))
-  .catch((err) => { throw err })
+// 404 on GET returns a view
+app.get((req, res) => res
+  .status(404)
+  .view('not-found', {
+    title: 'Not Found'
+  })
 )
 
-app.use((req, res) => res.status(404).view('not-found', { title: 'Not Found' }))
+// 404 on any other method returns nothing
+app.use((req, res) => res.status(404))
