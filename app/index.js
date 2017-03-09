@@ -4,7 +4,7 @@ const express = require('express')
 const helmet = require('helmet')
 const { List } = require('../lib')
 const logger = require('./logger')
-const { reclone, reloadLists } = require('./loader')
+const { initialLoadError, reclone, reloadLists } = require('./loader')
 const view = require('./view')
 
 const app = module.exports = express()
@@ -15,30 +15,32 @@ app.set('frontpage', new List([]))
 
 reclone()
 .then(() => reloadLists(app))
-.catch((err) => { throw err })
+.catch((err) => initialLoadError(err))
 
 app.use(logger)
 app.use(compression())
 
-app.enable('trust proxy')
-app.use(enforceHttps())
-app.use(helmet({ hsts: {
-  maxAge: 10886400, // 18 weeks
-  preload: true
-} }))
+if (process.env.NODE_ENV === 'production') {
+  app.enable('trust proxy')
+  app.use(enforceHttps())
+  app.use(helmet({ hsts: {
+    maxAge: 10886400, // 18 weeks
+    preload: true
+  } }))
+}
 
 app.use(express.static('./public'))
 app.use(view)
 
-app.post('/hook/reload/posts', (req, res) =>
+app.post('/hook/reload/posts', (req, res, error) =>
   reclone()
   .then(() => reloadLists(req.app))
   .then(() => res.json({ ok: true }))
-  .catch((err) => { throw err })
+  .catch(error)
 )
 
 app.get('/', (req, res) =>
-  res.view('index', { posts: app.get('frontpage').reverse() })
+  res.view('index', { posts: app.get('frontpage').reverse })
 )
 
 app.get('/tag/:tag', (req, res) => {
@@ -52,7 +54,7 @@ app.get('/tag/:tag', (req, res) => {
         (!post.isFuture)
       )
       .sortByDate()
-      .reverse()
+      .reverse
   })
 })
 
@@ -101,13 +103,9 @@ app.get((req, res, notFound) => {
   })
 })
 
-// 404 on GET returns a view
-app.get((req, res) => res
+app.use((req, res) => res
   .status(404)
   .view('not-found', {
     title: 'Not Found'
   })
 )
-
-// 404 on any other method returns nothing
-app.use((req, res) => res.status(404))

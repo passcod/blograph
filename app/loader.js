@@ -52,5 +52,19 @@ function reloadLists (app) {
   )
 }
 
+function initialLoadError (err) {
+  console.error(chalk.bold.red('FATAL: Unrecoverable'))
+
+  const errorLines = err.stack.toString().split(/\r?\n/)
+  console.error(chalk.bold.red('FATAL: ') + chalk.bold(errorLines.shift()))
+
+  for (const line of errorLines) {
+    console.error(chalk.bold.red('FATAL: ') + line)
+  }
+
+  process.exit(1)
+}
+
 module.exports.reclone = reclone
 module.exports.reloadLists = reloadLists
+module.exports.initialLoadError = initialLoadError
