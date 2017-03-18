@@ -65,7 +65,8 @@ app.get('/tag/:tag', (req, res) => {
 // Any other GET is potentially a post or page
 app.get('/*', (req, res, notFound) => {
   const path = req.path.replace(/(^\/|\/$)/g, '')
-  const post = req.app.get('posts').findBySlug(path)
+  let post = req.app.get('posts').findBySlug(path)
+  if (!post) { post = req.app.get('posts').findBySlug('/' + path) }
   if (!post) { return notFound() }
 
   let list
@@ -93,8 +94,8 @@ app.get('/*', (req, res, notFound) => {
     if (previous && previous.isFuture) { previous = null }
     if (next && next.isFuture) { next = null }
 
-    children = children.filter((p) => !p.isFuture)
-    parents = parents.filter((p) => !p.isFuture)
+    children = children.filter(({ post: p }) => !p.isFuture)
+    parents = parents.filter(({ post: p }) => !p.isFuture)
   }
 
   res.view('post', {
