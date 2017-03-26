@@ -1,5 +1,7 @@
 # Blograph
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/passcod/blograph.svg)](https://greenkeeper.io/)
+
 _Blogging done my way._
 
 ## Overview
