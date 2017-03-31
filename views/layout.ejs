@@ -9,24 +9,31 @@
       Félix “passcod” Saparelli - Blog
     </title>
     <link rel="alternate" href="/feed">
+    <link rel="stylesheet" href="/fonts.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/prism.css">
-    <link href="//fonts.googleapis.com/css?family=Ubuntu+Mono:400,400italic,700,700italic&subset=latin,greek" rel="stylesheet">
     <script async src="/prism.js"></script>
   </head>
   <body>
-    <header>
-      <h1><a href="/">Félix Saparelli</a></h1>
-      <p class="sidelong"><a rel="me" href="https://passcod.name">(about)</a></p>
-      <p class="subtitle">a.k.a. passcod</p>
-    </header>
-    <div class="container">
-    <%- include(partial, locals) %>
+    <div class="raised">
+      <header class="root">
+        <h1><a href="/">Félix Saparelli</a></h1>
+        <p class="sidelong"><a rel="me" href="https://passcod.name">(about me)</a></p>
+        <p class="subtitle">a.k.a. passcod</p>
+      </header>
+      <main>
+        <%- include(partial, locals) %>
+      </main>
     </div>
-    <footer>
-      <button class="flip" title="Click to turn lights on xor off.">day</button>
-      <p>Content licensed under <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. <a rel="alternate" href="/feed">Feed</a>.</p>
+    <footer class="root">
+      <p>
+        <a rel="alternate" href="/feed">Feed</a>.
+        © 2008–<%= new Date().getUTCFullYear() %>.
+        Content licensed under <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+      </p>
     </footer>
+
+    <button class="flip" title="Turn the lights off.">day</button>
     <script>
       var flip = document.querySelector('.flip'),
         html = document.querySelector('html'),
@@ -34,10 +41,12 @@
           if (/flipped/.test(html.className) || !night) {
             html.className = html.className.replace('flipped', '');
             flip.innerHTML = 'day';
+            flip.title = flip.title.replace('on', 'off');
             localStorage.setItem('flip', '');
           } else {
             html.className += ' flipped';
             flip.innerHTML = 'night';
+            flip.title = flip.title.replace('off', 'on');
             localStorage.setItem('flip', '✓');
           }
         };
