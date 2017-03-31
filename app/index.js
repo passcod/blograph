@@ -1,5 +1,6 @@
 const compression = require('compression')
 const express = require('express')
+const feed = require('./feed')
 const helmet = require('helmet')
 const { List } = require('../lib')
 const logger = require('./logger')
@@ -47,6 +48,14 @@ app.get('/', (req, res) =>
   res.view('index', { posts: app.get('frontpage').reverse })
 )
 
+app.get('/feed', (req, res) =>
+  res.send(feed(app.get('frontpage').reverse, {
+    title: 'Félix “passcod” Saparelli — Blog',
+    description: 'Feed of the front page of @passcod’s blog',
+    feed_url: 'https://blog.passcod.name/feed'
+  }))
+)
+
 app.get('/tag/:tag', (req, res) => {
   const { tag } = req.params
   res.view('tag', {
@@ -64,6 +73,7 @@ app.get('/tag/:tag', (req, res) => {
 
 // Any other GET is potentially a post or page
 app.get('/*', (req, res, notFound) => {
+  // FIXME: Support dated subpaths
   const path = req.path.replace(/(^\/|\/$)/g, '')
   let post = req.app.get('posts').findBySlug(path)
   if (!post) { post = req.app.get('posts').findBySlug('/' + path) }
