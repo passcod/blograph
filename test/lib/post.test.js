@@ -68,5 +68,5 @@ t.test('render', (t) => {
 
 t.test('excerpt', (t) => {
   t.plan(1)
-  t.equal(new Post('', new Metadata(''), '## Hello\n\nworld\n\n*Boo*\n\n- [Bam](.)\n\nLOrem ipsum dolore sit amet.\n\nThe key here is that while some millennials do find "you’re welcome" off-putting, there’s not the same visceral reaction.\n\n<style><script>window.location="google.com"</style></script>\n\nRound and round we go').excerpt, '<b>Hello</b> world <em>Boo</em> Bam LOrem ipsum dolore sit amet. The key here is that while some millennials do find “you’re welcome”')
+  t.equal(new Post('', new Metadata(''), '## Hello\n\nworld\n\n*Boo*\n\n- [Bam](.)\n\nLOrem ipsum dolore sit amet.\n\nThe key here is that while some millennials do find "you’re welcome" off-putting, there’s not the same visceral reaction.\n\n<style><script>window.location="google.com"</style></script>\n\nRound and round we go').excerpt, '<b>Hello</b> world <em>Boo</em> Bam LOrem ipsum dolore sit amet. The key here is that while some millennials do find “you’re welcome” off-putting, there’s not the same visceral reaction.&lt;')
 })
