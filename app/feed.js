@@ -19,7 +19,7 @@ function item (post) {
   }
 }
 
-module.exports = function feed(posts, meta) {
+module.exports = function feed (posts, meta) {
   const feed = new RSS(Object.assign({}, METADATA, meta))
 
   posts.forEach(({ post }) => feed.item(item(post)))
