@@ -2,9 +2,16 @@ const { Metadata } = require('../../native')
 const t = require('tap')
 
 t.test('parsing and access', (t) => {
-  t.plan(29)
+  t.plan(35)
 
   t.type(new Metadata(''), 'Metadata', 'new Metadata() makes a new type')
+
+  t.equal(JSON.stringify(new Metadata('---\nfoo: bar')), '{"foo":"bar"}', 'serialise string')
+  t.equal(JSON.stringify(new Metadata('---\nfoo: 123')), '{"foo":123}', 'serialise int')
+  t.equal(JSON.stringify(new Metadata('---\nfoo: 123.456')), '{"foo":123.456}', 'serialise float')
+  t.equal(JSON.stringify(new Metadata('---\nfoo: true')), '{"foo":true}', 'serialise bool')
+  t.equal(JSON.stringify(new Metadata('---\nfoo: [1,2,3]')), '{"foo":[1,2,3]}', 'serialise array')
+  t.equal(JSON.stringify(new Metadata('---\nfoo:\n  bar: 2')), '{"foo":{"bar":2}}', 'serialise hash')
 
   t.equal(new Metadata('---\nfoo: bar').at('foo'), 'bar', '.at() with string')
   t.equal(new Metadata('---\nfoo: 123').at('foo'), 123, '.at() with int')

@@ -7,7 +7,7 @@ use yaml_rust::Yaml;
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Metadata {
     pub raw: String,
-    yaml: Yaml
+    pub yaml: Yaml
 }
 
 impl Metadata {

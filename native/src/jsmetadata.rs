@@ -167,6 +167,14 @@ declare_types! {
             Ok(array.as_value(scope))
         }
 
+        method toJSON(call) {
+            let scope = call.scope;
+            let args = call.arguments;
+
+            let yaml = args.this(scope).grab(|meta| meta.0.yaml.clone());
+            Ok(yaml_to_js(scope, &yaml))
+        }
+
         // #author, #tags, and #title are just straight queries using the
         // normal #at/#string methods, so instead of binding them in Rust,
         // they're rewritten trivially in JS.
