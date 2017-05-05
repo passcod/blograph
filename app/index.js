@@ -5,7 +5,7 @@ const helmet = require('helmet')
 const { List } = require('../lib')
 const logger = require('./logger')
 const { initialLoadError, reclone, reloadPosts } = require('./loader')
-const { version } = require('./package.json')
+const { version } = require('../package.json')
 const view = require('./view')
 
 const app = module.exports = express()
