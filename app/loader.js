@@ -36,20 +36,11 @@ function reclone () {
   .then(() => console.log(chalk.blue('INFO') + chalk.green(' Done cloning')))
 }
 
-function reloadLists (app) {
+function reloadPosts (app) {
   console.log(chalk.blue('INFO') + ' Loading posts using Rust lib')
   const posts = load(process.env.BLOGRAPH_POSTS || './posts').sortByDate()
   console.log(chalk.blue('INFO') + chalk.green(' Done loading posts'))
-
   app.set('posts', posts)
-  app.set('frontpage', posts
-    .filter(({ post }) =>
-      (!post.isFuture) &&
-      (!post.isPage) &&
-      (`${post.metadata.bool('frontpage')}` !== 'false')
-    )
-    .sortByDate()
-  )
 }
 
 function initialLoadError (err) {
@@ -66,5 +57,5 @@ function initialLoadError (err) {
 }
 
 module.exports.reclone = reclone
-module.exports.reloadLists = reloadLists
+module.exports.reloadPosts = reloadPosts
 module.exports.initialLoadError = initialLoadError

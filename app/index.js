@@ -4,17 +4,24 @@ const feed = require('./feed')
 const helmet = require('helmet')
 const { List } = require('../lib')
 const logger = require('./logger')
-const { initialLoadError, reclone, reloadLists } = require('./loader')
+const { initialLoadError, reclone, reloadPosts } = require('./loader')
 const view = require('./view')
 
 const app = module.exports = express()
 app.set('view engine', 'ejs')
 
 app.set('posts', new List([]))
-app.set('frontpage', new List([]))
+
+function frontpage () {
+  return app.get('posts').filter(({ post }) =>
+    (!post.isFuture) &&
+    (!post.isPage) &&
+    (`${post.metadata.bool('frontpage')}` !== 'false')
+  ).sortByDate()
+}
 
 reclone()
-.then(() => reloadLists(app))
+.then(() => reloadPosts(app))
 .catch((err) => initialLoadError(err))
 
 app.use(logger)
@@ -39,17 +46,17 @@ app.use(view)
 
 app.post('/hook/reload/posts', (req, res, error) =>
   reclone()
-  .then(() => reloadLists(req.app))
+  .then(() => reloadPosts(req.app))
   .then(() => res.json({ ok: true }))
   .catch(error)
 )
 
 app.get('/', (req, res) =>
-  res.view('index', { posts: app.get('frontpage').reverse })
+  res.view('index', { posts: frontpage().reverse })
 )
 
 app.get('/feed', (req, res) =>
-  res.send(feed(app.get('frontpage').reverse, {
+  res.send(feed(frontpage().reverse, {
     title: 'Félix “passcod” Saparelli — Blog',
     description: 'Feed of the front page of @passcod’s blog',
     feed_url: 'https://blog.passcod.name/feed'
@@ -80,8 +87,8 @@ app.get('/*', (req, res, notFound) => {
   if (!post) { return notFound() }
 
   let list
-  if (req.app.get('frontpage').includes(post)) {
-    list = req.app.get('frontpage')
+  if (frontpage().includes(post)) {
+    list = frontpage()
   } else {
     list = req.app.get('posts')
   } // TODO: support more lists (based on query string?)
