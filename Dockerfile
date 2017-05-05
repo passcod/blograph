@@ -13,7 +13,7 @@ RUN useradd -d /app -G users -mrU app
 ENV NODE_ENV production
 WORKDIR /app
 
-COPY index.js package.json ./
+COPY index.js package.json package-lock.json ./
 COPY native ./native
 RUN chown -R app:app . \
     && sudo -u app npm5 install
