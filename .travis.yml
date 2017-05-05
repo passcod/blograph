@@ -22,9 +22,10 @@ before_script:
   - "sh ~/rustup.sh --prefix=~/rust --spec=$RUST -y --disable-sudo"
   - rustc --version
   - cargo --version
-  - npm install
+  - npm install --global npm5
+  - npm5 install
 script:
-  - npm test
+  - npm5 test
   - cd native
   - cargo test -p post
 after_script:
