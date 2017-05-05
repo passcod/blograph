@@ -5,6 +5,7 @@ const helmet = require('helmet')
 const { List } = require('../lib')
 const logger = require('./logger')
 const { initialLoadError, reclone, reloadPosts } = require('./loader')
+const { version } = require('./package.json')
 const view = require('./view')
 
 const app = module.exports = express()
@@ -32,6 +33,8 @@ app.get('/healthz', (req, res) =>
     ? res.status(204).send()
     : res.status(503).send()
 )
+
+app.get('/version', (req, res) => res.send(version))
 
 if (process.env.NODE_ENV === 'production') {
   app.enable('trust proxy')
