@@ -46,6 +46,9 @@ strong, b {
   /* Keep the shadow from curving at the top */
   margin-top: -10em;
   padding-top: 10em;
+
+  /* Disable the width transition for when fonts load */
+  transition: width 0s;
 }
 
 .raised > main {
