@@ -32,7 +32,8 @@
     "install": "neon build",
     "test": "env \"BLOGRAPH_POSTS=$(pwd)/test/posts\" tap 'test/**/*.test.js'",
     "posttest": "standard",
-    "start": "node ."
+    "start": "node .",
+    "postversion": "git push && git push --tags && ./kube/update.sh"
   },
   "standard": {
     "ignore": [
