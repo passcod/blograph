@@ -2,7 +2,7 @@
 
 version=$(jq -r '.version' package.json)
 
-kubectl patch deployment blograph -p <<PATCH
+patch=$(cat <<PATCH
 {
   "spec": {
     "template": {
@@ -18,3 +18,9 @@ kubectl patch deployment blograph -p <<PATCH
   }
 }
 PATCH
+)
+
+printf %s "$patch"
+echo
+echo "> "
+kubectl patch deployment blograph -p "$patch"
