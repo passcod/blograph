@@ -24,19 +24,23 @@ spec:
       terminationGracePeriodSeconds: 30
       restartPolicy: Always
       containers:
-      - env:
-        - name: BLOGRAPH_REPO
-          value: https://github.com/passcod/blograph-posts
-        image: gcr.io/passcod-services/github-passcod-blograph:v1.0.3
+      - image: gcr.io/passcod-services/github-passcod-blograph:v1.2.0
         imagePullPolicy: IfNotPresent
         name: blograph
+
         resources: {}
+
+        env:
+        - name: BLOGRAPH_REPO
+          value: https://github.com/passcod/blograph-posts
+
         readinessProbe:
           timeoutSeconds: 3
           initialDelaySeconds: 3
           httpGet:
             path: "/healthz"
             port: 5000
+
         livenessProbe:
           timeoutSeconds: 3
           initialDelaySeconds: 30
