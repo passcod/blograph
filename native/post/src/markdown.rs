@@ -52,7 +52,7 @@ mod test {
     fn tables() {
         test_md(
             "Hello | world\n------|------\nRow | here",
-            "<table><thead><tr><td>Hello </td><td> world</td></tr></thead>\n<tr><td>Row </td><td> here</td></tr>\n</table>\n"
+            "<table><thead><tr><th>Hello </th><th> world</th></tr></thead><tbody>\n<tr><td>Row </td><td> here</td></tr>\n</tbody></table>\n"
         );
     }
 
