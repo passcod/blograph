@@ -1,6 +1,7 @@
 # Blograph
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/passcod/blograph.svg)](https://greenkeeper.io/)
+[![Travis](https://img.shields.io/travis/passcod/blograph.svg)](https://travis-ci.org/passcod/blograph)
+[![Greenkeeper](https://badges.greenkeeper.io/passcod/blograph.svg)](https://greenkeeper.io/)
 
 _Blogging done my way._
 
