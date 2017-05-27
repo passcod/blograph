@@ -15,6 +15,10 @@ env:
 matrix:
   allow_failures:
     - env: RUST=nightly
+cache:
+  directories:
+    - $HOME/.npm
+    - $HOME/.cargo
 install: echo Running npm install AFTER rustup
 before_script:
   - mkdir $HOME/rust
