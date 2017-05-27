@@ -31,8 +31,6 @@ before_script:
 script:
   - npm test
   - cd native
+  - cargo check
   - cargo test -p post
   - cargo test -p list
-after_script:
-  - cd native
-  - cargo test
