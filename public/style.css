@@ -107,6 +107,29 @@ p {
   margin-bottom: 1.5em;
 }
 
+article > ul, article > ol {
+  font-size: 1.2em;
+}
+
+ul {
+  list-style-type: '– ';
+}
+
+ul, ol {
+  padding-left: 0;
+}
+
+li {
+  margin-bottom: 0.3em;
+  font-weight: normal;
+  text-indent: -1em;
+  padding-left: 1em;
+}
+
+article > ul > li > a {
+  font-variant: small-caps;
+}
+
 hr {
   border: none;
   padding: 0.5rem;
