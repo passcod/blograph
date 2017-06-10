@@ -102,7 +102,7 @@ a:focus, a:hover, button:focus, button:hover {
 p {
   text-align: justify;
   font-weight: 300;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   margin-top: 0.5em;
   margin-bottom: 1.5em;
 }
@@ -126,7 +126,16 @@ li {
   padding-left: 1em;
 }
 
-article > ul > li > a {
+li p {
+  margin-top: 0;
+  margin-bottom: 0.3em;
+}
+
+li p:last-child {
+  margin-bottom: 1em;
+}
+
+article > ul > li > a, article > ul > li > p:first-child > a {
   font-variant: small-caps;
 }
 
