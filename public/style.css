@@ -56,9 +56,11 @@ strong, b {
 }
 
 main header h1 {
+  font-size: 1.7em;
   font-variant: small-caps;
   font-weight: 600;
   letter-spacing: 0.2px;
+  margin-bottom: -1.2rem;
 }
 
 h1, h2, h3, h4, h5, h6, th, thead, tfoot {
@@ -72,6 +74,23 @@ h1, h2, h3, h4, h5, h6, th, thead, tfoot {
 
 h2 {
   color: #494949;
+  font-size: 1.5em;
+  font-variant: small-caps;
+  margin-top: 1em;
+  text-indent: calc(-1em / 1.5);
+}
+
+h3 {
+  margin-top: 0.5em;
+}
+
+h3::before {
+  content: '» ';
+  color: #ccc;
+}
+
+h3 + ul, h3 + p, h3 + ol {
+  margin-top: 0.2em;
 }
 
 article img {
