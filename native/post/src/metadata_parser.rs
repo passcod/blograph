@@ -79,6 +79,11 @@ mod test {
     }
 
     #[test]
+    fn parse_empty_front_matter_with_vim_modeline() {
+        assert_eq!(parse("---\n# vim: tw=80\n---"), Yaml::Hash(yaml::Hash::new()));
+    }
+
+    #[test]
     fn parse_array_front_matter() {
         assert_eq!(parse("---\n- foo\n- bar\n---"), Yaml::Hash(yaml::Hash::new()));
     }
@@ -104,6 +109,26 @@ mod test {
 
         assert_eq!(
             parse("---\npage: true\ntags:\n  - post\n---"),
+            Yaml::Hash(matter)
+        );
+    }
+
+    #[test]
+    fn parse_hash_front_matter_with_vim_modeline() {
+        let mut matter = yaml::Hash::new();
+        matter.insert(
+            Yaml::String(String::from("page")),
+            Yaml::Boolean(true)
+        );
+        matter.insert(
+            Yaml::String(String::from("tags")),
+            Yaml::Array(vec![
+                Yaml::String(String::from("post"))
+            ])
+        );
+
+        assert_eq!(
+            parse("---\n# vim: tw=80\npage: true\ntags:\n  - post\n---"),
             Yaml::Hash(matter)
         );
     }
