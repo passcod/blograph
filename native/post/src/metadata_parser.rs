@@ -114,6 +114,26 @@ mod test {
     }
 
     #[test]
+    fn parse_hash_front_matter_with_3space_indent() {
+        let mut matter = yaml::Hash::new();
+        matter.insert(
+            Yaml::String(String::from("page")),
+            Yaml::Boolean(true)
+        );
+        matter.insert(
+            Yaml::String(String::from("tags")),
+            Yaml::Array(vec![
+                Yaml::String(String::from("post"))
+            ])
+        );
+
+        assert_eq!(
+            parse("---\npage: true\ntags:\n   - post\n---"),
+            Yaml::Hash(matter)
+        );
+    }
+
+    #[test]
     fn parse_hash_front_matter_with_vim_modeline() {
         let mut matter = yaml::Hash::new();
         matter.insert(

@@ -49,6 +49,22 @@ mod test {
     }
 
     #[test]
+    fn lists() {
+        test_md(
+            "Prelude\n\n- Unordered\n- And\n  1. Nested.\n\nInterlude\n\n1. Ordered\n2. And\n   - Nested\n\nEpilogue",
+            "<p>Prelude</p>\n<ul>\n<li>Unordered</li>\n<li>And\n<ol>\n<li>Nested.</li>\n</ol>\n</li>\n</ul>\n<p>Interlude</p>\n<ol>\n<li>Ordered</li>\n<li>And\n<ul>\n<li>Nested</li>\n</ul>\n</li>\n</ol>\n<p>Epilogue</p>\n"
+        );
+    }
+
+    #[test]
+    fn lists_3space_indent() {
+        test_md(
+            "Prelude\n\n - Unordered\n - And\n   1. Nested.\n\nInterlude\n\n1. Ordered\n2. And\n   - Nested\n\nEpilogue",
+            "<p>Prelude</p>\n<ul>\n<li>Unordered</li>\n<li>And\n<ol>\n<li>Nested.</li>\n</ol>\n</li>\n</ul>\n<p>Interlude</p>\n<ol>\n<li>Ordered</li>\n<li>And\n<ul>\n<li>Nested</li>\n</ul>\n</li>\n</ol>\n<p>Epilogue</p>\n"
+        );
+    }
+
+    #[test]
     fn tables() {
         test_md(
             "Hello | world\n------|------\nRow | here",
