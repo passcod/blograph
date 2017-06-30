@@ -16,7 +16,7 @@ static DATE_RX: &'static str = r"(?x)
     -?
 ";
 
-pub fn from_path(path: &PathBuf) -> Option<DateTime<UTC>> {
+pub fn from_path(path: &PathBuf) -> Option<DateTime<Utc>> {
     lazy_static! {
         static ref DATE: Regex = Regex::new(DATE_RX).unwrap();
     }
@@ -27,7 +27,7 @@ pub fn from_path(path: &PathBuf) -> Option<DateTime<UTC>> {
         None => None,
         Some(date) => match DATE.captures(date.as_str()) {
             None => None,
-            Some(caps) => Some(UTC.ymd(
+            Some(caps) => Some(Utc.ymd(
                 // The unwraps are safe given the regex matches digits.
                 (&caps["year"]).parse::<i32>().unwrap(),
                 match &caps["month"] {
@@ -73,7 +73,7 @@ mod test {
     fn with_alpha_month() {
         assert_eq!(from_path(
             &PathBuf::from("2017-feb-18")),
-            Some(UTC.ymd(2017, 02, 18).and_hms(0, 0, 0))
+            Some(Utc.ymd(2017, 02, 18).and_hms(0, 0, 0))
         );
     }
 
@@ -81,7 +81,7 @@ mod test {
     fn with_upper_month() {
         assert_eq!(from_path(
             &PathBuf::from("2017-FEB-18")),
-            Some(UTC.ymd(2017, 02, 18).and_hms(0, 0, 0))
+            Some(Utc.ymd(2017, 02, 18).and_hms(0, 0, 0))
         );
     }
 
@@ -89,7 +89,7 @@ mod test {
     fn with_mixed_month() {
         assert_eq!(from_path(
             &PathBuf::from("2017-Feb-18")),
-            Some(UTC.ymd(2017, 02, 18).and_hms(0, 0, 0))
+            Some(Utc.ymd(2017, 02, 18).and_hms(0, 0, 0))
         );
     }
 
@@ -97,7 +97,7 @@ mod test {
     fn with_number_month() {
         assert_eq!(from_path(
             &PathBuf::from("2017-02-18")),
-            Some(UTC.ymd(2017, 02, 18).and_hms(0, 0, 0))
+            Some(Utc.ymd(2017, 02, 18).and_hms(0, 0, 0))
         );
     }
 
@@ -105,7 +105,7 @@ mod test {
     fn with_slashes() {
         assert_eq!(from_path(
             &PathBuf::from("2017/02/18")),
-            Some(UTC.ymd(2017, 02, 18).and_hms(0, 0, 0))
+            Some(Utc.ymd(2017, 02, 18).and_hms(0, 0, 0))
         );
     }
 
@@ -113,7 +113,7 @@ mod test {
     fn as_infix() {
         assert_eq!(from_path(
             &PathBuf::from("posts/2017-feb-18-hello-world.md")),
-            Some(UTC.ymd(2017, 02, 18).and_hms(0, 0, 0))
+            Some(Utc.ymd(2017, 02, 18).and_hms(0, 0, 0))
         );
     }
 
@@ -121,7 +121,7 @@ mod test {
     fn with_prefix() {
         assert_eq!(from_path(
             &PathBuf::from("posts/2017-feb-18")),
-            Some(UTC.ymd(2017, 02, 18).and_hms(0, 0, 0))
+            Some(Utc.ymd(2017, 02, 18).and_hms(0, 0, 0))
         );
     }
 
@@ -129,7 +129,7 @@ mod test {
     fn with_suffix() {
         assert_eq!(from_path(
             &PathBuf::from("2017-feb-18-hello-world.pre.md")),
-            Some(UTC.ymd(2017, 02, 18).and_hms(0, 0, 0))
+            Some(Utc.ymd(2017, 02, 18).and_hms(0, 0, 0))
         );
     }
 
@@ -137,7 +137,7 @@ mod test {
     fn with_two_dates() {
         assert_eq!(from_path(
             &PathBuf::from("2017-feb-18/2016-jul-03-hello-world.md")),
-            Some(UTC.ymd(2016, 07, 03).and_hms(0, 0, 0))
+            Some(Utc.ymd(2016, 07, 03).and_hms(0, 0, 0))
         );
     }
 

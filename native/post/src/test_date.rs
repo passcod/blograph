@@ -4,7 +4,7 @@ use super::*;
 use super::metadata::Metadata;
 use yaml_rust::{yaml, Yaml};
 
-fn metadata_test(path: &str, meta: Yaml, output: Option<DateTime<UTC>>) {
+fn metadata_test(path: &str, meta: Yaml, output: Option<DateTime<Utc>>) {
     let post = Post {
         path: PathBuf::from(path),
         metadata: Metadata::from_yaml(meta),
@@ -13,10 +13,10 @@ fn metadata_test(path: &str, meta: Yaml, output: Option<DateTime<UTC>>) {
     assert_eq!(post.date(), output);
 }
 
-fn path_test(path: &str, output: Option<Date<UTC>>) {
+fn path_test(path: &str, output: Option<Date<Utc>>) {
     metadata_test(path, Yaml::Hash(yaml::Hash::new()), match output {
         None => None,
-        Some(d) => Some(UTC.ymd(d.year(), d.month(), d.day()).and_hms(0, 0, 0))
+        Some(d) => Some(Utc.ymd(d.year(), d.month(), d.day()).and_hms(0, 0, 0))
     })
 }
 
@@ -27,12 +27,12 @@ fn with_no_date() {
 
 #[test]
 fn with_file_alpha_date() {
-    path_test("2017-feb-18-hello-world.md", Some(UTC.ymd(2017, 02, 18)));
+    path_test("2017-feb-18-hello-world.md", Some(Utc.ymd(2017, 02, 18)));
 }
 
 #[test]
 fn with_file_number_date() {
-    path_test("2017-02-18-hello-world.md", Some(UTC.ymd(2017, 02, 18)));
+    path_test("2017-02-18-hello-world.md", Some(Utc.ymd(2017, 02, 18)));
 }
 
 #[test]
@@ -46,7 +46,7 @@ fn with_metadata_date() {
     metadata_test(
         "hello-world.md",
         Yaml::Hash(meta),
-        Some(UTC.ymd(2017, 02, 18).and_hms(0, 0, 0))
+        Some(Utc.ymd(2017, 02, 18).and_hms(0, 0, 0))
     );
 }
 
@@ -61,7 +61,7 @@ fn with_metadata_datetime() {
     metadata_test(
         "hello-world.md",
         Yaml::Hash(meta),
-        Some(UTC.ymd(2017, 02, 18).and_hms(12, 34, 56))
+        Some(Utc.ymd(2017, 02, 18).and_hms(12, 34, 56))
     );
 }
 
@@ -76,7 +76,7 @@ fn with_metadata_isoweek() {
     metadata_test(
         "hello-world.md",
         Yaml::Hash(meta),
-        Some(UTC.ymd(2017, 08, 08).and_hms(0, 0, 0))
+        Some(Utc.ymd(2017, 08, 08).and_hms(0, 0, 0))
     );
 }
 
@@ -91,7 +91,7 @@ fn with_metadata_ordinal() {
     metadata_test(
         "hello-world.md",
         Yaml::Hash(meta),
-        Some(UTC.ymd(2017, 11, 17).and_hms(0, 0, 0))
+        Some(Utc.ymd(2017, 11, 17).and_hms(0, 0, 0))
     );
 }
 
@@ -121,7 +121,7 @@ fn with_metadata_datetime_not_utc() {
     metadata_test(
         "hello-world.md",
         Yaml::Hash(meta),
-        Some(UTC.ymd(2017, 02, 17).and_hms(23, 4, 56))
+        Some(Utc.ymd(2017, 02, 17).and_hms(23, 4, 56))
     );
 }
 
@@ -136,7 +136,7 @@ fn with_metadata_datetime_milli() {
     metadata_test(
         "hello-world.md",
         Yaml::Hash(meta),
-        Some(UTC.ymd(2017, 02, 18).and_hms_milli(12, 34, 56, 789))
+        Some(Utc.ymd(2017, 02, 18).and_hms_milli(12, 34, 56, 789))
     );
 }
 
@@ -151,6 +151,6 @@ fn with_metadata_and_file_date() {
     metadata_test(
         "2017-feb-18-hello-world.md",
         Yaml::Hash(meta),
-        Some(UTC.ymd(2017, 02, 04).and_hms(0, 0, 0))
+        Some(Utc.ymd(2017, 02, 04).and_hms(0, 0, 0))
     );
 }

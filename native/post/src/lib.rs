@@ -62,7 +62,7 @@ impl Post {
         match self.date() {
             None => false,
             Some(d) => {
-                d.timestamp() > UTC::now().timestamp()
+                d.timestamp() > Utc::now().timestamp()
             }
         }
     }
@@ -74,7 +74,7 @@ impl Post {
         }
     }
 
-    pub fn date(&self) -> Option<DateTime<UTC>> {
+    pub fn date(&self) -> Option<DateTime<Utc>> {
         match self.metadata.date() {
             Some(d) => Some(d),
             None => date::from_path(&self.path)

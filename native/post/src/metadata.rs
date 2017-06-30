@@ -65,7 +65,7 @@ impl Metadata {
         }
     }
 
-    pub fn date(&self) -> Option<DateTime<UTC>> {
+    pub fn date(&self) -> Option<DateTime<Utc>> {
         let iso = match self.string("date") {
             None => return None,
             Some(ref d) => match iso8601::datetime(d) {
@@ -114,7 +114,7 @@ impl Metadata {
 
         match tzed {
             None => None,
-            Some(d) => Some(d.with_timezone(&UTC))
+            Some(d) => Some(d.with_timezone(&Utc))
         }
     }
 
@@ -365,43 +365,43 @@ mod test {
     #[test]
     fn date_ymd() {
         assert_eq!(meta("date: 2017-02-18").date(),
-            Some(UTC.ymd(2017, 2, 18).and_hms(0, 0, 0)));
+            Some(Utc.ymd(2017, 2, 18).and_hms(0, 0, 0)));
     }
 
     #[test]
     fn date_ymd_hms() {
         assert_eq!(meta("date: 2017-02-18T12:34:56Z").date(),
-            Some(UTC.ymd(2017, 2, 18).and_hms(12, 34, 56)));
+            Some(Utc.ymd(2017, 2, 18).and_hms(12, 34, 56)));
     }
 
     #[test]
     fn date_ymd_hms_offset() {
         assert_eq!(meta("date: 2017-02-18T12:34:56-13:30").date(),
-            Some(UTC.ymd(2017, 2, 19).and_hms(2, 4, 56)));
+            Some(Utc.ymd(2017, 2, 19).and_hms(2, 4, 56)));
     }
 
     #[test]
     fn date_ywd() {
         assert_eq!(meta("date: 2017W123").date(),
-            Some(UTC.ymd(2017, 3, 23).and_hms(0, 0, 0)));
+            Some(Utc.ymd(2017, 3, 23).and_hms(0, 0, 0)));
     }
 
     #[test]
     fn date_ywd_hms() {
         assert_eq!(meta("date: 2017W123T12:34:56Z").date(),
-            Some(UTC.ymd(2017, 3, 23).and_hms(12, 34, 56)));
+            Some(Utc.ymd(2017, 3, 23).and_hms(12, 34, 56)));
     }
 
     #[test]
     fn date_ywd_hms_offset() {
         assert_eq!(meta("date: 2017W123T12:34:56+13:30").date(),
-            Some(UTC.ymd(2017, 3, 22).and_hms(23, 4, 56)));
+            Some(Utc.ymd(2017, 3, 22).and_hms(23, 4, 56)));
     }
 
     #[test]
     fn date_yo() {
         assert_eq!(meta("date: 2017123T").date(),
-            Some(UTC.ymd(2017, 5, 3).and_hms(0, 0, 0)));
+            Some(Utc.ymd(2017, 5, 3).and_hms(0, 0, 0)));
     }
 
     #[test]
@@ -412,13 +412,13 @@ mod test {
     #[test]
     fn date_yo_hms() {
         assert_eq!(meta("date: 2017123T12:34:56Z").date(),
-            Some(UTC.ymd(2017, 5, 3).and_hms(12, 34, 56)));
+            Some(Utc.ymd(2017, 5, 3).and_hms(12, 34, 56)));
     }
 
     #[test]
     fn date_yo_hms_offset() {
         assert_eq!(meta("date: 2017123T12:34:56-13:30").date(),
-            Some(UTC.ymd(2017, 5, 4).and_hms(2, 4, 56)));
+            Some(Utc.ymd(2017, 5, 4).and_hms(2, 4, 56)));
     }
 
     #[test]
