@@ -204,4 +204,24 @@ t.test('parentsOf', (t) => {
   t.equal(posts.parentsOf(postE).toArray()[1].slug, 'd')
 })
 
-t.test('childrenOf')
+t.test('childrenOf', (t) => {
+  t.plan(9)
+
+  const postA = new Post('a', new Metadata(''), '')
+  const postB = new Post('b', new Metadata('---\nparent: a'), '')
+  const postC = new Post('c', new Metadata('---\nparents:'), '')
+  const postD = new Post('d', new Metadata('---\nparents:\n  - a'), '')
+  const postE = new Post('e', new Metadata('---\nparents:\n  - c\n  - d'), '')
+
+  const posts = new List([ postA, postB, postC, postD, postE ])
+
+  t.equal(posts.childrenOf(postA).length, 2)
+  t.equal(posts.childrenOf(postA).toArray()[0].slug, 'b')
+  t.equal(posts.childrenOf(postA).toArray()[1].slug, 'd')
+  t.equal(posts.childrenOf(postB).length, 0)
+  t.equal(posts.childrenOf(postC).length, 1)
+  t.equal(posts.childrenOf(postC).toArray()[0].slug, 'e')
+  t.equal(posts.childrenOf(postD).length, 1)
+  t.equal(posts.childrenOf(postD).toArray()[0].slug, 'e')
+  t.equal(posts.childrenOf(postE).length, 0)
+})
