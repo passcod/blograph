@@ -49,6 +49,6 @@
   "devDependencies": {
     "standard": "^10.0.2",
     "supertest": "^3.0.0",
-    "tap": "^10.3.2"
+    "tap": "^10.7.0"
   }
 }
