@@ -124,7 +124,19 @@ t.test('filter', (t) => {
   t.type(filtered, List, '.filter() returns a List')
 })
 
-t.test('findBySlug')
+t.test('findBySlug', (t) => {
+  t.plan(3)
+
+  const posts = new List([
+    new Post('hello', new Metadata(''), ''),
+    new Post('jolly', new Metadata(''), ''),
+    new Post('world', new Metadata(''), '')
+  ])
+
+  t.equal(posts.findBySlug('hello').slug, 'hello')
+  t.notOk(posts.findBySlug('there'))
+  t.equal(posts.findBySlug('world').slug, 'world')
+})
 
 t.test('sortByDate', (t) => {
   t.plan(3)
