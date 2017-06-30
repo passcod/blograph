@@ -125,7 +125,22 @@ t.test('filter', (t) => {
 })
 
 t.test('findBySlug')
-t.test('sortByDate')
+
+t.test('sortByDate', (t) => {
+  t.plan(3)
+
+  const posts = new List([
+    new Post('metadated', new Metadata('---\ndate: 2015-01-01'), ''),
+    new Post('2016-jan-01-filedated', new Metadata(''), ''),
+    new Post('2017-jun-30-bothdated', new Metadata('---\ndate: 2017-06-30T20:37:50+12:00'), ''),
+    new Post('undated', new Metadata(''), ''),
+    new Post('nopedated', new Metadata(''), ''),
+  ]).sortByDate()
+
+  t.same(posts.map(({ post }) => post.slug), ['undated', 'nopedated', '2015/jan/01/metadated', '2016/jan/01/filedated', '2017/jun/30/bothdated'])
+  t.same(posts.map(({ prev }) => prev && prev.slug), [null, 'undated', 'nopedated', '2015/jan/01/metadated', '2016/jan/01/filedated'])
+  t.same(posts.map(({ next }) => next && next.slug), ['nopedated', '2015/jan/01/metadated', '2016/jan/01/filedated', '2017/jun/30/bothdated', null])
+})
 
 t.test('includes', (t) => {
   t.plan(3)
