@@ -172,7 +172,7 @@ t.test('includes', (t) => {
 })
 
 t.test('tags', (t) => {
-  t.plan(3)
+  t.plan(6)
 
   const noPosts = new List([]).tags
 
@@ -188,6 +188,10 @@ t.test('tags', (t) => {
     new Post('dupe', new Metadata('---\ntags:\n  - three\n  - two'), ''),
     new Post('empty', new Metadata('---\ntags:'), '')
   ]).tags
+
+  t.type(noPosts, Set)
+  t.type(noTags, Set)
+  t.type(someTags, Set)
 
   t.equal(noPosts.size, 0, 'with no posts')
   t.equal(noTags.size, 0, 'with no tags')
