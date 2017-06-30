@@ -182,5 +182,26 @@ t.test('tags', (t) => {
   t.equal(someTags.size, 3, 'with some tags')
 })
 
-t.test('parentsOf')
+t.test('parentsOf', (t) => {
+  t.plan(9)
+
+  const postA = new Post('a', new Metadata(''), '')
+  const postB = new Post('b', new Metadata('---\nparent: a'), '')
+  const postC = new Post('c', new Metadata('---\nparents:'), '')
+  const postD = new Post('d', new Metadata('---\nparents:\n  - a'), '')
+  const postE = new Post('e', new Metadata('---\nparents:\n  - c\n  - d'), '')
+
+  const posts = new List([ postA, postB, postC, postD, postE ])
+
+  t.equal(posts.parentsOf(postA).length, 0)
+  t.equal(posts.parentsOf(postB).length, 1)
+  t.equal(posts.parentsOf(postB).toArray()[0].slug, 'a')
+  t.equal(posts.parentsOf(postC).length, 0)
+  t.equal(posts.parentsOf(postD).length, 1)
+  t.equal(posts.parentsOf(postD).toArray()[0].slug, 'a')
+  t.equal(posts.parentsOf(postE).length, 2)
+  t.equal(posts.parentsOf(postE).toArray()[0].slug, 'c')
+  t.equal(posts.parentsOf(postE).toArray()[1].slug, 'd')
+})
+
 t.test('childrenOf')
