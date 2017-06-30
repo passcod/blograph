@@ -134,7 +134,7 @@ t.test('sortByDate', (t) => {
     new Post('2016-jan-01-filedated', new Metadata(''), ''),
     new Post('2017-jun-30-bothdated', new Metadata('---\ndate: 2017-06-30T20:37:50+12:00'), ''),
     new Post('undated', new Metadata(''), ''),
-    new Post('nopedated', new Metadata(''), ''),
+    new Post('nopedated', new Metadata(''), '')
   ]).sortByDate()
 
   t.same(posts.map(({ post }) => post.slug), ['undated', 'nopedated', '2015/jan/01/metadated', '2016/jan/01/filedated', '2017/jun/30/bothdated'])
@@ -159,6 +159,28 @@ t.test('includes', (t) => {
   t.equal(filtered.includes(post1), false, 'with missing post')
 })
 
-t.test('tags')
+t.test('tags', (t) => {
+  t.plan(3)
+
+  const noPosts = new List([]).tags
+
+  const noTags = new List([
+    new Post('none', new Metadata(''), ''),
+    new Post('empty', new Metadata('---\ntags:'), '')
+  ]).tags
+
+  const someTags = new List([
+    new Post('none', new Metadata(''), ''),
+    new Post('one', new Metadata('---\ntags:\n  - one'), ''),
+    new Post('some', new Metadata('---\ntags:\n  - one\n  - two\n  - three'), ''),
+    new Post('dupe', new Metadata('---\ntags:\n  - three\n  - two'), ''),
+    new Post('empty', new Metadata('---\ntags:'), '')
+  ]).tags
+
+  t.equal(noPosts.size, 0, 'with no posts')
+  t.equal(noTags.size, 0, 'with no tags')
+  t.equal(someTags.size, 3, 'with some tags')
+})
+
 t.test('parentsOf')
 t.test('childrenOf')
