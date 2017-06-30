@@ -93,6 +93,20 @@ t.test('map', (t) => {
   t.same(posts.map(({ next }) => next && next.slug), ['jolly', 'world', null])
 })
 
+t.test('reverse', (t) => {
+  t.plan(3)
+
+  const posts = new List([
+    new Post('world', new Metadata(''), ''),
+    new Post('jolly', new Metadata(''), ''),
+    new Post('hello', new Metadata(''), '')
+  ]).reverse
+
+  t.same(posts.map(({ post }) => post.slug), ['hello', 'jolly', 'world'])
+  t.same(posts.map(({ prev }) => prev && prev.slug), [null, 'hello', 'jolly'])
+  t.same(posts.map(({ next }) => next && next.slug), ['jolly', 'world', null])
+})
+
 t.test('filter', (t) => {
   t.plan(3)
 
@@ -112,7 +126,6 @@ t.test('filter', (t) => {
 
 t.test('findBySlug')
 t.test('sortByDate')
-t.test('reverse')
 
 t.test('includes', (t) => {
   t.plan(3)
