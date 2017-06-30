@@ -1,6 +1,7 @@
 # Blograph
 
 [![Travis](https://img.shields.io/travis/passcod/blograph.svg)](https://travis-ci.org/passcod/blograph)
+[![Coveralls](https://img.shields.io/coveralls/passcod/blograph.svg?style=flat-square)](https://coveralls.io/github/passcod/blograph)
 
 _Blogging done my way._
 
