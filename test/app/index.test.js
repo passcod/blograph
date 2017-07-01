@@ -22,7 +22,10 @@ t.test('/style.css', (t) => request(app)
   .expect(/\*\s*\{\s*box-sizing:/)
 )
 
-t.test('/hooks/reload/posts')
+t.test('/hook/reload/posts', (t) => request(app)
+  .post('/hook/reload/posts')
+  .expect(204)
+)
 
 t.test('/feed', (t) => request(app)
   .get('/feed')

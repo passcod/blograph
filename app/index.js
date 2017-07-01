@@ -53,7 +53,7 @@ app.use(view)
 app.post('/hook/reload/posts', (req, res, error) =>
   reclone()
   .then(() => reloadPosts(req.app))
-  .then(() => res.json({ ok: true }))
+  .then(() => res.status(204).send())
   .catch(error)
 )
 
