@@ -10,7 +10,7 @@ t.test('reclone', async (t) => {
   chalk.enabled = false
   sinon.stub(console, 'error')
   sinon.stub(console, 'log')
-  sinon.stub(process, 'exit', () => Promise.reject(new Error()))
+  sinon.stub(process, 'exit').callsFake(() => Promise.reject(new Error()))
 
   let resolved
   await reclone().then(() => { resolved = true })
