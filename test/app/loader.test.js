@@ -1,9 +1,49 @@
 const chalk = require('chalk')
-const { initialLoadError, reloadPosts } = require('../../app/loader')
+const { initialLoadError, reclone, reloadPosts } = require('../../app/loader')
 const sinon = require('sinon')
 const t = require('tap')
 
-t.test('reclone')
+t.test('reclone', async (t) => {
+  const posts = process.env.BLOGRAPH_POSTS
+  const repo = process.env.BLOGRAPH_REPO
+  const chalked = chalk.enabled
+  chalk.enabled = false
+  sinon.stub(console, 'error')
+  sinon.stub(console, 'log')
+  sinon.stub(process, 'exit', () => Promise.reject(new Error()))
+
+  let resolved
+  await reclone().then(() => { resolved = true })
+
+  t.ok(console.error.calledWithMatch(/BLOGRAPH_POSTS is set/))
+  t.notOk(process.exit.called)
+  t.ok(resolved)
+
+  delete process.env.BLOGRAPH_REPO
+  delete process.env.BLOGRAPH_POSTS
+
+  let rejected
+  await reclone().catch(() => { rejected = true })
+
+  t.ok(console.error.calledWithMatch(/cannot load posts, aborting/))
+  t.ok(process.exit.calledWith(1))
+  t.ok(rejected)
+
+  resolved = false
+  process.env.BLOGRAPH_REPO = repo || 'https://github.com/passcod/blog'
+  await reclone().then(() => { resolved = true })
+
+  t.ok(console.log.calledWithMatch(/Cloning https:\/\/github.com\/passcod\/blog/))
+  t.ok(console.log.calledWithMatch(/Done cloning/))
+  t.ok(resolved)
+
+  console.error.restore()
+  console.log.restore()
+  process.exit.restore()
+  chalk.enabled = chalked
+  process.env.BLOGRAPH_POSTS = posts
+  process.env.BLOGRAPH_REPO = repo
+})
 
 t.test('reloadPosts', (t) => {
   t.plan(6)

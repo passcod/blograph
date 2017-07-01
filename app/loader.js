@@ -14,7 +14,7 @@ function reclone () {
     console.error(chalk.bold.red('FATAL: Unrecoverable'))
     console.error(chalk.bold.red('FATAL: ') + chalk.bold('neither BLOGRAPH_REPO nor BLOGRAPH_POSTS available'))
     console.error(chalk.bold.red('FATAL: ') + chalk.bold('cannot load posts, aborting'))
-    process.exit(1)
+    return process.exit(1)
   }
 
   console.log(chalk.blue('INFO') + ' Deleting ./posts')
