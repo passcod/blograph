@@ -21,9 +21,11 @@ function frontpage () {
   ).sortByDate()
 }
 
-reclone()
-.then(() => reloadPosts(app))
-.catch((err) => initialLoadError(err))
+setTimeout(() =>
+  reclone()
+  .then(() => reloadPosts(app))
+  .catch((err) => initialLoadError(err))
+, process.env.SLOW_LOAD ? 200 : 0)
 
 app.use(logger)
 app.use(compression())
