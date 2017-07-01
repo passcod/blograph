@@ -3,7 +3,10 @@ const request = require('supertest')
 const t = require('tap')
 const { version } = require('../../package.json')
 
-t.test('/healthz')
+t.test('/healthz', (t) => request(app)
+  .get('/healthz')
+  .expect(204)
+)
 
 t.test('/version', (t) => request(app)
   .get('/version')
