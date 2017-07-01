@@ -34,7 +34,10 @@ app.get('/healthz', (req, res) =>
     : res.status(503).send()
 )
 
-app.get('/version', (req, res) => res.send(version))
+app.get('/version', (req, res) => {
+  res.type('text/plain')
+  res.send(version)
+})
 
 if (process.env.NODE_ENV === 'production') {
   app.enable('trust proxy')

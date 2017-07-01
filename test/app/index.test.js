@@ -1,9 +1,17 @@
 const app = require('../../app')
 const request = require('supertest')
 const t = require('tap')
+const { version } = require('../../package.json')
 
 t.test('/healthz')
-t.test('/version')
+
+t.test('/version', (t) => request(app)
+  .get('/version')
+  .expect('Content-Type', /text\/plain/)
+  .expect(200)
+  .expect(version)
+)
+
 t.test('/style.css')
 t.test('/hooks/reload/posts')
 
