@@ -28,6 +28,7 @@
     "neon-cli": "^0.1.18",
     "number-to-words": "^1.2.3",
     "plur": "^2.1.2",
+    "promisify-es6": "^1.0.2",
     "rimraf": "^2.6.1",
     "rss": "^1.2.2",
     "sanitize-html": "^1.14.1",

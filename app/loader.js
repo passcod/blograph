@@ -1,19 +1,7 @@
 const chalk = require('chalk')
 const git = require('simple-git')()
 const { load } = require('../lib')
-const rimraf = require('rimraf')
-
-function rmrf (path) {
-  return new Promise((resolve, reject) =>
-    rimraf(path, (err) => {
-      if (err) {
-        reject(err)
-      } else {
-        resolve()
-      }
-    })
-  )
-}
+const rmrf = require('promisify-es6')(require('rimraf'))
 
 function reclone () {
   if (process.env.BLOGRAPH_POSTS) {
