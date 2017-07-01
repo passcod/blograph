@@ -37,9 +37,8 @@
   "scripts": {
     "install": "neon build",
     "pretest": "standard",
-    "test": "env \"BLOGRAPH_POSTS=$(pwd)/test/posts\" tap 'test/**/*.test.js'",
-    "start": "node .",
-    "postversion": "git push && git push --tags && ./kube/update.sh"
+    "test": "env \"BLOGRAPH_POSTS=$(pwd)/test/posts\" tap 'test/**/*.test.js' --100",
+    "start": "node ."
   },
   "standard": {
     "ignore": [
