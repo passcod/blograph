@@ -3,8 +3,8 @@ const formatter = require('format-number')
 const morgan = require('morgan')
 const ms = require('ms')
 
-module.exports = morgan((tokens, req, res) => {
-  const time = ms(+tokens['response-time'](req, res))
+function elapsed (responseTime) {
+  const time = ms(responseTime)
   const amount = parseFloat(time)
   const unit = /[\d.]+(.+)$/.exec(time)[1]
 
@@ -23,20 +23,29 @@ module.exports = morgan((tokens, req, res) => {
     i += 1
   }
 
-  elapsed = elapsed.join('')
+  return elapsed.join('')
+}
 
-  const status = +tokens.status(req, res)
-  const colour = status > 400
+function statusColour (code) {
+  return code >= 400
     ? 'red'
-    : (status >= 200 && status < 300)
+    : (code >= 200 && code < 300)
       ? 'green'
       : 'blue'
+}
+
+module.exports = morgan((tokens, req, res) => {
+  const status = +tokens.status(req, res)
 
   return [
-    chalk.cyan(elapsed),
+    chalk.cyan(elapsed(+tokens['response-time'](req, res))),
     chalk.magenta(tokens.method(req, res)),
     chalk.bold('→'),
-    chalk[colour](status),
+    chalk[statusColour(status)](status),
     tokens.url(req, res)
   ].join(' ')
 })
+
+// Exposed for testing
+module.exports.elapsed = elapsed
+module.exports.statusColour = statusColour
