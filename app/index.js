@@ -110,11 +110,16 @@ app.get('/*', (req, res, notFound) => {
   let children = req.app.get('posts').childrenOf(post)
   let parents = req.app.get('posts').parentsOf(post)
 
+  /* istanbul ignore if */
   if (!post.isFuture) {
     // That first one is unlikely now, but there for
     // future-proofing in case of non-chrono lists.
+    /* istanbul ignore next */
     if (previous && previous.isFuture) { previous = null }
+    /* istanbul ignore next */
     if (next && next.isFuture) { next = null }
+    // TODO: disable the istanbul ignores when non-frontpage
+    // lists are implemented.
 
     children = children.filter(({ post: p }) => !p.isFuture)
     parents = parents.filter(({ post: p }) => !p.isFuture)
