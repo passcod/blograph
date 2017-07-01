@@ -9,8 +9,8 @@ const { version } = require('../package.json')
 const view = require('./view')
 
 const app = module.exports = express()
+app.enable('trust proxy')
 app.set('view engine', 'ejs')
-
 app.set('posts', new List([]))
 
 function frontpage () {
@@ -27,6 +27,10 @@ reclone()
 
 app.use(logger)
 app.use(compression())
+app.use(helmet({ hsts: {
+  maxAge: 10886400, // 18 weeks
+  preload: true
+} }))
 
 app.get('/healthz', (req, res) =>
   req.app.get('posts').length > 0
@@ -38,14 +42,6 @@ app.get('/version', (req, res) => {
   res.type('text/plain')
   res.send(version)
 })
-
-if (process.env.NODE_ENV === 'production') {
-  app.enable('trust proxy')
-  app.use(helmet({ hsts: {
-    maxAge: 10886400, // 18 weeks
-    preload: true
-  } }))
-}
 
 app.use(express.static('./public'))
 app.use(view)

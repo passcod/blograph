@@ -15,5 +15,5 @@ t.test('.load()', (t) => {
 
   const posts = blograph.load('./test/posts')
   t.type(posts, blograph.List, 'returns a JS List')
-  t.equal(posts.length, 3, 'loads some posts')
+  t.equal(posts.length, 4, 'loads some posts')
 })

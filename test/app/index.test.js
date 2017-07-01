@@ -52,6 +52,13 @@ t.test('/tag/:tag', (t) => request(app)
   .expect(/Ever encountered this/)
 )
 
+t.test('/2012/jul/16/tonight', (t) => request(app)
+  .get('/2012/jul/16/tonight')
+  .expect('Content-Type', /html/)
+  .expect(200)
+  .expect(/<title>\s*Tonight/)
+)
+
 t.test('/2014/may/04/today', (t) => request(app)
   .get('/2014/may/04/today')
   .expect('Content-Type', /html/)
