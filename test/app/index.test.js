@@ -12,7 +12,13 @@ t.test('/version', (t) => request(app)
   .expect(version)
 )
 
-t.test('/style.css')
+t.test('/style.css', (t) => request(app)
+  .get('/style.css')
+  .expect('Content-Type', /css/)
+  .expect(200)
+  .expect(/\*\s*\{\s*box-sizing:/)
+)
+
 t.test('/hooks/reload/posts')
 
 t.test('/feed', (t) => request(app)
