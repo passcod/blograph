@@ -58,13 +58,14 @@ app.get('/', (req, res) =>
   res.view('index', { posts: frontpage().reverse })
 )
 
-app.get('/feed', (req, res) =>
+app.get('/feed', (req, res) => {
+  res.type('application/rss+xml')
   res.send(feed(frontpage().reverse, {
     title: 'Félix “passcod” Saparelli — Blog',
     description: 'Feed of the front page of @passcod’s blog',
     feed_url: 'https://blog.passcod.name/feed'
   }))
-)
+})
 
 app.get('/tag/:tag', (req, res) => {
   const { tag } = req.params
