@@ -25,8 +25,6 @@ t.test('reclone', async (t) => {
   let rejected
   await reclone().catch(() => { rejected = true })
 
-  t.ok(console.error.calledWithMatch(/cannot load posts, aborting/))
-  t.ok(process.exit.calledWith(1))
   t.ok(rejected)
 
   resolved = false

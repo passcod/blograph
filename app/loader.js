@@ -3,25 +3,24 @@ const git = require('simple-git')()
 const { load } = require('../lib')
 const rmrf = require('promisify-es6')(require('rimraf'))
 
-function reclone () {
+async function reclone () {
   if (process.env.BLOGRAPH_POSTS) {
     console.error(chalk.red('ERR') + ' BLOGRAPH_POSTS is set')
     console.error(chalk.red('ERR') + ' not clobbering, not recloning')
-    return Promise.resolve()
+    return
   }
 
   if (!process.env.BLOGRAPH_REPO) {
-    console.error(chalk.bold.red('FATAL: Unrecoverable'))
-    console.error(chalk.bold.red('FATAL: ') + chalk.bold('neither BLOGRAPH_REPO nor BLOGRAPH_POSTS available'))
-    console.error(chalk.bold.red('FATAL: ') + chalk.bold('cannot load posts, aborting'))
-    return process.exit(1)
+    throw new Error('Neither BLOGRAPH_REPO nor BLOGRAPH_POSTS available')
   }
 
   console.log(chalk.blue('INFO') + ' Deleting ./posts')
-  return rmrf('./posts')
-  .then(() => console.log(chalk.blue('INFO') + ' Cloning ' + process.env.BLOGRAPH_REPO))
-  .then(() => git.clone(process.env.BLOGRAPH_REPO, './posts'))
-  .then(() => console.log(chalk.blue('INFO') + chalk.green(' Done cloning')))
+  await rmrf('./posts')
+
+  console.log(chalk.blue('INFO') + ' Cloning ' + process.env.BLOGRAPH_REPO)
+  await git.clone(process.env.BLOGRAPH_REPO, './posts')
+
+  console.log(chalk.blue('INFO') + chalk.green(' Done cloning'))
 }
 
 function reloadPosts (app) {
