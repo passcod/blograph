@@ -154,7 +154,11 @@ li p:last-child {
   margin-bottom: 1em;
 }
 
-article > ul > li > a, article > ul > li > p:first-child > a {
+article > ul > li > a,
+article > ul > li > strong > a,
+article > ul > li > p:first-child > a
+article > ul > li > p:first-child > strong > a,
+a.title {
   font-variant: small-caps;
 }
 
