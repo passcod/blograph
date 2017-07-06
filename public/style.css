@@ -156,7 +156,7 @@ li p:last-child {
 
 article > ul > li > a,
 article > ul > li > strong > a,
-article > ul > li > p:first-child > a
+article > ul > li > p:first-child > a,
 article > ul > li > p:first-child > strong > a,
 a.title {
   font-variant: small-caps;
