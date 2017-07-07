@@ -42,8 +42,8 @@
   },
   "standard": {
     "ignore": [
-      "public/prism.js",
-      "public/languages"
+      "assets/prism.js",
+      "assets/languages"
     ]
   },
   "devDependencies": {

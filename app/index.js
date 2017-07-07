@@ -45,7 +45,8 @@ app.get('/version', (req, res) => {
   res.send(version)
 })
 
-app.use(`/assets/${version}/`, express.static('./public', { maxAge: '1y' }))
+app.use(`/assets/${version}/`, express.static('./assets', { maxAge: '1y' }))
+app.use(express.static('./content', { maxAge: '24h' }))
 app.use(view)
 
 app.post('/hook/reload/posts', (req, res, error) =>
