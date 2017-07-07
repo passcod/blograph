@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Rawson Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/$asset/fonts/Rawson-Pro_Regular.woff2) format('woff'), url(/$asset/fonts/Rawson-Pro_Regular.ttf) format('ttf');
+}
+

@@ -1,41 +1,34 @@
 @font-face {
   font-family: 'Rawson Pro';
-  font-style: normal;
-  font-weight: 400;
-  src: url(/fonts/Rawson-Pro_Regular.woff2) format('woff'), url(/fonts/Rawson-Pro_Regular.ttf) format('ttf');
-}
-
-@font-face {
-  font-family: 'Rawson Pro';
   font-style: italic;
   font-weight: 400;
-  src: url(/fonts/Rawson-Pro_Regular-Italic.woff2) format('woff'), url(/fonts/Rawson-Pro_Regular-Italic.ttf) format('ttf');
+  src: url(fonts/Rawson-Pro_Regular-Italic.woff2) format('woff'), url(fonts/Rawson-Pro_Regular-Italic.ttf) format('ttf');
 }
 
 @font-face {
   font-family: 'Rawson Pro';
   font-style: normal;
   font-weight: 500;
-  src: url(/fonts/Rawson-Pro_Medium.woff2) format('woff'), url(/fonts/Rawson-Pro_Medium.ttf) format('ttf');
+  src: url(fonts/Rawson-Pro_Medium.woff2) format('woff'), url(fonts/Rawson-Pro_Medium.ttf) format('ttf');
 }
 
 @font-face {
   font-family: 'Rawson Pro';
   font-style: normal;
   font-weight: 600;
-  src: url(/fonts/Rawson-Pro_SemiBold.woff2) format('woff'), url(/fonts/Rawson-Pro_SemiBold.ttf) format('ttf');
+  src: url(fonts/Rawson-Pro_SemiBold.woff2) format('woff'), url(fonts/Rawson-Pro_SemiBold.ttf) format('ttf');
 }
 
 @font-face {
   font-family: 'Rawson Pro';
   font-style: normal;
   font-weight: 700;
-  src: url(/fonts/Rawson-Pro_Bold.woff2) format('woff'), url(/fonts/Rawson-Pro_Bold.ttf) format('ttf');
+  src: url(fonts/Rawson-Pro_Bold.woff2) format('woff'), url(fonts/Rawson-Pro_Bold.ttf) format('ttf');
 }
 
 @font-face {
   font-family: 'Rawson Pro';
   font-style: italic;
   font-weight: 700;
-  src: url(/fonts/Rawson-Pro_Bold-Italic.woff2) format('woff'), url(/fonts/Rawson-Pro_Bold-Italic.ttf) format('ttf');
+  src: url(fonts/Rawson-Pro_Bold-Italic.woff2) format('woff'), url(fonts/Rawson-Pro_Bold-Italic.ttf) format('ttf');
 }
