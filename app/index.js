@@ -1,3 +1,4 @@
+const cache = require('./cache')
 const compression = require('compression')
 const express = require('express')
 const feed = require('./feed')
@@ -56,11 +57,11 @@ app.post('/hook/reload/posts', (req, res, error) =>
   .catch(error)
 )
 
-app.get('/', (req, res) =>
+app.get('/', cache('10m'), (req, res) =>
   res.view('index', { posts: frontpage().reverse })
 )
 
-app.get('/feed', (req, res) => {
+app.get('/feed', cache('1h'), (req, res) => {
   res.type('application/rss+xml')
   res.send(feed(frontpage().reverse, {
     title: 'Félix “passcod” Saparelli — Blog',
@@ -69,7 +70,7 @@ app.get('/feed', (req, res) => {
   }))
 })
 
-app.get('/tag/:tag', (req, res) => {
+app.get('/tag/:tag', cache('1h'), (req, res) => {
   const { tag } = req.params
   res.view('tag', {
     tag,
@@ -85,7 +86,7 @@ app.get('/tag/:tag', (req, res) => {
 })
 
 // Any other GET is potentially a post or page
-app.get('/*', (req, res, notFound) => {
+app.get('/*', cache('1h'), (req, res, notFound) => {
   // FIXME: Support dated subpaths
   const path = req.path.replace(/(^\/|\/$)/g, '')
   let post = req.app.get('posts').findBySlug(path)
@@ -124,6 +125,8 @@ app.get('/*', (req, res, notFound) => {
 
     children = children.filter(({ post: p }) => !p.isFuture)
     parents = parents.filter(({ post: p }) => !p.isFuture)
+  } else {
+    res.cacheControl = { noCache: true }
   }
 
   res.view('post', {
