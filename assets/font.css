@@ -2,6 +2,6 @@
   font-family: 'Rawson Pro';
   font-style: normal;
   font-weight: 400;
-  src: url(fonts/Rawson-Pro_Regular.woff2) format('woff'), url(fonts/Rawson-Pro_Regular.ttf) format('ttf');
+  src: url(<%= asset('fonts/Rawson-Pro_Regular.woff2') %>) format('woff'), url(<%= asset('fonts/Rawson-Pro_Regular.ttf') %>) format('ttf');
 }
 
