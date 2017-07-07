@@ -1,5 +1,12 @@
 @font-face {
   font-family: 'Rawson Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/Rawson-Pro_Regular.woff2) format('woff'), url(fonts/Rawson-Pro_Regular.ttf) format('ttf');
+}
+
+@font-face {
+  font-family: 'Rawson Pro';
   font-style: italic;
   font-weight: 400;
   src: url(fonts/Rawson-Pro_Regular-Italic.woff2) format('woff'), url(fonts/Rawson-Pro_Regular-Italic.ttf) format('ttf');
