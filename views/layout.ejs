@@ -9,11 +9,9 @@
       Félix “passcod” Saparelli - Blog
     </title>
     <link rel="alternate" href="/feed">
-    <link rel="stylesheet" href="/fonts.css">
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/prism.css">
-    <script async src="/prism.js"></script>
+    <script async src="<%= asset('prism.js') %>"></script>
   </head>
+
   <body>
     <div class="raised">
       <header class="root">
@@ -33,28 +31,11 @@
       </p>
     </footer>
 
+    <link rel="stylesheet" href="<%= asset('style.css') %>">
+    <link rel="stylesheet" href="<%= asset('fonts.css') %>">
+    <link rel="stylesheet" href="<%= asset('prism.css') %>">
+
     <button class="flip" title="Turn the lights off.">day</button>
-    <script>
-      var flip = document.querySelector('.flip'),
-        html = document.querySelector('html'),
-        flipper = function(night) {
-          if (/flipped/.test(html.className) || !night) {
-            html.className = html.className.replace('flipped', '');
-            flip.innerHTML = 'day';
-            flip.title = flip.title.replace('on', 'off');
-            localStorage.setItem('flip', '');
-          } else {
-            html.className += ' flipped';
-            flip.innerHTML = 'night';
-            flip.title = flip.title.replace('off', 'on');
-            localStorage.setItem('flip', '✓');
-          }
-        };
-      flip.addEventListener('click', flipper, null);
-      flipper(localStorage.getItem('flip'));
-      setTimeout(function() {
-        html.className += ' js';
-      }, 1000);
-    </script>
+    <script async src="<%= asset('circadian.js') %>"></script>
   </body>
 </html>
