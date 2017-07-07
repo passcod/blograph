@@ -9,7 +9,6 @@
       Félix “passcod” Saparelli - Blog
     </title>
     <link rel="alternate" href="/feed">
-    <script async src="<%= asset('prism.js') %>"></script>
   </head>
 
   <body>
@@ -32,11 +31,13 @@
     </footer>
 
     <link rel="stylesheet" href="<%= asset('style.css') %>">
-    <link rel="stylesheet" href="<%= asset('font.css') %>">
-    <link rel="stylesheet" href="<%= asset('prism.css') %>">
+    <style><%- inline('font.css') %></style>
+    <link rel="stylesheet" href="<%= asset('fonts.css') %>">
 
     <button class="flip" title="Turn the lights off.">day</button>
     <script async src="<%= asset('circadian.js') %>"></script>
-    <link rel="stylesheet" href="<%= asset('fonts.css') %>">
+
+    <script async src="<%= asset('prism.js') %>"></script>
+    <link rel="stylesheet" href="<%= asset('prism.css') %>">
   </body>
 </html>
