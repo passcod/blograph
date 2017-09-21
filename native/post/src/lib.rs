@@ -101,14 +101,16 @@ impl Post {
         };
 
         let extless = self.extless_path();
-        match slug_date {
+        let maybe_dated = match slug_date {
             Some(d) => format!(
                 "{}/{}",
                 d.format("%Y/%b/%d"),
                 extless
             ).to_lowercase(),
-            None => String::from(extless)
-        }
+            None => extless.into()
+        };
+
+        maybe_dated.trim_right_matches('/').into()
     }
 
     pub fn title(&self) -> String {

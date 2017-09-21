@@ -51,7 +51,7 @@ pub fn strip(path: &PathBuf) -> String {
 
     let lowered = String::from(path.to_str().unwrap()).to_lowercase();
 
-    String::from(DASHED.replace_all(
+    DASHED.replace_all(
         &String::from(SLASHED.replace_all(
             &String::from(DATE.replace_all(
                 &lowered,
@@ -60,7 +60,7 @@ pub fn strip(path: &PathBuf) -> String {
             "/"
         )),
         ""
-    ))
+    ).into()
 }
 
 #[cfg(test)]

@@ -131,3 +131,12 @@ fn with_subpath_and_no_date() {
     slug_test("master-kylo/chapter-01.md", "master-kylo/chapter-01");
 }
 
+#[test]
+fn with_subpath_and_date_only() {
+    slug_test("monthlies/2017-jan-10.md", "2017/jan/10/monthlies");
+}
+
+#[test]
+fn with_dated_subpath_and_date_only() {
+    slug_test("monthlies/2017/jan-10.md", "2017/jan/10/monthlies");
+}
