@@ -3,10 +3,12 @@
 }
 
 .js, .js * {
-  transition: 10s;
+  transition: 7s;
 }
 
 html {
+  background-color: white;
+  background-image: url(/assets/stars.png);
   color: #494949;
   font-display: swap;
   font-family: 'Rawson Pro', sans-serif;
@@ -36,6 +38,7 @@ strong, b {
 }
 
 .raised {
+  background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 10em -0.5em rgba(0, 0, 0, 0.15);
   margin: 0 auto;
@@ -227,9 +230,9 @@ article date.dt-published {
   background: #222;
 }
 
-.flipped, mark {
+html.flipped, mark {
   color: #AAA;
-  background: black;
+  background-color: black;
 }
 
 .flipped mark {
@@ -255,6 +258,7 @@ article date.dt-published {
 }
 
 .flipped .raised {
+  background: rgba(0, 0, 0, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 0 10em -0.5em rgba(255, 255, 255, 0.15);
 }
