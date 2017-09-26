@@ -8,7 +8,7 @@
 
 html {
   background-color: white;
-  background-image: url(/assets/stars.png);
+  background-image: url(stars.png);
   color: #494949;
   font-display: swap;
   font-family: 'Rawson Pro', sans-serif;
@@ -38,7 +38,7 @@ strong, b {
 }
 
 .raised {
-  background: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 10em -0.5em rgba(0, 0, 0, 0.15);
   margin: 0 auto;
@@ -52,7 +52,7 @@ strong, b {
   padding-top: 10em;
 
   /* Disable the width transition for when fonts load */
-  transition: width 0s;
+  transition: 7s, width 0s;
 }
 
 .raised > main {
@@ -258,7 +258,7 @@ html.flipped, mark {
 }
 
 .flipped .raised {
-  background: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 0 10em -0.5em rgba(255, 255, 255, 0.15);
 }
@@ -267,7 +267,7 @@ html.flipped, mark {
   background: black;
 }
 
-button.flip {
+button.flip {LD
   position: fixed;
   bottom: 0;
   left: 0;
