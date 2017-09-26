@@ -3,7 +3,9 @@
 }
 
 .js, .js * {
-  transition: 7s;
+  transition-duration: 7s;
+  transition-timing-function: ease-out;
+  transition-property: background, background-color, color, box-shadow, border, border-color, border-bottom-color;
 }
 
 html {
@@ -50,9 +52,6 @@ strong, b {
   /* Keep the shadow from curving at the top */
   margin-top: -10em;
   padding-top: 10em;
-
-  /* Disable the width transition for when fonts load */
-  transition: 7s, width 0s;
 }
 
 .raised > main {
@@ -267,7 +266,7 @@ html.flipped, mark {
   background: black;
 }
 
-button.flip {LD
+button.flip {
   position: fixed;
   bottom: 0;
   left: 0;
