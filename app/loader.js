@@ -18,7 +18,7 @@ async function reclone () {
   await rmrf('./posts')
 
   console.log(chalk.blue('INFO') + ' Cloning ' + process.env.BLOGRAPH_REPO)
-  await git.clone(process.env.BLOGRAPH_REPO, './posts')
+  await git.clone(process.env.BLOGRAPH_REPO, './posts', ['--recursive', '-j4'])
 
   console.log(chalk.blue('INFO') + chalk.green(' Done cloning'))
 }
