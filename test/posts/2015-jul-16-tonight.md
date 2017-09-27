@@ -1,5 +1,0 @@
----
-frontpage: false
----
-
-Hidden post.

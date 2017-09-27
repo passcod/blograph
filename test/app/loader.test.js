@@ -28,10 +28,10 @@ t.test('reclone', async (t) => {
   t.ok(rejected)
 
   resolved = false
-  process.env.BLOGRAPH_REPO = repo || 'https://github.com/passcod/blog'
+  process.env.BLOGRAPH_REPO = repo || 'https://github.com/passcod/blograph-posts'
   await reclone().then(() => { resolved = true })
 
-  t.ok(console.log.calledWithMatch(/Cloning https:\/\/github.com\/passcod\/blog/))
+  t.ok(console.log.calledWithMatch(new RegExp(`Cloning ${process.env.BLOGRAPH_REPO}`)))
   t.ok(console.log.calledWithMatch(/Done cloning/))
   t.ok(resolved)
 

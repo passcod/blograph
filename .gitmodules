@@ -1,0 +1,3 @@
+[submodule "test/posts"]
+	path = test/posts
+	url = git://github.com/passcod/blograph-test-posts
