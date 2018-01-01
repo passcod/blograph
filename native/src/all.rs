@@ -56,5 +56,5 @@ pub fn load(base: PathBuf) -> List {
     }
 
     debug!("Found {} posts", posts.len());
-    List::new(posts)
+    List::new(posts).sort_by_date()
 }
