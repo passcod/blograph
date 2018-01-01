@@ -13,6 +13,7 @@ env:
   global:
     - "PATH=$PATH:$HOME/rust/bin"
 matrix:
+  fast_finish: true
   allow_failures:
     - env: RUST=nightly
 cache:
