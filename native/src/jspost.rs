@@ -82,7 +82,7 @@ declare_types! {
 }
 
 pub fn new(call: Call) -> JsResult<JsPost> {
-    let mut scope = call.scope;
+    let scope = call.scope;
     let args = call.arguments;
     let arg0 = args.require(scope, 0)?;
     let arg1 = args.require(scope, 1)?;

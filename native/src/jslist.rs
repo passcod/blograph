@@ -162,7 +162,7 @@ declare_types! {
 }
 
 pub fn new(call: Call) -> JsResult<JsList> {
-    let mut scope = call.scope;
+    let scope = call.scope;
     let args = call.arguments;
     let arg0 = args.require(scope, 0)?;
 
