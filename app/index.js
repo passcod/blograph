@@ -24,9 +24,9 @@ function frontpage () {
 
 setTimeout(() =>
   reclone()
-  .then(() => reloadPosts(app))
-  .catch((err) => initialLoadError(err))
-, process.env.SLOW_LOAD ? 200 : 0)
+    .then(() => reloadPosts(app))
+    .catch((err) => initialLoadError(err))
+  , process.env.SLOW_LOAD ? 200 : 0)
 
 app.use(logger)
 app.use(compression())
@@ -52,9 +52,9 @@ app.use(view)
 
 app.post('/hook/reload/posts', (req, res, error) =>
   reclone()
-  .then(() => reloadPosts(req.app))
-  .then(() => res.status(204).send())
-  .catch(error)
+    .then(() => reloadPosts(req.app))
+    .then(() => res.status(204).send())
+    .catch(error)
 )
 
 app.get('/', cache('10m'), (req, res) =>
