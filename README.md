@@ -1,5 +1,7 @@
 # Blograph
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/passcod/blograph.svg)](https://greenkeeper.io/)
+
 [![Travis](https://img.shields.io/travis/passcod/blograph.svg?style=flat-square)](https://travis-ci.org/passcod/blograph)
 [![Coveralls](https://img.shields.io/coveralls/passcod/blograph.svg?style=flat-square)](https://coveralls.io/github/passcod/blograph)
 ![TAP 100](https://img.shields.io/badge/TAP-100-000000.svg?style=flat-square)
