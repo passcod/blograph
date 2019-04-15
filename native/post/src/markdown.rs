@@ -1,5 +1,5 @@
 use crowbook_text_processing::clean::{ellipsis, guillemets, quotes};
-use pulldown_cmark::{html, Options, OPTION_ENABLE_FOOTNOTES, OPTION_ENABLE_TABLES, Parser};
+use pulldown_cmark::{html, Options, Parser};
 
 fn typo(text: &str) -> String {
 	String::from(ellipsis(guillemets(quotes(text))))
@@ -8,8 +8,8 @@ fn typo(text: &str) -> String {
 pub fn render(md: &str) -> String {
     lazy_static! {
         static ref OPTS: Options = Options::from_bits_truncate(
-            OPTION_ENABLE_FOOTNOTES.bits() |
-            OPTION_ENABLE_TABLES.bits()
+            Options::ENABLE_FOOTNOTES.bits() |
+            Options::ENABLE_TABLES.bits()
         );
     }
 

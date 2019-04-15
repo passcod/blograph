@@ -1,28 +1,26 @@
 use colored::*;
-use env_logger::LogBuilder;
-use log::{LogRecord, LogLevel, LogLevelFilter};
-use std::env;
+use env_logger::Builder;
+use log::{Level, LevelFilter};
+use std::{env, io::Write};
 
 pub fn init() {
-    let format = |record: &LogRecord| {
+    let mut builder = Builder::new();
+    builder.format(|buf, record| {
         let level = format!("{: <5}", record.level());
         let levelc = match record.level() {
-            LogLevel::Trace => level.dimmed().yellow(),
-            LogLevel::Debug => level.black().on_yellow(),
-            LogLevel::Info => level.green().bold(),
-            LogLevel::Warn => level.magenta().bold(),
-            LogLevel::Error => level.red().bold()
+            Level::Trace => level.dimmed().yellow(),
+            Level::Debug => level.black().on_yellow(),
+            Level::Info => level.green().bold(),
+            Level::Warn => level.magenta().bold(),
+            Level::Error => level.red().bold()
         };
 
-        format!("{} {} {}", levelc, record.target().cyan(), record.args())
-    };
-
-    let mut builder = LogBuilder::new();
-    builder.format(format).filter(None, LogLevelFilter::Warn);
+        write!(buf, "{} {} {}", levelc, record.target().cyan(), record.args())
+    }).filter(None, LevelFilter::Warn);
 
     if env::var("RUST_LOG").is_ok() {
-       builder.parse(&env::var("RUST_LOG").unwrap());
+       builder.parse_filters(&env::var("RUST_LOG").unwrap());
     }
 
-    builder.init().unwrap();
+    builder.init();
 }

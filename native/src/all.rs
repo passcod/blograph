@@ -2,7 +2,7 @@ use list::List;
 use post::Post;
 use std::path::PathBuf;
 use std::sync::Arc;
-use walkdir::{DirEntry, Error as WalkDirError, WalkDir, WalkDirIterator};
+use walkdir::{DirEntry, Error as WalkDirError, WalkDir};
 
 fn is_hidden(entry: &DirEntry) -> bool {
     let hidden = entry.file_name()
