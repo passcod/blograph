@@ -4,6 +4,7 @@ build = "build.rs"
 license = "Artistic-2.0"
 name = "blograph"
 version = "0.2.0"
+edition = "2018"
 
 [workspace]
 members = ["post", "list"]

@@ -1,11 +1,5 @@
-extern crate colored;
-extern crate env_logger;
-extern crate list;
 #[macro_use] extern crate log;
 #[macro_use] extern crate neon;
-extern crate post;
-extern crate walkdir;
-extern crate yaml_rust;
 
 use jslist::JsList;
 use list::List;

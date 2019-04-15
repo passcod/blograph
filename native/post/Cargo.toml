@@ -2,6 +2,7 @@
 name = "post"
 version = "0.2.0"
 workspace = ".."
+edition = "2018"
 
 [dependencies]
 chrono = "0.4.0"

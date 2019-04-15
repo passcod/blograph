@@ -1,8 +1,4 @@
-extern crate list;
 #[macro_use] extern crate log;
-extern crate post;
-extern crate walkdir;
-extern crate yaml_rust;
 
 use std::env;
 

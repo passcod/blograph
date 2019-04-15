@@ -1,11 +1,4 @@
-extern crate chrono;
-extern crate crowbook_text_processing;
-extern crate iso8601;
 #[macro_use] extern crate lazy_static;
-extern crate num_traits;
-extern crate pulldown_cmark;
-extern crate regex;
-extern crate yaml_rust;
 
 use chrono::prelude::*;
 use regex::Regex;

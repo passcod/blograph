@@ -1,5 +1,3 @@
-extern crate post;
-
 use std::collections::HashSet;
 use std::iter::FromIterator;
 use std::sync::Arc;
