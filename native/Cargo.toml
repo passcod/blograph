@@ -1,9 +1,9 @@
 [package]
 authors = ["Félix Saparelli <felix@passcod.name>"]
 build = "build.rs"
-license = "ISC"
+license = "Artistic-2.0"
 name = "blograph"
-version = "0.1.0"
+version = "0.2.0"
 
 [build-dependencies]
 neon-build = "0.1.13"
@@ -29,5 +29,3 @@ path = "post"
 [lib]
 crate-type = ["dylib"]
 name = "blograph"
-
-[workspaces]
