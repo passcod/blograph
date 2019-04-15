@@ -18,7 +18,7 @@ t.test('parsing and access', (t) => {
   t.equal(new Metadata('---\nfoo: 123.456').at('foo'), 123.456, '.at() with float')
   t.equal(new Metadata('---\nfoo: true').at('foo'), true, '.at() with bool')
   t.same(new Metadata('---\nfoo: [1,2,3]').at('foo'), [1, 2, 3], '.at() with array')
-  t.same(new Metadata('---\nfoo:\n  bar: 2').at('foo'), {bar: 2}, '.at() with hash')
+  t.same(new Metadata('---\nfoo:\n  bar: 2').at('foo'), { bar: 2 }, '.at() with hash')
 
   t.equal(new Metadata('---\nfoo: bar').string('foo'), 'bar', '.string() with string')
   t.equal(new Metadata('---\nfoo: 123').string('foo'), null, '.string() with int')

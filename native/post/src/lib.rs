@@ -110,7 +110,7 @@ impl Post {
             None => extless.into()
         };
 
-        maybe_dated.trim_right_matches('/').into()
+        maybe_dated.trim_end_matches('/').into()
     }
 
     pub fn title(&self) -> String {
