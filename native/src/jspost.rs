@@ -1,9 +1,9 @@
+use super::jsmetadata::{self, JsMetadata};
 use neon::js::class::Class;
 use neon::js::{JsBoolean, JsFunction, JsNull, JsString};
 use neon::vm::{Call, JsResult, Lock};
 use post::Post as RustPost;
 use std::sync::Arc;
-use super::jsmetadata::{self, JsMetadata};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Post(pub Arc<RustPost>);

@@ -1,9 +1,10 @@
-#[macro_use] extern crate lazy_static;
+#[macro_use]
+extern crate lazy_static;
 
-use chrono::prelude::*;
-use regex::Regex;
 use self::capitalise::capitalise;
 pub use self::metadata::Metadata;
+use chrono::prelude::*;
+use regex::Regex;
 use std::fs::File;
 use std::io::{Read, Result};
 use std::path::PathBuf;
@@ -14,11 +15,16 @@ mod markdown;
 pub mod metadata;
 mod metadata_parser;
 
-#[cfg(test)] mod test_date;
-#[cfg(test)] mod test_is_future;
-#[cfg(test)] mod test_is_page;
-#[cfg(test)] mod test_slug;
-#[cfg(test)] mod test_title;
+#[cfg(test)]
+mod test_date;
+#[cfg(test)]
+mod test_is_future;
+#[cfg(test)]
+mod test_is_page;
+#[cfg(test)]
+mod test_slug;
+#[cfg(test)]
+mod test_title;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Post {
@@ -39,7 +45,7 @@ impl Post {
         Ok(Post {
             path: path,
             metadata: Metadata::parse(&raw),
-            content: metadata_parser::strip(&raw)
+            content: metadata_parser::strip(&raw),
         })
     }
 
@@ -54,23 +60,21 @@ impl Post {
     pub fn is_future(&self) -> bool {
         match self.date() {
             None => false,
-            Some(d) => {
-                d.timestamp() > Utc::now().timestamp()
-            }
+            Some(d) => d.timestamp() > Utc::now().timestamp(),
         }
     }
 
     pub fn is_page(&self) -> bool {
         match self.date() {
             None => true,
-            Some(_) => self.metadata.page()
+            Some(_) => self.metadata.page(),
         }
     }
 
     pub fn date(&self) -> Option<DateTime<Utc>> {
         match self.metadata.date() {
             Some(d) => Some(d),
-            None => date::from_path(&self.path)
+            None => date::from_path(&self.path),
         }
     }
 
@@ -88,19 +92,14 @@ impl Post {
             true => None,
             false => match self.date() {
                 Some(d) => Some(d),
-                None => unreachable!()
-                // if self.date() is None, then self.is_page() is true
-            }
+                None => unreachable!(), // if self.date() is None, then self.is_page() is true
+            },
         };
 
         let extless = self.extless_path();
         let maybe_dated = match slug_date {
-            Some(d) => format!(
-                "{}/{}",
-                d.format("%Y/%b/%d"),
-                extless
-            ).to_lowercase(),
-            None => extless.into()
+            Some(d) => format!("{}/{}", d.format("%Y/%b/%d"), extless).to_lowercase(),
+            None => extless.into(),
         };
 
         maybe_dated.trim_end_matches('/').into()
@@ -113,13 +112,11 @@ impl Post {
 
         match self.metadata.title() {
             Some(s) => s,
-            None => capitalise(
-                &String::from(SPACED.replace_all(&self.extless_path(), " "))
-            )
+            None => capitalise(&String::from(SPACED.replace_all(&self.extless_path(), " "))),
         }
     }
 
-	pub fn render(&self) -> String {
-		markdown::render(&self.content)
-	}
+    pub fn render(&self) -> String {
+        markdown::render(&self.content)
+    }
 }

@@ -2,19 +2,18 @@ use crowbook_text_processing::clean::{ellipsis, guillemets, quotes};
 use pulldown_cmark::{html, Options, Parser};
 
 fn typo(text: &str) -> String {
-	String::from(ellipsis(guillemets(quotes(text))))
+    String::from(ellipsis(guillemets(quotes(text))))
 }
 
 pub fn render(md: &str) -> String {
     lazy_static! {
         static ref OPTS: Options = Options::from_bits_truncate(
-            Options::ENABLE_FOOTNOTES.bits() |
-            Options::ENABLE_TABLES.bits()
+            Options::ENABLE_FOOTNOTES.bits() | Options::ENABLE_TABLES.bits()
         );
     }
 
-	let pretty = typo(md);
-    let mut rendered = String::with_capacity(pretty.len() * 3/2);
+    let pretty = typo(md);
+    let mut rendered = String::with_capacity(pretty.len() * 3 / 2);
     let parser = Parser::new_ext(&pretty, OPTS.clone());
     html::push_html(&mut rendered, parser);
     rendered
@@ -45,7 +44,10 @@ mod test {
 
     #[test]
     fn quotes() {
-        test_md("\"Hello 'Hi' world\"", "<p>“Hello ‘Hi’ world”</p>\n");
+        test_md(
+            "\"Hello 'Hi' world\"",
+            "<p>“Hello ‘Hi’ world”</p>\n",
+        );
     }
 
     #[test]

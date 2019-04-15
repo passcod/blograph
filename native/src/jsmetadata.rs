@@ -1,8 +1,10 @@
 use neon::js::class::Class;
-use neon::js::{JsArray, JsBoolean, JsInteger, JsNull, JsNumber, JsObject, JsString, JsValue, Object, Value};
+use neon::js::{
+    JsArray, JsBoolean, JsInteger, JsNull, JsNumber, JsObject, JsString, JsValue, Object, Value,
+};
 use neon::mem::Handle;
-use neon::vm::{Call, JsResult, Lock};
 use neon::scope::Scope;
+use neon::vm::{Call, JsResult, Lock};
 use post::Metadata as RustMetadata;
 use std::i32;
 use std::ops::DerefMut;
@@ -19,7 +21,7 @@ fn i64_to_js<'a, T: Scope<'a>>(scope: &mut T, i: i64) -> Handle<'a, JsValue> {
 fn str_to_js<'a, T: Scope<'a>>(scope: &mut T, s: &str) -> Handle<'a, JsValue> {
     match JsString::new(scope, s) {
         None => JsNull::new().as_value(scope),
-        Some(s) => s.as_value(scope)
+        Some(s) => s.as_value(scope),
     }
 }
 
@@ -29,9 +31,7 @@ fn yaml_to_js<'a, T: Scope<'a>>(scope: &mut T, yaml: &Yaml) -> Handle<'a, JsValu
 
         &Yaml::Integer(i) => i64_to_js(scope, i),
 
-        r @ &Yaml::Real(_) => JsNumber::new(
-            scope, r.as_f64().unwrap_or(0f64)
-        ).as_value(scope),
+        r @ &Yaml::Real(_) => JsNumber::new(scope, r.as_f64().unwrap_or(0f64)).as_value(scope),
 
         &Yaml::String(ref s) => str_to_js(scope, &s),
 
@@ -58,9 +58,10 @@ fn yaml_to_js<'a, T: Scope<'a>>(scope: &mut T, yaml: &Yaml) -> Handle<'a, JsValu
 
             {
                 let raw_hash = hash.deref_mut();
-                for (key, val) in h.iter().map(|(yk, yv)|
-                    (yaml_to_js(scope, yk), yaml_to_js(scope, yv))
-                ) {
+                for (key, val) in h
+                    .iter()
+                    .map(|(yk, yv)| (yaml_to_js(scope, yk), yaml_to_js(scope, yv)))
+                {
                     if let Err(_) = raw_hash.set(key, val) {
                         warn!("Couldn't set hash key, skipping");
                     }
@@ -70,7 +71,7 @@ fn yaml_to_js<'a, T: Scope<'a>>(scope: &mut T, yaml: &Yaml) -> Handle<'a, JsValu
             hash.as_value(scope)
         }
 
-        _ => JsNull::new().as_value(scope)
+        _ => JsNull::new().as_value(scope),
     }
 }
 

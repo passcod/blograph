@@ -5,12 +5,15 @@ use std::sync::Arc;
 use walkdir::{DirEntry, Error as WalkDirError, WalkDir};
 
 fn is_hidden(entry: &DirEntry) -> bool {
-    let hidden = entry.file_name()
+    let hidden = entry
+        .file_name()
         .to_str()
         .map(|s| s.starts_with("."))
         .unwrap_or(false);
 
-    if hidden { trace!("Rejecting hidden file: {:?}", entry); }
+    if hidden {
+        trace!("Rejecting hidden file: {:?}", entry);
+    }
     hidden
 }
 
@@ -18,13 +21,13 @@ fn filter_file(entry: Result<DirEntry, WalkDirError>, base: &PathBuf) -> Option<
     if let Ok(file) = entry {
         if !file.file_type().is_file() {
             trace!("Rejecting non-file {:?}", file);
-            return None
+            return None;
         }
 
         if let Some(name) = file.file_name().to_str() {
             if !name.ends_with(".md") {
                 trace!("Rejecting non-markdown {}", name);
-                return None
+                return None;
             }
         }
 
@@ -46,8 +49,8 @@ pub fn load(base: PathBuf) -> List {
         .follow_links(true)
         .into_iter()
         .filter_entry(|e| !is_hidden(e))
-        .filter_map(|e| filter_file(e, &base)) {
-
+        .filter_map(|e| filter_file(e, &base))
+    {
         debug!("Loading {:?}/{:?}", base, entry);
         if let Ok(post) = Post::new(&base, entry) {
             trace!("Loaded post with slug: {}", post.slug());

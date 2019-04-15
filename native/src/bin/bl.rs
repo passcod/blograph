@@ -1,4 +1,5 @@
-#[macro_use] extern crate log;
+#[macro_use]
+extern crate log;
 
 use std::env;
 
@@ -9,7 +10,8 @@ fn main() {
     let posts = all::load(env::current_dir().unwrap());
     for item in posts.sort_by_date().iter() {
         let post = item.post;
-        println!("{}{}{}",
+        println!(
+            "{}{}{}",
             if post.is_future() { "[" } else { " " },
             post.slug(),
             if post.is_future() { "]" } else { "" }

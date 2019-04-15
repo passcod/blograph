@@ -1,5 +1,5 @@
-use std::sync::Arc;
 use super::*;
+use std::sync::Arc;
 
 #[test]
 fn empty_list() {
@@ -8,44 +8,60 @@ fn empty_list() {
 
 #[test]
 fn list_map() {
-    assert_eq!(test_util::make_list().iter().map(|i| {
-        i.post.slug()
-    }).collect::<Vec<String>>(), vec![
-        String::from("2015/jan/25/300-shorts"),
-        String::from("2017/feb/05/some-predictions"),
-        String::from("2017/jan/03/mountain"),
-        String::from("2017/jan/04/there-is-no-such-thing-as-writing-for-adults"),
-        String::from("2017/feb/10/monthly-update"),
-        String::from("2017/mar/10/monthly-update"),
-    ] as Vec<String>);
+    assert_eq!(
+        test_util::make_list()
+            .iter()
+            .map(|i| i.post.slug())
+            .collect::<Vec<String>>(),
+        vec![
+            String::from("2015/jan/25/300-shorts"),
+            String::from("2017/feb/05/some-predictions"),
+            String::from("2017/jan/03/mountain"),
+            String::from("2017/jan/04/there-is-no-such-thing-as-writing-for-adults"),
+            String::from("2017/feb/10/monthly-update"),
+            String::from("2017/mar/10/monthly-update"),
+        ] as Vec<String>
+    );
 }
 
 #[test]
 fn previous() {
-    assert_eq!(test_util::make_list().iter().map(|i| {
-        i.previous.map(|p| p.slug())
-    }).collect::<Vec<Option<String>>>(), vec![
-        None,
-        Some(String::from("2015/jan/25/300-shorts")),
-        Some(String::from("2017/feb/05/some-predictions")),
-        Some(String::from("2017/jan/03/mountain")),
-        Some(String::from("2017/jan/04/there-is-no-such-thing-as-writing-for-adults")),
-        Some(String::from("2017/feb/10/monthly-update")),
-    ] as Vec<Option<String>>);
+    assert_eq!(
+        test_util::make_list()
+            .iter()
+            .map(|i| i.previous.map(|p| p.slug()))
+            .collect::<Vec<Option<String>>>(),
+        vec![
+            None,
+            Some(String::from("2015/jan/25/300-shorts")),
+            Some(String::from("2017/feb/05/some-predictions")),
+            Some(String::from("2017/jan/03/mountain")),
+            Some(String::from(
+                "2017/jan/04/there-is-no-such-thing-as-writing-for-adults"
+            )),
+            Some(String::from("2017/feb/10/monthly-update")),
+        ] as Vec<Option<String>>
+    );
 }
 
 #[test]
 fn next() {
-    assert_eq!(test_util::make_list().iter().map(|i| {
-        i.next.map(|p| p.slug())
-    }).collect::<Vec<Option<String>>>(), vec![
-        Some(String::from("2017/feb/05/some-predictions")),
-        Some(String::from("2017/jan/03/mountain")),
-        Some(String::from("2017/jan/04/there-is-no-such-thing-as-writing-for-adults")),
-        Some(String::from("2017/feb/10/monthly-update")),
-        Some(String::from("2017/mar/10/monthly-update")),
-        None,
-    ] as Vec<Option<String>>);
+    assert_eq!(
+        test_util::make_list()
+            .iter()
+            .map(|i| i.next.map(|p| p.slug()))
+            .collect::<Vec<Option<String>>>(),
+        vec![
+            Some(String::from("2017/feb/05/some-predictions")),
+            Some(String::from("2017/jan/03/mountain")),
+            Some(String::from(
+                "2017/jan/04/there-is-no-such-thing-as-writing-for-adults"
+            )),
+            Some(String::from("2017/feb/10/monthly-update")),
+            Some(String::from("2017/mar/10/monthly-update")),
+            None,
+        ] as Vec<Option<String>>
+    );
 }
 
 #[test]

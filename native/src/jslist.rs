@@ -1,13 +1,13 @@
+use super::jsmetadata::{self, JsMetadata};
+use super::jspost::{self, JsPost};
 use list::List as RustList;
-use neon::js::{JsArray, JsFunction, JsInteger, JsNull, JsString, JsUndefined, JsValue, Object};
 use neon::js::class::Class;
+use neon::js::{JsArray, JsFunction, JsInteger, JsNull, JsString, JsUndefined, JsValue, Object};
 use neon::mem::Handle;
 use neon::vm::{Call, JsResult, Lock};
 use post::Post;
 use std::ops::DerefMut;
 use std::sync::Arc;
-use super::jsmetadata::{self, JsMetadata};
-use super::jspost::{self, JsPost};
 
 pub struct List(pub RustList);
 

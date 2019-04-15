@@ -12,7 +12,12 @@ fn full_list() {
 
 #[test]
 fn partial_list() {
-    assert_eq!(test_util::make_list().iter().filter(|i| {
-        i.post.metadata.tags().iter().any(|t| t == "monthly-update")
-    }).collect::<List>().len(), 2);
+    assert_eq!(
+        test_util::make_list()
+            .iter()
+            .filter(|i| i.post.metadata.tags().iter().any(|t| t == "monthly-update"))
+            .collect::<List>()
+            .len(),
+        2
+    );
 }

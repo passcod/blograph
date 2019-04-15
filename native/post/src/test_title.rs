@@ -1,6 +1,6 @@
-use std::path::PathBuf;
-use super::*;
 use super::metadata::Metadata;
+use super::*;
+use std::path::PathBuf;
 use yaml_rust::YamlLoader;
 
 fn meta(y: &str) -> Metadata {
@@ -11,7 +11,7 @@ fn metadata_test(path: &str, metastr: &str, output: &str) {
     let post = Post {
         path: PathBuf::from(path),
         metadata: meta(metastr),
-        content: String::from("")
+        content: String::from(""),
     };
     assert_eq!(post.title(), output);
 }
@@ -32,7 +32,11 @@ fn from_mixedcase_path() {
 
 #[test]
 fn from_metadata() {
-    metadata_test("hello-world.md", "title: Hello Mr. Universe", "Hello Mr. Universe");
+    metadata_test(
+        "hello-world.md",
+        "title: Hello Mr. Universe",
+        "Hello Mr. Universe",
+    );
 }
 #[test]
 fn from_bad_metadata() {

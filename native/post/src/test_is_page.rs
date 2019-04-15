@@ -1,13 +1,13 @@
-use std::path::PathBuf;
-use super::*;
 use super::metadata::Metadata;
+use super::*;
+use std::path::PathBuf;
 use yaml_rust::{yaml, Yaml};
 
 fn metadata_test(path: &str, meta: Yaml, output: bool) {
     let post = Post {
         path: PathBuf::from(path),
         metadata: Metadata::from_yaml(meta),
-        content: String::from("")
+        content: String::from(""),
     };
     assert_eq!(post.is_page(), output);
 }
@@ -29,10 +29,7 @@ fn with_no_date() {
 #[test]
 fn with_metadata_page() {
     let mut meta = yaml::Hash::new();
-    meta.insert(
-        Yaml::String(String::from("page")),
-        Yaml::Boolean(true)
-    );
+    meta.insert(Yaml::String(String::from("page")), Yaml::Boolean(true));
 
     metadata_test("2017-feb-18-hello-world.md", Yaml::Hash(meta), true);
 }
@@ -42,12 +39,9 @@ fn with_metadata_date_and_page() {
     let mut meta = yaml::Hash::new();
     meta.insert(
         Yaml::String(String::from("date")),
-        Yaml::String(String::from("2017-02-18"))
+        Yaml::String(String::from("2017-02-18")),
     );
-    meta.insert(
-        Yaml::String(String::from("page")),
-        Yaml::Boolean(true)
-    );
+    meta.insert(Yaml::String(String::from("page")), Yaml::Boolean(true));
 
     metadata_test("hello-world.md", Yaml::Hash(meta), true);
 }
@@ -57,7 +51,7 @@ fn with_metadata_date() {
     let mut meta = yaml::Hash::new();
     meta.insert(
         Yaml::String(String::from("date")),
-        Yaml::String(String::from("2017-02-18"))
+        Yaml::String(String::from("2017-02-18")),
     );
 
     metadata_test("hello-world.md", Yaml::Hash(meta), false);
@@ -68,12 +62,9 @@ fn with_metadata_and_file_date() {
     let mut meta = yaml::Hash::new();
     meta.insert(
         Yaml::String(String::from("date")),
-        Yaml::String(String::from("2017-02-04"))
+        Yaml::String(String::from("2017-02-04")),
     );
-    meta.insert(
-        Yaml::String(String::from("page")),
-        Yaml::Boolean(true)
-    );
+    meta.insert(Yaml::String(String::from("page")), Yaml::Boolean(true));
 
     metadata_test("2017-feb-18-hello-world.md", Yaml::Hash(meta), true)
 }
@@ -83,9 +74,8 @@ fn with_metadata_and_file_date_and_page() {
     let mut meta = yaml::Hash::new();
     meta.insert(
         Yaml::String(String::from("date")),
-        Yaml::String(String::from("2017-02-04"))
+        Yaml::String(String::from("2017-02-04")),
     );
 
     metadata_test("2017-feb-18-hello-world.md", Yaml::Hash(meta), false)
 }
-

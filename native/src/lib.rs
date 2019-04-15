@@ -1,5 +1,7 @@
-#[macro_use] extern crate log;
-#[macro_use] extern crate neon;
+#[macro_use]
+extern crate log;
+#[macro_use]
+extern crate neon;
 
 use jslist::JsList;
 use list::List;
@@ -8,9 +10,9 @@ use neon::vm::{Call, JsResult, Lock};
 use std::path::PathBuf;
 
 mod all;
+mod jslist;
 mod jsmetadata;
 mod jspost;
-mod jslist;
 mod logger;
 
 fn load(call: Call) -> JsResult<JsList> {
