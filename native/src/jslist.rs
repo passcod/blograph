@@ -1,10 +1,7 @@
-use super::jsmetadata::{self, JsMetadata};
-use super::jspost::{self, JsPost};
+use super::{SUB_LISTS, jsmetadata::{self, JsMetadata}};
+//use super::jspost::{self, JsPost};
 use list::List as RustList;
-use neon::js::class::Class;
-use neon::js::{JsArray, JsFunction, JsInteger, JsNull, JsString, JsUndefined, JsValue, Object};
-use neon::mem::Handle;
-use neon::vm::{Call, JsResult, Lock};
+use neon::prelude::*;
 use post::Post;
 use std::ops::DerefMut;
 use std::sync::Arc;
@@ -13,28 +10,18 @@ pub struct List(pub RustList);
 
 declare_types! {
     pub class JsList for List {
-        init(call) {
-            let scope = call.scope;
-            let args = call.arguments;
-
-            let jsvec = args.require(scope, 0)?.check::<JsArray>()?.to_vec(scope)?;
-            let mut posts: Vec<Arc<Post>> = vec![];
-            for entry in jsvec {
-                let mut post = entry.check::<JsPost>()?;
-                let apost = post.grab(|handle| handle.clone());
-                posts.push(apost.0);
-            }
-
-            Ok(List(RustList::new(posts)))
+        init(mut cx) {
+            let list_ref = cx.argument::<JsNumber>(0)?.value() as u32;
+            let list = SUB_LISTS.remove(&list_ref).unwrap();
+            Ok(List(list))
         }
 
-        method length(call) {
-            let scope = call.scope;
-            let args = call.arguments;
-            let len = args.this(scope).grab(|list| list.0.len());
-            Ok(JsInteger::new(scope, len as i32).upcast())
+        method length(mut cx) {
+            let length = cx.this().borrow(&cx.lock()).0.len();
+            Ok(cx.number(length as f64).as_value(&mut cx))
         }
 
+/*
         method toArray(call) {
             let scope = call.scope;
             let args = call.arguments;
@@ -155,18 +142,10 @@ declare_types! {
 
             Ok(JsUndefined::new().upcast())
         }
+*/
 
         // The rest of the methods can be reimplemented in JS with much better
         // aesthetics and performance than bridging them in Rust.
     }
 }
 
-pub fn new(call: Call) -> JsResult<JsList> {
-    let scope = call.scope;
-    let args = call.arguments;
-    let arg0 = args.require(scope, 0)?;
-
-    let list_class = JsList::class(scope)?;
-    let list_ctor = list_class.constructor(scope)?;
-    list_ctor.construct(scope, vec![arg0])
-}

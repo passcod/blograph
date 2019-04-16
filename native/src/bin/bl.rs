@@ -1,13 +1,8 @@
-#[macro_use]
-extern crate log;
-
-use std::env;
-
 #[path = "../all.rs"]
 mod all;
 
 fn main() {
-    let posts = all::load(env::current_dir().unwrap());
+    let posts = all::load(std::env::current_dir().unwrap());
     for item in posts.sort_by_date().iter() {
         let post = item.post;
         println!(

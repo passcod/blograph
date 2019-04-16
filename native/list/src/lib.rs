@@ -44,9 +44,15 @@ pub struct Item {
     pub next: Option<Arc<Post>>,
 }
 
+impl Default for List {
+    fn default() -> Self {
+        Self::new(Vec::new())
+    }
+}
+
 impl List {
-    pub fn new(posts: Vec<Arc<Post>>) -> List {
-        List { posts: posts }
+    pub fn new(posts: Vec<Arc<Post>>) -> Self {
+        Self { posts }
     }
 
     pub fn iter(&self) -> Iter {
@@ -58,6 +64,10 @@ impl List {
 
     pub fn to_vec(&self) -> Vec<Arc<Post>> {
         self.posts.clone()
+    }
+
+    pub fn into_vec(self) -> Vec<Arc<Post>> {
+        self.posts
     }
 
     pub fn len(&self) -> usize {
@@ -72,7 +82,7 @@ impl List {
         self.posts.iter().find(|p| p.slug() == slug)
     }
 
-    pub fn parents_of(&self, post: &Arc<Post>) -> List {
+    pub fn parents_of(&self, post: &Arc<Post>) -> Self {
         let mut parents = vec![];
         for slug in post.metadata.parents() {
             if let Some(parent) = self.find_by_slug(&slug) {
@@ -80,10 +90,10 @@ impl List {
             }
         }
 
-        List::new(parents)
+        Self::new(parents)
     }
 
-    pub fn children_of(&self, post: &Arc<Post>) -> List {
+    pub fn children_of(&self, post: &Arc<Post>) -> Self {
         let mut children = vec![];
         for item in self.posts.iter() {
             for parent in item.metadata.parents() {
@@ -93,13 +103,13 @@ impl List {
             }
         }
 
-        List::new(children)
+        Self::new(children)
     }
 
-    pub fn sort_by_date(&self) -> List {
+    pub fn sort_by_date(&self) -> Self {
         let mut sorted = self.posts.clone();
         sorted.sort_by(|a, b| a.date().cmp(&b.date()));
-        List::new(sorted)
+        Self::new(sorted)
     }
 
     pub fn tags(&self) -> HashSet<String> {

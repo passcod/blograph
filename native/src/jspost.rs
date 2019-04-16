@@ -1,7 +1,5 @@
-use super::jsmetadata::{self, JsMetadata};
-use neon::js::class::Class;
-use neon::js::{JsBoolean, JsFunction, JsNull, JsString};
-use neon::vm::{Call, JsResult, Lock};
+use super::{SUB_LISTS, jsmetadata::{self, JsMetadata}};
+use neon::prelude::*;
 use post::Post as RustPost;
 use std::sync::Arc;
 
@@ -10,20 +8,16 @@ pub struct Post(pub Arc<RustPost>);
 
 declare_types! {
     pub class JsPost for Post {
-        init(call) {
-            let scope = call.scope;
-            let args = call.arguments;
-
-            let path = args.require(scope, 0)?.check::<JsString>()?.value();
-            let metadata = args
-                .require(scope, 1)?
-                .check::<JsMetadata>()?
-                .grab(|meta| meta.0.clone());
-            let content = args.require(scope, 2)?.check::<JsString>()?.value();
-
-            Ok(Post(Arc::new(RustPost::from(&path, metadata, &content))))
+        init(mut cx) {
+            let list_ref = cx.argument::<JsNumber>(0)?.value() as u32;
+            let list = SUB_LISTS.remove(&list_ref);
+            let post = list.unwrap().into_vec().remove(0);
+            Ok(Post(post))
         }
 
+/*
+            let dots = cx.argument::<JsString>(0)?.value();
+            let mres = cx.this().borrow(&cx.lock()).0.at(&dots).cloned();
         method metadata(call) {
             let scope = call.scope;
 
@@ -78,17 +72,6 @@ declare_types! {
             let s = call.arguments.this(scope).grab(|post| post.0.render());
             Ok(JsString::new_or_throw(scope, &s)?.upcast())
         }
+*/
     }
-}
-
-pub fn new(call: Call) -> JsResult<JsPost> {
-    let scope = call.scope;
-    let args = call.arguments;
-    let arg0 = args.require(scope, 0)?;
-    let arg1 = args.require(scope, 1)?;
-    let arg2 = args.require(scope, 2)?;
-
-    let post_class = JsPost::class(scope)?;
-    let post_ctor = post_class.constructor(scope)?;
-    post_ctor.construct(scope, vec![arg0, arg1, arg2])
 }

@@ -1,4 +1,5 @@
 use list::List;
+use log::{debug, trace, info};
 use post::Post;
 use std::path::PathBuf;
 use std::sync::Arc;

@@ -1,24 +1,23 @@
 [package]
 authors = ["Félix Saparelli <felix@passcod.name>"]
 build = "build.rs"
+edition = "2018"
 license = "Artistic-2.0"
 name = "blograph"
 version = "0.2.0"
-edition = "2018"
-
-[workspace]
-members = ["post", "list"]
 
 [build-dependencies]
-neon-build = "0.1.13"
+neon-build = "0.2.0"
 
 [dependencies]
+arc-swap = "0.3.11"
+chashmap = "2.2.2"
 colored = "1.5.1"
 env_logger = "0.6.1"
 lazy_static = "1.3.0"
 log = "0.4.6"
-neon = "0.1.17"
-neon-runtime = "0.1.17"
+neon = "0.2.0"
+neon-runtime = "0.2.0"
 regex = "1.1.5"
 time = "0.1.37"
 walkdir = "2.2.7"
@@ -33,3 +32,6 @@ path = "post"
 [lib]
 crate-type = ["dylib"]
 name = "blograph"
+
+[workspace]
+members = ["post", "list"]
