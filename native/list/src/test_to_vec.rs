@@ -1,6 +1,6 @@
+use super::*;
 use post::Post;
 use std::sync::Arc;
-use super::*;
 
 #[test]
 fn empty_list() {

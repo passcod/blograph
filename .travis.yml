@@ -2,33 +2,19 @@
 language: node_js
 dist: trusty
 sudo: false
-node_js:
-  - "8"
-  - "9"
-env:
-  matrix:
-    - RUST=stable
-    - RUST=beta
-    - RUST=nightly
-  global:
-    - "PATH=$PATH:$HOME/rust/bin"
-matrix:
-  fast_finish: true
-  allow_failures:
-    - env: RUST=nightly
+node_js: 10
 cache:
   directories:
     - $HOME/.npm
     - $HOME/.cargo
 install: echo Running npm install AFTER rustup
 before_script:
-  - mkdir $HOME/rust
   - "curl -sL https://static.rust-lang.org/rustup.sh -o ~/rustup.sh"
-  - "sh ~/rustup.sh --prefix=~/rust --spec=$RUST -y --disable-sudo"
+  - "sh ~/rustup.sh -y"
+  - "source $HOME/.cargo/env"
   - rustc --version
   - cargo --version
-  - npm install --global npm@^5
-  - npm install
+  - npm ci
 script:
   - npm test
   - cd native

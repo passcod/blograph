@@ -12,13 +12,13 @@ pub fn parse(raw: &str) -> Yaml {
             None => None,
             Some(doc) => match doc {
                 Yaml::Hash(_) => Some(doc),
-                _ => None
-            }
+                _ => None,
+            },
         },
-        Err(_) => None
+        Err(_) => None,
     } {
         Some(doc) => doc,
-        None => Yaml::Hash(yaml::Hash::new())
+        None => Yaml::Hash(yaml::Hash::new()),
     }
 }
 
@@ -36,12 +36,11 @@ fn split(raw: &str) -> (Option<String>, String) {
     match matters.len() {
         3 => match matters[0] {
             "" => (Some(String::from(matters[1])), String::from(matters[2])),
-            _ => (None, String::from(matters.join("---")))
+            _ => (None, String::from(matters.join("---"))),
         },
-        _ => (None, String::from(raw))
+        _ => (None, String::from(raw)),
     }
 }
-
 
 #[cfg(test)]
 mod test {
@@ -65,12 +64,18 @@ mod test {
 
     #[test]
     fn parse_matter_after_spaces() {
-        assert_eq!(parse("  ---\npage: true\n---"), Yaml::Hash(yaml::Hash::new()));
+        assert_eq!(
+            parse("  ---\npage: true\n---"),
+            Yaml::Hash(yaml::Hash::new())
+        );
     }
 
     #[test]
     fn parse_matter_after_newline() {
-        assert_eq!(parse("\n---\npage: true\n---"), Yaml::Hash(yaml::Hash::new()));
+        assert_eq!(
+            parse("\n---\npage: true\n---"),
+            Yaml::Hash(yaml::Hash::new())
+        );
     }
 
     #[test]
@@ -80,12 +85,18 @@ mod test {
 
     #[test]
     fn parse_empty_front_matter_with_vim_modeline() {
-        assert_eq!(parse("---\n# vim: tw=80\n---"), Yaml::Hash(yaml::Hash::new()));
+        assert_eq!(
+            parse("---\n# vim: tw=80\n---"),
+            Yaml::Hash(yaml::Hash::new())
+        );
     }
 
     #[test]
     fn parse_array_front_matter() {
-        assert_eq!(parse("---\n- foo\n- bar\n---"), Yaml::Hash(yaml::Hash::new()));
+        assert_eq!(
+            parse("---\n- foo\n- bar\n---"),
+            Yaml::Hash(yaml::Hash::new())
+        );
     }
 
     #[test]
@@ -96,15 +107,10 @@ mod test {
     #[test]
     fn parse_hash_front_matter() {
         let mut matter = yaml::Hash::new();
-        matter.insert(
-            Yaml::String(String::from("page")),
-            Yaml::Boolean(true)
-        );
+        matter.insert(Yaml::String(String::from("page")), Yaml::Boolean(true));
         matter.insert(
             Yaml::String(String::from("tags")),
-            Yaml::Array(vec![
-                Yaml::String(String::from("post"))
-            ])
+            Yaml::Array(vec![Yaml::String(String::from("post"))]),
         );
 
         assert_eq!(
@@ -116,15 +122,10 @@ mod test {
     #[test]
     fn parse_hash_front_matter_with_3space_indent() {
         let mut matter = yaml::Hash::new();
-        matter.insert(
-            Yaml::String(String::from("page")),
-            Yaml::Boolean(true)
-        );
+        matter.insert(Yaml::String(String::from("page")), Yaml::Boolean(true));
         matter.insert(
             Yaml::String(String::from("tags")),
-            Yaml::Array(vec![
-                Yaml::String(String::from("post"))
-            ])
+            Yaml::Array(vec![Yaml::String(String::from("post"))]),
         );
 
         assert_eq!(
@@ -136,15 +137,10 @@ mod test {
     #[test]
     fn parse_hash_front_matter_with_vim_modeline() {
         let mut matter = yaml::Hash::new();
-        matter.insert(
-            Yaml::String(String::from("page")),
-            Yaml::Boolean(true)
-        );
+        matter.insert(Yaml::String(String::from("page")), Yaml::Boolean(true));
         matter.insert(
             Yaml::String(String::from("tags")),
-            Yaml::Array(vec![
-                Yaml::String(String::from("post"))
-            ])
+            Yaml::Array(vec![Yaml::String(String::from("post"))]),
         );
 
         assert_eq!(
@@ -160,37 +156,43 @@ mod test {
 
     #[test]
     fn strip_no_front_matter() {
-        assert_eq!(strip("Foo\nBar\nbazzzz"),
-            String::from("Foo\nBar\nbazzzz"));
+        assert_eq!(strip("Foo\nBar\nbazzzz"), String::from("Foo\nBar\nbazzzz"));
     }
 
     #[test]
     fn strip_dashes_after_the_top() {
-        assert_eq!(strip("Blah blah\n---\n---"),
-            String::from("Blah blah\n---\n---"));
+        assert_eq!(
+            strip("Blah blah\n---\n---"),
+            String::from("Blah blah\n---\n---")
+        );
     }
 
     #[test]
     fn strip_matter_after_spaces() {
-        assert_eq!(strip("  ---\npage: true\n---"),
-            String::from("  ---\npage: true\n---"));
+        assert_eq!(
+            strip("  ---\npage: true\n---"),
+            String::from("  ---\npage: true\n---")
+        );
     }
 
     #[test]
     fn strip_matter_after_newline() {
-        assert_eq!(strip("\n---\npage: true\n---"),
-            String::from("\n---\npage: true\n---"));
+        assert_eq!(
+            strip("\n---\npage: true\n---"),
+            String::from("\n---\npage: true\n---")
+        );
     }
 
     #[test]
     fn strip_empty_front_matter() {
-        assert_eq!(strip("---\n---\nipsum"),
-            String::from("\nipsum"));
+        assert_eq!(strip("---\n---\nipsum"), String::from("\nipsum"));
     }
 
     #[test]
     fn strip_front_matter() {
-        assert_eq!(strip("---\npage: true\n---\nlorem"),
-            String::from("\nlorem"));
+        assert_eq!(
+            strip("---\npage: true\n---\nlorem"),
+            String::from("\nlorem")
+        );
     }
 }

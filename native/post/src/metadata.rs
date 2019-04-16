@@ -1,23 +1,29 @@
+use super::metadata_parser;
 use chrono::prelude::*;
 use iso8601;
 use num_traits::cast::FromPrimitive;
-use super::metadata_parser;
 use yaml_rust::Yaml;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Metadata {
     pub raw: String,
-    pub yaml: Yaml
+    pub yaml: Yaml,
 }
 
 impl Metadata {
     pub fn parse(raw: &str) -> Metadata {
-        Metadata { raw: String::from(raw), yaml: metadata_parser::parse(raw) }
+        Metadata {
+            raw: String::from(raw),
+            yaml: metadata_parser::parse(raw),
+        }
     }
 
     #[cfg(test)]
     pub fn from_yaml(yaml: Yaml) -> Metadata {
-        Metadata { raw: String::from(""), yaml: yaml }
+        Metadata {
+            raw: String::from(""),
+            yaml: yaml,
+        }
     }
 
     /// Access metadata using dotted syntax.
@@ -25,7 +31,7 @@ impl Metadata {
         dotted.split('.').fold(Some(&self.yaml), |branch, name| {
             branch.and_then(|b| match b[name] {
                 Yaml::BadValue => None,
-                ref y @ _ => Some(y)
+                ref y @ _ => Some(y),
             })
         })
     }
@@ -49,19 +55,20 @@ impl Metadata {
     pub fn page(&self) -> bool {
         match self.bool("page") {
             None => false,
-            Some(p) => p
+            Some(p) => p,
         }
     }
 
     pub fn tags(&self) -> Vec<String> {
         match self.yaml["tags"].as_vec() {
             None => vec![],
-            Some(v) => v.iter().filter_map(|ys: &Yaml| {
-                match ys {
+            Some(v) => v
+                .iter()
+                .filter_map(|ys: &Yaml| match ys {
                     &Yaml::String(ref s) => Some(s.clone()),
-                    _ => None
-                }
-            }).collect()
+                    _ => None,
+                })
+                .collect(),
         }
     }
 
@@ -80,41 +87,43 @@ impl Metadata {
                             second: 0,
                             millisecond: 0,
                             tz_offset_hours: 0,
-                            tz_offset_minutes: 0
-                        }
-                    }
-                }
-            }
+                            tz_offset_minutes: 0,
+                        },
+                    },
+                },
+            },
         };
 
         let tz = match FixedOffset::east_opt(
-            iso.time.tz_offset_hours * 3600 +
-            iso.time.tz_offset_minutes * 60
+            iso.time.tz_offset_hours * 3600 + iso.time.tz_offset_minutes * 60,
         ) {
             None => return None,
-            Some(t) => t
+            Some(t) => t,
         };
 
         let tzed = match iso.date {
-            iso8601::Date::YMD { year, month, day }
-                => tz.ymd_opt(year, month, day),
-            iso8601::Date::Week { year, ww, d }
-                => tz.isoywd_opt(year, ww, match Weekday::from_u32(d) {
+            iso8601::Date::YMD { year, month, day } => tz.ymd_opt(year, month, day),
+            iso8601::Date::Week { year, ww, d } => tz.isoywd_opt(
+                year,
+                ww,
+                match Weekday::from_u32(d) {
                     None => return None,
-                    Some(d) => d
-                }),
-            iso8601::Date::Ordinal { year, ddd }
-                => tz.yo_opt(year, ddd)
-        }.and_hms_milli_opt(
+                    Some(d) => d,
+                },
+            ),
+            iso8601::Date::Ordinal { year, ddd } => tz.yo_opt(year, ddd),
+        }
+        .and_hms_milli_opt(
             iso.time.hour,
             iso.time.minute,
             iso.time.second,
-            iso.time.millisecond
-        ).earliest();
+            iso.time.millisecond,
+        )
+        .earliest();
 
         match tzed {
             None => None,
-            Some(d) => Some(d.with_timezone(&Utc))
+            Some(d) => Some(d.with_timezone(&Utc)),
         }
     }
 
@@ -130,22 +139,23 @@ impl Metadata {
         match self.string("parent") {
             Some(s) => vec![s],
             None => match self.yaml["parents"] {
-                Yaml::Array(ref v) => v.iter().filter_map(|s: &Yaml| {
-                    match s {
+                Yaml::Array(ref v) => v
+                    .iter()
+                    .filter_map(|s: &Yaml| match s {
                         &Yaml::String(ref s) => Some(s.clone()),
-                        _ => None
-                    }
-                }).collect(),
-                _ => vec![]
-            }
+                        _ => None,
+                    })
+                    .collect(),
+                _ => vec![],
+            },
         }
     }
 }
 
 #[cfg(test)]
 mod test {
-    use chrono::prelude::*;
     use super::*;
+    use chrono::prelude::*;
     use yaml_rust::{Yaml, YamlLoader};
 
     fn meta(y: &str) -> Metadata {
@@ -154,7 +164,10 @@ mod test {
 
     #[test]
     fn at_single() {
-        assert_eq!(meta("foo: bar").at("foo"), Some(&Yaml::String(String::from("bar"))))
+        assert_eq!(
+            meta("foo: bar").at("foo"),
+            Some(&Yaml::String(String::from("bar")))
+        )
     }
 
     #[test]
@@ -250,7 +263,10 @@ mod test {
 
     #[test]
     fn string_single() {
-        assert_eq!(meta("foo: baggins").string("foo"), Some(String::from("baggins")))
+        assert_eq!(
+            meta("foo: baggins").string("foo"),
+            Some(String::from("baggins"))
+        )
     }
 
     #[test]
@@ -303,7 +319,10 @@ mod test {
 
     #[test]
     fn title_there() {
-        assert_eq!(meta("title: A good post").title(), Some(String::from("A good post")));
+        assert_eq!(
+            meta("title: A good post").title(),
+            Some(String::from("A good post"))
+        );
     }
 
     #[test]
@@ -323,10 +342,16 @@ mod test {
 
     #[test]
     fn tags_several() {
-        assert_eq!(meta("tags:
+        assert_eq!(
+            meta(
+                "tags:
                         - one
                         - two
-                        - three").tags(), vec!["one", "two", "three"]);
+                        - three"
+            )
+            .tags(),
+            vec!["one", "two", "three"]
+        );
     }
 
     #[test]
@@ -364,44 +389,58 @@ mod test {
 
     #[test]
     fn date_ymd() {
-        assert_eq!(meta("date: 2017-02-18").date(),
-            Some(Utc.ymd(2017, 2, 18).and_hms(0, 0, 0)));
+        assert_eq!(
+            meta("date: 2017-02-18").date(),
+            Some(Utc.ymd(2017, 2, 18).and_hms(0, 0, 0))
+        );
     }
 
     #[test]
     fn date_ymd_hms() {
-        assert_eq!(meta("date: 2017-02-18T12:34:56Z").date(),
-            Some(Utc.ymd(2017, 2, 18).and_hms(12, 34, 56)));
+        assert_eq!(
+            meta("date: 2017-02-18T12:34:56Z").date(),
+            Some(Utc.ymd(2017, 2, 18).and_hms(12, 34, 56))
+        );
     }
 
     #[test]
     fn date_ymd_hms_offset() {
-        assert_eq!(meta("date: 2017-02-18T12:34:56-13:30").date(),
-            Some(Utc.ymd(2017, 2, 19).and_hms(2, 4, 56)));
+        assert_eq!(
+            meta("date: 2017-02-18T12:34:56-13:30").date(),
+            Some(Utc.ymd(2017, 2, 19).and_hms(2, 4, 56))
+        );
     }
 
     #[test]
     fn date_ywd() {
-        assert_eq!(meta("date: 2017W123").date(),
-            Some(Utc.ymd(2017, 3, 23).and_hms(0, 0, 0)));
+        assert_eq!(
+            meta("date: 2017W123").date(),
+            Some(Utc.ymd(2017, 3, 23).and_hms(0, 0, 0))
+        );
     }
 
     #[test]
     fn date_ywd_hms() {
-        assert_eq!(meta("date: 2017W123T12:34:56Z").date(),
-            Some(Utc.ymd(2017, 3, 23).and_hms(12, 34, 56)));
+        assert_eq!(
+            meta("date: 2017W123T12:34:56Z").date(),
+            Some(Utc.ymd(2017, 3, 23).and_hms(12, 34, 56))
+        );
     }
 
     #[test]
     fn date_ywd_hms_offset() {
-        assert_eq!(meta("date: 2017W123T12:34:56+13:30").date(),
-            Some(Utc.ymd(2017, 3, 22).and_hms(23, 4, 56)));
+        assert_eq!(
+            meta("date: 2017W123T12:34:56+13:30").date(),
+            Some(Utc.ymd(2017, 3, 22).and_hms(23, 4, 56))
+        );
     }
 
     #[test]
     fn date_yo() {
-        assert_eq!(meta("date: 2017123T").date(),
-            Some(Utc.ymd(2017, 5, 3).and_hms(0, 0, 0)));
+        assert_eq!(
+            meta("date: 2017123T").date(),
+            Some(Utc.ymd(2017, 5, 3).and_hms(0, 0, 0))
+        );
     }
 
     #[test]
@@ -411,14 +450,18 @@ mod test {
 
     #[test]
     fn date_yo_hms() {
-        assert_eq!(meta("date: 2017123T12:34:56Z").date(),
-            Some(Utc.ymd(2017, 5, 3).and_hms(12, 34, 56)));
+        assert_eq!(
+            meta("date: 2017123T12:34:56Z").date(),
+            Some(Utc.ymd(2017, 5, 3).and_hms(12, 34, 56))
+        );
     }
 
     #[test]
     fn date_yo_hms_offset() {
-        assert_eq!(meta("date: 2017123T12:34:56-13:30").date(),
-            Some(Utc.ymd(2017, 5, 4).and_hms(2, 4, 56)));
+        assert_eq!(
+            meta("date: 2017123T12:34:56-13:30").date(),
+            Some(Utc.ymd(2017, 5, 4).and_hms(2, 4, 56))
+        );
     }
 
     #[test]
@@ -438,8 +481,10 @@ mod test {
 
     #[test]
     fn parents_multi() {
-        assert_eq!(meta("parents:\n  - hello\n  - world").parents(),
-            vec!["hello", "world"]);
+        assert_eq!(
+            meta("parents:\n  - hello\n  - world").parents(),
+            vec!["hello", "world"]
+        );
     }
 
     #[test]
@@ -449,16 +494,25 @@ mod test {
 
     #[test]
     fn parents_multi_bad_type() {
-        assert_eq!(meta("parents:\n  - hello\n  - 123").parents(), vec!["hello"]);
+        assert_eq!(
+            meta("parents:\n  - hello\n  - 123").parents(),
+            vec!["hello"]
+        );
     }
 
     #[test]
     fn parents_shadowed_by_parent() {
-        assert_eq!(meta("parent: hello\nparents:\n  - world").parents(), vec!["hello"]);
+        assert_eq!(
+            meta("parent: hello\nparents:\n  - world").parents(),
+            vec!["hello"]
+        );
     }
 
     #[test]
     fn parents_missing() {
-        assert_eq!(meta("not-parent: hello-world").parents(), vec![] as Vec<String>);
+        assert_eq!(
+            meta("not-parent: hello-world").parents(),
+            vec![] as Vec<String>
+        );
     }
 }

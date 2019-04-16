@@ -1,21 +1,30 @@
-extern crate post;
-
+use post::Post;
 use std::collections::HashSet;
 use std::iter::FromIterator;
 use std::sync::Arc;
-use post::Post;
 
-#[cfg(test)] mod test_children;
-#[cfg(test)] mod test_contains;
-#[cfg(test)] mod test_find_by_slug;
-#[cfg(test)] mod test_from_iterator;
-#[cfg(test)] mod test_iter;
-#[cfg(test)] mod test_len;
-#[cfg(test)] mod test_parents;
-#[cfg(test)] mod test_sort;
-#[cfg(test)] mod test_tags;
-#[cfg(test)] mod test_to_vec;
-#[cfg(test)] mod test_util;
+#[cfg(test)]
+mod test_children;
+#[cfg(test)]
+mod test_contains;
+#[cfg(test)]
+mod test_find_by_slug;
+#[cfg(test)]
+mod test_from_iterator;
+#[cfg(test)]
+mod test_iter;
+#[cfg(test)]
+mod test_len;
+#[cfg(test)]
+mod test_parents;
+#[cfg(test)]
+mod test_sort;
+#[cfg(test)]
+mod test_tags;
+#[cfg(test)]
+mod test_to_vec;
+#[cfg(test)]
+mod test_util;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct List {
@@ -35,17 +44,30 @@ pub struct Item {
     pub next: Option<Arc<Post>>,
 }
 
+impl Default for List {
+    fn default() -> Self {
+        Self::new(Vec::new())
+    }
+}
+
 impl List {
-    pub fn new(posts: Vec<Arc<Post>>) -> List {
-        List { posts: posts }
+    pub fn new(posts: Vec<Arc<Post>>) -> Self {
+        Self { posts }
     }
 
     pub fn iter(&self) -> Iter {
-        Iter { list: self, cursor: 0 }
+        Iter {
+            list: self,
+            cursor: 0,
+        }
     }
 
     pub fn to_vec(&self) -> Vec<Arc<Post>> {
         self.posts.clone()
+    }
+
+    pub fn into_vec(self) -> Vec<Arc<Post>> {
+        self.posts
     }
 
     pub fn len(&self) -> usize {
@@ -60,7 +82,7 @@ impl List {
         self.posts.iter().find(|p| p.slug() == slug)
     }
 
-    pub fn parents_of(&self, post: &Arc<Post>) -> List {
+    pub fn parents_of(&self, post: &Arc<Post>) -> Self {
         let mut parents = vec![];
         for slug in post.metadata.parents() {
             if let Some(parent) = self.find_by_slug(&slug) {
@@ -68,10 +90,10 @@ impl List {
             }
         }
 
-        List::new(parents)
+        Self::new(parents)
     }
 
-    pub fn children_of(&self, post: &Arc<Post>) -> List {
+    pub fn children_of(&self, post: &Arc<Post>) -> Self {
         let mut children = vec![];
         for item in self.posts.iter() {
             for parent in item.metadata.parents() {
@@ -81,15 +103,13 @@ impl List {
             }
         }
 
-        List::new(children)
+        Self::new(children)
     }
 
-    pub fn sort_by_date(&self) -> List {
+    pub fn sort_by_date(&self) -> Self {
         let mut sorted = self.posts.clone();
-        sorted.sort_by(|a, b| {
-            a.date().cmp(&b.date())
-        });
-        List::new(sorted)
+        sorted.sort_by(|a, b| a.date().cmp(&b.date()));
+        Self::new(sorted)
     }
 
     pub fn tags(&self) -> HashSet<String> {
@@ -112,7 +132,7 @@ impl<'a> Iterator for Iter<'a> {
             let next = self.list.posts.get(self.cursor + 1);
             let previous = match self.cursor {
                 0 => None,
-                _ => self.list.posts.get(self.cursor - 1)
+                _ => self.list.posts.get(self.cursor - 1),
             };
 
             self.cursor += 1;
@@ -121,11 +141,11 @@ impl<'a> Iterator for Iter<'a> {
                 post: current.clone(),
                 previous: match previous {
                     None => None,
-                    Some(rc) => Some(rc.clone())
+                    Some(rc) => Some(rc.clone()),
                 },
                 next: match next {
                     None => None,
-                    Some(rc) => Some(rc.clone())
+                    Some(rc) => Some(rc.clone()),
                 },
             })
         } else {
@@ -135,7 +155,7 @@ impl<'a> Iterator for Iter<'a> {
 }
 
 impl FromIterator<Arc<Post>> for List {
-    fn from_iter<I: IntoIterator<Item=Arc<Post>>>(iter: I) -> Self {
+    fn from_iter<I: IntoIterator<Item = Arc<Post>>>(iter: I) -> Self {
         let mut posts = vec![];
 
         for post in iter {
@@ -147,7 +167,7 @@ impl FromIterator<Arc<Post>> for List {
 }
 
 impl<'a> FromIterator<&'a Arc<Post>> for List {
-    fn from_iter<I: IntoIterator<Item=&'a Arc<Post>>>(iter: I) -> Self {
+    fn from_iter<I: IntoIterator<Item = &'a Arc<Post>>>(iter: I) -> Self {
         let mut posts = vec![];
 
         for post in iter {
@@ -159,7 +179,7 @@ impl<'a> FromIterator<&'a Arc<Post>> for List {
 }
 
 impl<'a> FromIterator<&'a Item> for List {
-    fn from_iter<I: IntoIterator<Item=&'a Item>>(iter: I) -> Self {
+    fn from_iter<I: IntoIterator<Item = &'a Item>>(iter: I) -> Self {
         let mut posts = vec![];
 
         for item in iter {
@@ -171,7 +191,7 @@ impl<'a> FromIterator<&'a Item> for List {
 }
 
 impl FromIterator<Item> for List {
-    fn from_iter<I: IntoIterator<Item=Item>>(iter: I) -> Self {
+    fn from_iter<I: IntoIterator<Item = Item>>(iter: I) -> Self {
         let mut posts = vec![];
 
         for item in iter {

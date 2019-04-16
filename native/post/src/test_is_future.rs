@@ -1,14 +1,14 @@
+use super::metadata::Metadata;
+use super::*;
 use chrono::prelude::*;
 use std::path::PathBuf;
-use super::*;
-use super::metadata::Metadata;
 use yaml_rust::{yaml, Yaml};
 
 fn metadata_test(path: &str, meta: Yaml, output: bool) {
     let post = Post {
         path: PathBuf::from(path),
         metadata: Metadata::from_yaml(meta),
-        content: String::from("")
+        content: String::from(""),
     };
     assert_eq!(post.is_future(), output);
 }
@@ -24,7 +24,10 @@ fn with_no_date() {
 
 #[test]
 fn with_today_file_date() {
-    path_test(&Utc::now().format("%Y-%b-%d-hello-world.md").to_string(), false);
+    path_test(
+        &Utc::now().format("%Y-%b-%d-hello-world.md").to_string(),
+        false,
+    );
 }
 
 #[test]
@@ -42,7 +45,7 @@ fn with_today_metadata_date() {
     let mut meta = yaml::Hash::new();
     meta.insert(
         Yaml::String(String::from("date")),
-        Yaml::String(Utc::now().format("%Y-%m-%dT%H:%M:%SZ").to_string())
+        Yaml::String(Utc::now().format("%Y-%m-%dT%H:%M:%SZ").to_string()),
     );
 
     metadata_test("hello-world.md", Yaml::Hash(meta), false);
@@ -53,7 +56,7 @@ fn with_past_metadata_date() {
     let mut meta = yaml::Hash::new();
     meta.insert(
         Yaml::String(String::from("date")),
-        Yaml::String("2010-01-01".into())
+        Yaml::String("2010-01-01".into()),
     );
 
     metadata_test("hello-world.md", Yaml::Hash(meta), false);
@@ -64,7 +67,7 @@ fn with_past_metadata_datetime() {
     let mut meta = yaml::Hash::new();
     meta.insert(
         Yaml::String(String::from("date")),
-        Yaml::String("2010-01-01T12:34:56Z".into())
+        Yaml::String("2010-01-01T12:34:56Z".into()),
     );
 
     metadata_test("hello-world.md", Yaml::Hash(meta), false);
@@ -75,7 +78,7 @@ fn with_past_metadata_datetimezone() {
     let mut meta = yaml::Hash::new();
     meta.insert(
         Yaml::String(String::from("date")),
-        Yaml::String("2010-01-01T12:34:56+13:00".into())
+        Yaml::String("2010-01-01T12:34:56+13:00".into()),
     );
 
     metadata_test("hello-world.md", Yaml::Hash(meta), false);
@@ -86,7 +89,7 @@ fn with_future_metadata_date() {
     let mut meta = yaml::Hash::new();
     meta.insert(
         Yaml::String(String::from("date")),
-        Yaml::String("3010-01-01".into())
+        Yaml::String("3010-01-01".into()),
     );
 
     metadata_test("hello-world.md", Yaml::Hash(meta), true);
@@ -97,7 +100,7 @@ fn with_future_metadata_datetime() {
     let mut meta = yaml::Hash::new();
     meta.insert(
         Yaml::String(String::from("date")),
-        Yaml::String("3010-01-01T12:34:56Z".into())
+        Yaml::String("3010-01-01T12:34:56Z".into()),
     );
 
     metadata_test("hello-world.md", Yaml::Hash(meta), true);
@@ -108,9 +111,8 @@ fn with_future_metadata_datetimezone() {
     let mut meta = yaml::Hash::new();
     meta.insert(
         Yaml::String(String::from("date")),
-        Yaml::String("3010-01-01T12:34:56+13:00".into())
+        Yaml::String("3010-01-01T12:34:56+13:00".into()),
     );
 
     metadata_test("hello-world.md", Yaml::Hash(meta), true);
 }
-

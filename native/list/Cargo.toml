@@ -1,7 +1,8 @@
 [package]
 name = "list"
-version = "0.1.0"
+version = "0.2.0"
 workspace = ".."
+edition = "2018"
 
 [dependencies]
 post = { path = "../post" }

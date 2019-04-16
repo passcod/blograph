@@ -1,11 +1,8 @@
 pub fn capitalise(source: &str) -> String {
     let mut chars = source.chars();
     match chars.next() {
-        Some(first) => first
-            .to_uppercase()
-            .collect::<String>()
-            + chars.as_str(),
-        None => String::new()
+        Some(first) => first.to_uppercase().collect::<String>() + chars.as_str(),
+        None => String::new(),
     }
 }
 
@@ -35,7 +32,10 @@ mod test {
 
     #[test]
     fn ideograms() {
-        assert_eq!(&capitalise("死亡將是我們最後的敵人"), "死亡將是我們最後的敵人");
+        assert_eq!(
+            &capitalise("死亡將是我們最後的敵人"),
+            "死亡將是我們最後的敵人"
+        );
     }
 
     #[test]

@@ -1,27 +1,28 @@
-extern crate colored;
-extern crate env_logger;
-extern crate list;
-#[macro_use] extern crate log;
-#[macro_use] extern crate neon;
-extern crate post;
-extern crate walkdir;
-extern crate yaml_rust;
+#[macro_use]
+extern crate neon;
 
-use jslist::JsList;
+use arc_swap::ArcSwap;
+use chashmap::CHashMap;
+//use jslist::JsList;
 use list::List;
-use neon::js::{JsArray, JsFunction, JsNull, JsString};
-use neon::vm::{Call, JsResult, Lock};
+use neon::prelude::*;
 use std::path::PathBuf;
 
 mod all;
+mod jslist;
 mod jsmetadata;
 mod jspost;
-mod jslist;
 mod logger;
 
-fn load(call: Call) -> JsResult<JsList> {
-    let scope = call.scope;
-    let args = call.arguments;
+lazy_static::lazy_static! {
+    pub static ref MAIN_LIST: ArcSwap<List> = ArcSwap::default();
+    pub static ref SUB_LISTS: CHashMap<u32, List> = CHashMap::new();
+}
+
+/*
+fn load(mut cx: FunctionContext) -> JsResult<JsList> {
+    let scope = cx.scope;
+    let args = cx.arguments;
     let base = args.require(scope, 0)?.check::<JsString>()?.value();
 
     let posts = all::load(PathBuf::from(base)).to_vec();
@@ -34,12 +35,13 @@ fn load(call: Call) -> JsResult<JsList> {
     list.grab(|list| list.0 = List::new(posts));
     Ok(list)
 }
+*/
 
-register_module!(m, {
+register_module!(mut m, {
     logger::init();
-    m.export("load", load)?;
-    m.export("List", jslist::new)?;
-    m.export("Metadata", jsmetadata::new)?;
-    m.export("Post", jspost::new)?;
+    m.export_class::<jsmetadata::JsMetadata>("Metadata")?;
+    m.export_class::<jspost::JsPost>("Post")?;
+    m.export_class::<jslist::JsList>("List")?;
+    //m.export("load", load)?;
     Ok(())
 });

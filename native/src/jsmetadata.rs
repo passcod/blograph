@@ -1,76 +1,67 @@
-use neon::js::class::Class;
-use neon::js::{JsArray, JsBoolean, JsInteger, JsNull, JsNumber, JsObject, JsString, JsValue, Object, Value};
-use neon::mem::Handle;
-use neon::vm::{Call, JsResult, Lock};
-use neon::scope::Scope;
+use log::warn;
+use neon::prelude::*;
+use neon::types::{JsArray, JsBoolean, JsNull, JsNumber, JsObject, JsString, JsValue, Value};
 use post::Metadata as RustMetadata;
 use std::i32;
 use std::ops::DerefMut;
 use yaml_rust::Yaml;
 
-fn i64_to_js<'a, T: Scope<'a>>(scope: &mut T, i: i64) -> Handle<'a, JsValue> {
-    match i {
-        -2147483648 ... 2147483647 // Hardcoded i32::MIN and i32::MAX
-            => JsInteger::new(scope, i as i32).as_value(scope),
-        f @ _ => JsNumber::new(scope, f as f64).as_value(scope)
-    }
+fn i64_to_js<'a, T: Context<'a>>(cx: &mut T, i: i64) -> Handle<'a, JsValue> {
+    JsNumber::new(cx, i as f64).as_value(cx)
 }
 
-fn str_to_js<'a, T: Scope<'a>>(scope: &mut T, s: &str) -> Handle<'a, JsValue> {
-    match JsString::new(scope, s) {
-        None => JsNull::new().as_value(scope),
-        Some(s) => s.as_value(scope)
-    }
+fn str_to_js<'a, T: Context<'a>>(cx: &mut T, s: &str) -> Handle<'a, JsValue> {
+    JsString::try_new(cx, s)
+        .map(|s| s.as_value(cx))
+        .unwrap_or_else(|_| JsNull::new().as_value(cx))
 }
 
-fn yaml_to_js<'a, T: Scope<'a>>(scope: &mut T, yaml: &Yaml) -> Handle<'a, JsValue> {
+fn yaml_to_js<'a, T: Context<'a>>(cx: &mut T, yaml: &Yaml) -> Handle<'a, JsValue> {
     match yaml {
-        &Yaml::Boolean(b) => JsBoolean::new(scope, b).as_value(scope),
+        &Yaml::Boolean(b) => JsBoolean::new(cx, b).as_value(cx),
 
-        &Yaml::Integer(i) => i64_to_js(scope, i),
+        &Yaml::Integer(i) => i64_to_js(cx, i),
 
-        r @ &Yaml::Real(_) => JsNumber::new(
-            scope, r.as_f64().unwrap_or(0f64)
-        ).as_value(scope),
+        r @ &Yaml::Real(_) => JsNumber::new(cx, r.as_f64().unwrap_or(0f64)).as_value(cx),
 
-        &Yaml::String(ref s) => str_to_js(scope, &s),
+        &Yaml::String(ref s) => str_to_js(cx, &s),
 
         &Yaml::Array(ref v) => {
-            let mut array: Handle<JsArray> = JsArray::new(scope, v.len() as u32);
+            let mut array: Handle<JsArray> = JsArray::new(cx, v.len() as u32);
 
-            {
-                let raw_array = array.deref_mut();
-                let mut i: u32 = 0;
-                for val in v.iter().map(|y| yaml_to_js(scope, y)) {
-                    if let Err(_) = raw_array.set(i, val) {
-                        warn!("Couldn't set array index {}, skipping", i);
-                    } else {
-                        i += 1;
-                    }
+            let raw_array = array.deref_mut();
+            let mut i: u32 = 0;
+            let jsvals: Vec<Handle<'a, JsValue>> =
+                v.iter().map(|y| yaml_to_js(cx, y)).collect();
+            for val in jsvals {
+                if let Err(_) = raw_array.set(cx, i, val) {
+                    warn!("Couldn't set array index {}, skipping", i);
+                } else {
+                    i += 1;
                 }
             }
 
-            array.as_value(scope)
+            array.as_value(cx)
         }
 
         &Yaml::Hash(ref h) => {
-            let mut hash: Handle<JsObject> = JsObject::new(scope);
+            let mut hash: Handle<JsObject> = JsObject::new(cx);
 
-            {
-                let raw_hash = hash.deref_mut();
-                for (key, val) in h.iter().map(|(yk, yv)|
-                    (yaml_to_js(scope, yk), yaml_to_js(scope, yv))
-                ) {
-                    if let Err(_) = raw_hash.set(key, val) {
-                        warn!("Couldn't set hash key, skipping");
-                    }
+            let raw_hash = hash.deref_mut();
+            let jsvals: Vec<(Handle<'a, JsValue>, Handle<'a, JsValue>)> = h
+                .iter()
+                .map(|(yk, yv)| (yaml_to_js(cx, yk), yaml_to_js(cx, yv)))
+                .collect();
+            for (key, val) in jsvals {
+                if let Err(_) = raw_hash.set(cx, key, val) {
+                    warn!("Couldn't set hash key, skipping");
                 }
             }
 
-            hash.as_value(scope)
+            hash.as_value(cx)
         }
 
-        _ => JsNull::new().as_value(scope)
+        _ => JsNull::new().as_value(cx),
     }
 }
 
@@ -78,115 +69,87 @@ pub struct Metadata(pub RustMetadata);
 
 declare_types! {
     pub class JsMetadata for Metadata {
-        init(call) {
-            let scope = call.scope;
-            let args = call.arguments;
-            let yaml = args.require(scope, 0)?.check::<JsString>()?.value();
-
+        init(mut cx) {
+            let yaml: String = cx.argument::<JsString>(0)?.value();
             Ok(Metadata(RustMetadata::parse(&yaml)))
         }
 
-        method at(call) {
-            let scope = call.scope;
-            let args = call.arguments;
-            let dots = args.require(scope, 0)?.check::<JsString>()?.value();
+        method at(mut cx) {
+            let dots = cx.argument::<JsString>(0)?.value();
+            let mres = cx.this().borrow(&cx.lock()).0.at(&dots).cloned();
 
-            Ok(match args.this(scope).grab(|meta| meta.0.at(&dots)) {
+            Ok(match mres {
                 None => JsNull::new().upcast(),
-                Some(y) => yaml_to_js(scope, y)
+                Some(y) => yaml_to_js(&mut cx, &y)
             })
         }
 
-        method bool(call) {
-            let scope = call.scope;
-            let args = call.arguments;
-            let dots = args.require(scope, 0)?.check::<JsString>()?.value();
+        method bool(mut cx) {
+            let dots = cx.argument::<JsString>(0)?.value();
+            let mres = cx.this().borrow(&cx.lock()).0.bool(&dots);
 
-            Ok(match args.this(scope).grab(|meta| meta.0.bool(&dots)) {
+            Ok(match mres {
                 None => JsNull::new().upcast(),
-                Some(b) => JsBoolean::new(scope, b).upcast()
+                Some(b) => JsBoolean::new(&mut cx, b).upcast()
             })
         }
 
-        method int(call) {
-            let scope = call.scope;
-            let args = call.arguments;
-            let dots = args.require(scope, 0)?.check::<JsString>()?.value();
+        method int(mut cx) {
+            let dots = cx.argument::<JsString>(0)?.value();
+            let mres = cx.this().borrow(&cx.lock()).0.int(&dots);
 
-            Ok(match args.this(scope).grab(|meta| meta.0.int(&dots)) {
+            Ok(match mres {
                 None => JsNull::new().upcast(),
-                Some(i) => i64_to_js(scope, i)
+                Some(i) => i64_to_js(&mut cx, i)
             })
         }
 
-        method string(call) {
-            let scope = call.scope;
-            let args = call.arguments;
-            let dots = args.require(scope, 0)?.check::<JsString>()?.value();
+        method string(mut cx) {
+            let dots = cx.argument::<JsString>(0)?.value();
+            let mres = cx.this().borrow(&cx.lock()).0.str(&dots).map(|s| s.to_string());
 
-            Ok(match args.this(scope).grab(|meta| meta.0.str(&dots)) {
+            Ok(match mres {
                 None => JsNull::new().upcast(),
-                Some(s) => str_to_js(scope, s)
+                Some(s) => str_to_js(&mut cx, &s)
             })
         }
 
-        method page(call) {
-            let scope = call.scope;
-            let args = call.arguments;
-            let b = args.this(scope).grab(|meta| meta.0.page());
-
-            Ok(JsBoolean::new(scope, b).upcast())
+        method page(mut cx) {
+            let is_page = cx.this().borrow(&cx.lock()).0.page();
+            Ok(JsBoolean::new(&mut cx, is_page).upcast())
         }
 
-        method date(call) {
-            let scope = call.scope;
-            let datetime = call.arguments.this(scope).grab(|meta| meta.0.date());
+        method date(mut cx) {
+            let datetime = cx.this().borrow(&cx.lock()).0.date();
 
             Ok(match datetime {
                 None => JsNull::new().upcast(),
-                Some(dt) =>
-                    JsString::new_or_throw(scope, &dt.to_rfc3339())?.upcast()
+                Some(dt) => cx.string(&dt.to_rfc3339()).upcast()
             })
         }
 
-        method parents(call) {
-            let scope = call.scope;
-            let ps = call.arguments.this(scope).grab(|meta| meta.0.parents());
+        method parents(mut cx) {
+            let ps = cx.this().borrow(&cx.lock()).0.parents();
+            let mut array: Handle<JsArray> = JsArray::new(&mut cx, ps.len() as u32);
 
-            let mut array: Handle<JsArray> = JsArray::new(scope, ps.len() as u32);
-
-            {
-                let raw_array = array.deref_mut();
-                let mut i: u32 = 0;
-                for val in ps.iter().map(|s| str_to_js(scope, &s)) {
-                    raw_array.set(i, val)?;
-                    i += 1;
-                }
+            let jsvals: Vec<Handle<JsValue>> = ps.iter().map(|s| str_to_js(&mut cx, &s)).collect();
+            let raw_array = array.deref_mut();
+            let mut i: u32 = 0;
+            for val in jsvals {
+                raw_array.set(&mut cx, i, val)?;
+                i += 1;
             }
 
-            Ok(array.as_value(scope))
+            Ok(array.as_value(&mut cx))
         }
 
-        method toJSON(call) {
-            let scope = call.scope;
-            let args = call.arguments;
-
-            let yaml = args.this(scope).grab(|meta| meta.0.yaml.clone());
-            Ok(yaml_to_js(scope, &yaml))
+        method toJSON(mut cx) {
+            let yaml = cx.this().borrow(&cx.lock()).0.yaml.clone();
+            Ok(yaml_to_js(&mut cx, &yaml))
         }
 
         // #author, #tags, and #title are just straight queries using the
         // normal #at/#string methods, so instead of binding them in Rust,
         // they're rewritten trivially in JS.
     }
-}
-
-pub fn new(call: Call) -> JsResult<JsMetadata> {
-    let scope = call.scope;
-    let args = call.arguments;
-    let arg0 = args.require(scope, 0)?;
-
-    let meta_class = JsMetadata::class(scope)?;
-    let meta_ctor = meta_class.constructor(scope)?;
-    meta_ctor.construct(scope, vec![arg0])
 }
