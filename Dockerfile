@@ -1,6 +1,7 @@
 # This is just here so we can pull stuff from it
 FROM node:8.1.0 AS node
 
+
 # The build environment
 FROM rust:1.20.0 AS rust
 
@@ -35,10 +36,15 @@ RUN rm -r native/target/release/native
 
 
 # The runtime environment
-FROM node:8.1.0
+FROM node:8.1.0-slim
+RUN apt update && apt install -y git && apt-get clean
 
 COPY --from=rust /build /app
 WORKDIR /app
 
 # Copy bl tool to the PATH
 RUN cp native/target/release/bl /usr/local/bin/
+
+ENV PORT=80
+ENV BLOGRAPH_REPO=https://github.com/passcod/blog
+CMD node .
