@@ -3,3 +3,4 @@ node_modules
 posts
 native/target
 native/index.node
+Dockerfile

@@ -146,3 +146,9 @@ Rust version.
 This blog has happily lasted four years on one engine so far. I am confident
 that it will last at least another four on this new one. I would like it if I
 didn't have to rewrite it all when I do pick it up again.
+
+### Welp, that didn't go as planned
+
+Fast-forward to 2020, and while the compiler can still build my code as
+promised, the *ecosystem* has long since moved on. But building this as-is
+works just fine within the Dockerfile, so for now I'm okay.
