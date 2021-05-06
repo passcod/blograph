@@ -32,7 +32,7 @@
     "promisify-es6": "^1.0.3",
     "rimraf": "^2.6.2",
     "rss": "^1.2.2",
-    "sanitize-html": "^1.16.3",
+    "sanitize-html": "^2.3.2",
     "simple-git": "^1.85.0"
   },
   "scripts": {
